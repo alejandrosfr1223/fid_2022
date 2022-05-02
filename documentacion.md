@@ -43,37 +43,37 @@
 
 
 ## Creación del esqueleto del proyecto
-4. Crear archivo de rutas **routes\admin.php** para administrar el módulo de administración (**admin**):
+1. Crear archivo de rutas **routes\admin.php** para administrar el módulo de administración (**admin**):
     ```php
     <?php
 
     use Illuminate\Support\Facades\Route;
     ```
-5. Crear archivo de rutas **routes\formation.php** para administrar el módulo de formación (**formation**):
+2. Crear archivo de rutas **routes\formation.php** para administrar el módulo de formación (**formation**):
     ```php
     <?php
 
     use Illuminate\Support\Facades\Route;
     ``` 
-6. Crear archivo de rutas **routes\investigation.php** para administrar el módulo de formación (**investigation**):
+3. Crear archivo de rutas **routes\investigation.php** para administrar el módulo de formación (**investigation**):
     ```php
     <?php
 
     use Illuminate\Support\Facades\Route;
     ``` 
-7. Crear archivo de rutas **routes\documentation.php** para administrar el módulo de documentación (**documentation**):
+4. Crear archivo de rutas **routes\documentation.php** para administrar el módulo de documentación (**documentation**):
     ```php
     <?php
 
     use Illuminate\Support\Facades\Route;
     ``` 
-8. Crear archivo de rutas **routes\diffusion.php** para administrar el módulo de difusión (**diffusion**):
+5. Crear archivo de rutas **routes\diffusion.php** para administrar el módulo de difusión (**diffusion**):
     ```php
     <?php
 
     use Illuminate\Support\Facades\Route;
     ```
-9. Registrar los nuevos archivos de rutas en el provider **app\Providers\RouteServiceProvider.php**:
+6. Registrar los nuevos archivos de rutas en el provider **app\Providers\RouteServiceProvider.php**:
     ```php
     ≡
     public function boot()
@@ -81,61 +81,54 @@
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::prefix('api')
-                ->middleware('api')
-                ->namespace($this->namespace)
+            Route::middleware('api')
+                ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
-                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware('web', 'auth')
-                ->name('admin.')
-                ->prefix('admin')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/admin.php'));
-                
-            Route::middleware('web')
-                ->name('formation.')
-                ->prefix('formation')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/formation.php'));
-                
-            Route::middleware('web')
-                ->name('investigation.')
-                ->prefix('investigation')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/investigation.php'));
-                
-            Route::middleware('web')
-                ->name('documentation.')
-                ->prefix('documentation')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/documentation.php'));
-                
-            Route::middleware('web')
-                ->name('diffusion.')
-                ->prefix('diffusion')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/diffusion.php'));
+                Route::middleware('web', 'auth')
+                    ->name('admin.')
+                    ->prefix('admin')
+                    ->group(base_path('routes/admin.php'));
+
+                Route::middleware('web')
+                    ->name('formation.')
+                    ->prefix('formation')
+                    ->group(base_path('routes/formation.php'));
+
+                Route::middleware('web')
+                    ->name('investigation.')
+                    ->prefix('investigation')
+                    ->group(base_path('routes/investigation.php'));
+
+                Route::middleware('web')
+                    ->name('documentation.')
+                    ->prefix('documentation')
+                    ->group(base_path('routes/documentation.php'));
+
+                Route::middleware('web')
+                    ->name('diffusion.')
+                    ->prefix('diffusion')
+                    ->group(base_path('routes/diffusion.php'));
         });
     }
     ≡
     ```
-10. Estructura los directorios del proyecto para las **vistas**:
+7. Crear estructura los directorios del proyecto para las **vistas**:
     + resources\views\admin
     + resources\views\formation
     + resources\views\investigation
     + resources\views\documentation
     + resources\views\diffusion
-11. Estructura los directorios del proyecto para los **modelos**:
+8. Crear estructura los directorios del proyecto para los **modelos**:
     + app\Models\admin
     + app\Models\formation
     + app\Models\investigation
     + app\Models\documentation
     + app\Models\diffusion
-12. Estructura los directorios del proyecto para los **controladores**:
+9. Estructura los directorios del proyecto para los **controladores**:
     + app\Http\Controllers\admin
     + app\Http\Controllers\formation
     + app\Http\Controllers\investigation
@@ -144,7 +137,7 @@
 13. Realizar commit:
     + $ git add .
     + $ git commit -m "Creación del esqueleto del proyecto"
-    + $ git push -u origin main
+    + $ git push -u origin admin
 
 ## Instalación de dependencias principales
 + [Laravel Permission](https://spatie.be/docs/laravel-permission/v3/basic-usage/basic-usage)
@@ -241,7 +234,7 @@
 
 
 
-Creación del proyecto Laravel - Jetstream
+
 
 
 ## Comandos git comunes:
