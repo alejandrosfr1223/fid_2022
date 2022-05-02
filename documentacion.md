@@ -39,9 +39,6 @@
     + $ php artisan migrate
 
 
-
-
-
 ## Creación del esqueleto del proyecto
 1. Crear archivo de rutas **routes\admin.php** para administrar el módulo de administración (**admin**):
     ```php
@@ -88,30 +85,30 @@
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-                Route::middleware('web', 'auth')
-                    ->name('admin.')
-                    ->prefix('admin')
-                    ->group(base_path('routes/admin.php'));
+            Route::middleware('web', 'auth')
+                ->name('admin.')
+                ->prefix('admin')
+                ->group(base_path('routes/admin.php'));
 
-                Route::middleware('web')
-                    ->name('formation.')
-                    ->prefix('formation')
-                    ->group(base_path('routes/formation.php'));
+            Route::middleware('web')
+                ->name('formation.')
+                ->prefix('formation')
+                ->group(base_path('routes/formation.php'));
 
-                Route::middleware('web')
-                    ->name('investigation.')
-                    ->prefix('investigation')
-                    ->group(base_path('routes/investigation.php'));
+            Route::middleware('web')
+                ->name('investigation.')
+                ->prefix('investigation')
+                ->group(base_path('routes/investigation.php'));
 
-                Route::middleware('web')
-                    ->name('documentation.')
-                    ->prefix('documentation')
-                    ->group(base_path('routes/documentation.php'));
+            Route::middleware('web')
+                ->name('documentation.')
+                ->prefix('documentation')
+                ->group(base_path('routes/documentation.php'));
 
-                Route::middleware('web')
-                    ->name('diffusion.')
-                    ->prefix('diffusion')
-                    ->group(base_path('routes/diffusion.php'));
+            Route::middleware('web')
+                ->name('diffusion.')
+                ->prefix('diffusion')
+                ->group(base_path('routes/diffusion.php'));
         });
     }
     ≡
@@ -134,10 +131,11 @@
     + app\Http\Controllers\investigation
     + app\Http\Controllers\documentation
     + app\Http\Controllers\diffusion
-13. Realizar commit:
-    + $ git add .
-    + $ git commit -m "Creación del esqueleto del proyecto"
-    + $ git push -u origin admin
+
+
+
+
+
 
 ## Instalación de dependencias principales
 + [Laravel Permission](https://spatie.be/docs/laravel-permission/v3/basic-usage/basic-usage)
@@ -171,7 +169,7 @@
     + Publicar vista de AdminLTE:
         + $ php artisan adminlte:install --only=main_views
         + **Nota 1**: En **resources\views\vendor\adminlte\page.blade.php** es de donde se extienden las plantillas.
-        + **Nota 2**: Modelo de uso de la plantilla AdminLTE:6. Diseñar vista para pruebas **resources\views\admin\index.blade.php**:
+        + **Nota 2**: Modelo de uso de la plantilla AdminLTE:6. Diseñar vista inicial **resources\views\admin\index.blade.php**:
             ```php
             @extends('adminlte::page')
 
@@ -193,6 +191,7 @@
                 {{-- ARCHIVOS JS REQUERIDOS POR LA APLICACIÓN --}}
             @stop
             ```
+        + **Nota 3**: Crear vista para pruebas igual a la anterior con el nombre **resources\views\admin\layouts\test.blade.php**.
 3. Instalar **Laravel Collective** para hacer formularios:
     + $ composer require laravelcollective/html
 4. Instalar **Sweetalert2** para notificaciones:
@@ -214,6 +213,7 @@
         ```
     + Agregamos la siguiente instrucción al archivo **resources\js\app.js**:
         ```js
+        ≡
         window.Swal = require('sweetalert2');
         ```
     + $ npm install sweetalert2
@@ -222,6 +222,10 @@
     + $ npm install bootstrap
 7. Instalar Font Awesome:
     + $ npm i font-awesome
+
+
+
+
 8. Realizar commit:
     + $ git add .
     + $ git commit -m "Instalación de dependencias principales"
