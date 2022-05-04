@@ -248,6 +248,92 @@
     ```
 
 
+## Seeders para prueba de roles y permisos
+1. Crear seeder para roles y usuarios: 
+	+ $ php artisan make:seeder RoleSeeder
+    + $ php artisan make:seeder UserSeeder
+2. Modificar seeder **database\seeders\RoleSeeder.php**:
+    ```php
+    ≡
+    use Spatie\Permission\Models\Role;
+    use Spatie\Permission\Models\Permission;
+
+    class RoleSeeder extends Seeder
+    {
+        ≡
+        public function run()
+        {
+            // Roles
+            $rolAdministrador = Role::create(['name' => 'Administrador']);
+            $rolProduccion = Role::create(['name' => 'Produccion']);
+            $rolCliente = Role::create(['name' => 'Cliente']);
+
+            /*
+            Ejemplo para permisos en un crud
+            Permission::create(['name' => 'crud.agclientes.index'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
+            Permission::create(['name' => 'crud.agclientes.create'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
+            Permission::create(['name' => 'crud.agclientes.edit'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
+            Permission::create(['name' => 'crud.agclientes.destroy'])->syncRoles($rolAdministrador);
+            */
+        }
+    }
+    ```
+4. Modificar seeder **database\seeders\UserSeeder.php**:
+    ```php
+    ≡
+    use App\Models\User;
+
+    class UserSeeder extends Seeder
+    {
+        ≡
+        public function run()
+        {
+            User::create([
+                'name' => 'Pedro Bazó',
+                'email' => 'bazo.pedro@gmail.com',
+                'password' => bcrypt('12345678'),
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ])->assignRole('Administrador');
+
+            User::create([
+                'name' => 'Prueba Producción',
+                'email' => 'produccion@gmail.com',
+                'password' => bcrypt('12345678'),
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ])->assignRole('Produccion');
+
+            User::create([
+                'name' => 'Prueba cliente',
+                'email' => 'cliente@gmail.com',
+                'password' => bcrypt('12345678'),
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ])->assignRole('Cliente');
+
+            User::create([
+                'name' => 'Prueba Sin Rol',
+                'email' => 'sinrol@gmail.com',
+                'password' => bcrypt('12345678'),
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ]);
+
+            User::factory(99)->create();
+        }
+    }
+    ```
+5. Modificar seeder **database\seeders\DatabaseSeeder.php**:
+    ```php
+    ≡
+    public function run()
+    {
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+    }
+    ≡
+    ```
+6. Restablecer base de datos: 
+	+ $ php artisan migrate:fresh --seed
+	+ **Nota**: Para correr los seeder sin resetear la base de datos:
+		+ $ php artisan db:seed
 
 
 
@@ -257,6 +343,22 @@
 
 
 
+
+## Creación de enlaces simbólicos (symbolic link)
+1. Crear enlace simbólico en Windows 10
+	+ Ejecutar **C:\Windows\System32\cmd.exe como administrador**
+	+ $ Mklink/D C:\xampp\htdocs\sefar\public\doc C:\xampp\htdocs\universalsefar.com\documentos
+	+ $ Mklink/D C:\xampp\htdocs\sefar\storage\app\public\doc C:\xampp\htdocs\universalsefar.com\documentos 
+		+ **Lógica**: Mklink /D "ruta donde queremos crear el enlace" "ruta de origen de archivos"
+1. Crear enlace simbólico en el hosting
+	+ En el cPanel ir a **Trabajos de cron**.
+	+ Ubicarse en **Añadir nuevo trabajo de cron** y luego **Configuración común**, y seleccionar **Una vez por mínuto(* * * * *)**.
+	+ En **Comando:** escribir:
+		* ln -s /home/pxvim6av41qx/public_html/documentos /home/pxvim6av41qx/public_html/app.universalsefar.com/public/doc
+	+ Presionar **Añadir nuevo trabajo de cron** y esperar a que se ejecute la tarea.
+	+ Borrar tarea una vez creado el enlace en **Trabajos de cron actuales**.
+	+ Repetir el procedimiento pero ahora para:
+		* ln -s /home/pxvim6av41qx/public_html/documentos /home/pxvim6av41qx/public_html/app.universalsefar.com/storage/app/public/doc
 
 
 ## Comandos git comunes
@@ -348,6 +450,20 @@
     + $user->getAllPermissions();
 
 
+## Crear modelo:
+1. Diferentes formas para crear modelos:
+	+ Crear solo el modelo
+		- $ php artisan make:model Model
+	+ Crear el modelo con migración:
+		- $ php artisan make:model Model -m
+	+ Crear el modelo con migración y controlador:
+		- $ php artisan make:model Model -mc
+	+ Crear el modelo con migración, controlador y seeder:
+		- $ php artisan make:model Model -mcs
+	+ Crear el modelo con migración, controlador, seeder y factory:
+		- $ php artisan make:model Model -mcsf
+	+ Crear el modelo con migración con todo:
+		- $ php artisan make:model Model -a
 
 
 ## Temporal
