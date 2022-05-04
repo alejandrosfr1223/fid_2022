@@ -5,7 +5,7 @@
 + Figma: https://www.figma.com/proto/qAREYzpdkJtjdE262QOCwb/CDS?node-id=79%3A2&scaling=min-zoom&page-id=2%3A2&starting-point-node-id=79%3A2
 + Repositorio GitHub: https://github.com/alejandrosfr1223/fid_2022
 
-## Consideraciones previas:
+## Consideraciones previas
 + https://rbwebme.com/instalar-laravel-en-windows-10
 + Instalar [Node.js](https://nodejs.org/es)
 + Instalar [XAMPP](https://www.apachefriends.org) o [Laragon](https://laragon.org)
@@ -25,8 +25,19 @@
     + $ npm run dev
 3. Crear un dominio local: **fid_2022.test**.
     + [Guía de Coders Free para crear un dominio local](https://codersfree.com/blog/como-generar-un-dominio-local-en-windows-xampp)
-4. Crear base de datos **fid_2022** en MySQL (Cotejamiento: **utf8_general_ci**).
-5. Hacer coincidir los parámetros de base de datos y de dominio del proyecto en **.env** en caso de ser necesario:
+4. Crear base de datos **fid_2022** en **MySQL** (Cotejamiento: **utf8_general_ci**).
+5. Establecer juego de caracteres en base de datos en **config\database.php**:
+    ```php
+    ≡
+    'mysql' => [
+        ≡
+        'charset' => 'utf8',
+        'collation' => 'utf8_general_ci',
+        ≡
+    ],
+    ≡
+    ```
+6. Hacer coincidir los parámetros de base de datos y de dominio del proyecto en **.env** en caso de ser necesario:
     ```env
     APP_NAME="FID"
     ≡
@@ -35,7 +46,7 @@
     DB_DATABASE=fid_2022
     ≡
     ```
-6. Ejecutar migraciones:
+7. Ejecutar migraciones:
     + $ php artisan migrate
 
 
@@ -133,10 +144,6 @@
     + app\Http\Controllers\diffusion
 
 
-
-
-
-
 ## Instalación de dependencias principales
 + [Laravel Permission](https://spatie.be/docs/laravel-permission/v3/basic-usage/basic-usage)
 + [Laravel AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE)
@@ -224,12 +231,23 @@
     + $ npm i font-awesome
 
 
+## Adaptación del proyecto al español
++ [Documentación Laravel Lang](https://github.com/laravel-lang/lang)
++ [Documentación Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Translations)
+1. Pasar AdminLTE a español:
+    + $ php artisan adminlte:install --only=translations
+2. Pasar Laravel a español:
+    + $ composer require laravel-lang/lang --dev
+3. Copiar directorio: **vendor\laravel-lang\lang\locales\es** y pegarlo en: **lang**.
+    + **Nota**: realizar todas las traducciones en **lang\es\es.json**.
+4. Configurar a español **config\app.php**:
+    ```php
+    ≡
+    'locale' => 'es',
+    ≡
+    ```
 
 
-8. Realizar commit:
-    + $ git add .
-    + $ git commit -m "Instalación de dependencias principales"
-    + $ git push -u origin main
 
 
 
@@ -241,7 +259,7 @@
 
 
 
-## Comandos git comunes:
+## Comandos git comunes
 1. Clonar repositorio:
     + $ git clone https://github.com/alejandrosfr1223/fid_2022
 2. Realizar commit:
@@ -299,3 +317,45 @@
     + $ git branch -d rama_a_eliminar
 + Traer las actualizaciones desde GitHub:
     + git pull origin main
+
+
+## Instrucciones básicas Laravel-permission
++ **Documentación**: https://spatie.be/docs/laravel-permission/v4/introduction
++ Crear un rol:
+    + Role::create(['name' => 'admin']);
++ Asignar un rol a un usuario:
+    + $user = User::find(1);
+    + $user->assignRole('admin');
++ Crear un permiso:
+    + Permission::create(['name' => 'universal']);
++ Asignar un permiso a un rol:
+    + $role = Role::find(1);
+    + $role->givePermissionTo('universal');
++ Asignar un permiso a un usuario:
+    + $user = User::find(2);
+    + $user->givePermissionTo('universal');
++ Revocar permiso a un usuario:
+    + $user->revokePermissionTo('universal');
++ Revocar rol a un usuario:
+    + $user->removeRole('writer');
++ Conocer si el usuario X tiene el rol “admin”:
+    + $user->hasRole('admin');
++ Conocer si el usuario X tiene el permiso “universal”:
+    + $user->hasPermissionTo("universal");
++ Lista de roles que posee el usuario X:
+    + $user->getRoleNames();
++ Lista de permisos que posee el usuario X:
+    + $user->getAllPermissions();
+
+
+
+
+## Temporal
+
+
+    ```php
+    ≡
+    ≡
+    ```
+
+
