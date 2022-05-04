@@ -1,7 +1,11 @@
+@extends('layouts/mainlayout')
+
+@section('content')
 <x-guest-layout>
     <x-jet-authentication-card>
+        <link href="{{ asset('css/extra.css') }}" rel="stylesheet" type="text/css" >
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
@@ -35,3 +39,4 @@
         </div>
     </x-jet-authentication-card>
 </x-guest-layout>
+@endsection

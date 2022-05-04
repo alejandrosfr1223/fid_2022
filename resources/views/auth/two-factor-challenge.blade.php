@@ -1,7 +1,11 @@
+@extends('layouts/mainlayout')
+
+@section('content')
 <x-guest-layout>
     <x-jet-authentication-card>
+        <link href="{{ asset('css/extra.css') }}" rel="stylesheet" type="text/css" >
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            
         </x-slot>
 
         <div x-data="{ recovery: false }">
@@ -20,12 +24,12 @@
 
                 <div class="mt-4" x-show="! recovery">
                     <x-jet-label for="code" value="{{ __('Code') }}" />
-                    <x-jet-input id="code" class="block mt-1 w-full" type="text" inputmode="numeric" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
+                    <x-jet-input id="code" class="inputs block mt-1 w-full" type="text" inputmode="numeric" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
                 </div>
 
                 <div class="mt-4" x-show="recovery">
                     <x-jet-label for="recovery_code" value="{{ __('Recovery Code') }}" />
-                    <x-jet-input id="recovery_code" class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
+                    <x-jet-input id="recovery_code" class="inputs block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
@@ -47,7 +51,7 @@
                         {{ __('Use an authentication code') }}
                     </button>
 
-                    <x-jet-button class="ml-4">
+                    <x-jet-button class="buttonlogin">
                         {{ __('Log in') }}
                     </x-jet-button>
                 </div>
@@ -55,3 +59,4 @@
         </div>
     </x-jet-authentication-card>
 </x-guest-layout>
+@endsection
