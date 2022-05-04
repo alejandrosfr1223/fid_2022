@@ -5,7 +5,7 @@
 + Figma: https://www.figma.com/proto/qAREYzpdkJtjdE262QOCwb/CDS?node-id=79%3A2&scaling=min-zoom&page-id=2%3A2&starting-point-node-id=79%3A2
 + Repositorio GitHub: https://github.com/alejandrosfr1223/fid_2022
 
-## Consideraciones previas:
+## Consideraciones previas
 + https://rbwebme.com/instalar-laravel-en-windows-10
 + Instalar [Node.js](https://nodejs.org/es)
 + Instalar [XAMPP](https://www.apachefriends.org) o [Laragon](https://laragon.org)
@@ -25,8 +25,19 @@
     + $ npm run dev
 3. Crear un dominio local: **fid_2022.test**.
     + [Guía de Coders Free para crear un dominio local](https://codersfree.com/blog/como-generar-un-dominio-local-en-windows-xampp)
-4. Crear base de datos **fid_2022** en MySQL (Cotejamiento: **utf8_general_ci**).
-5. Hacer coincidir los parámetros de base de datos y de dominio del proyecto en **.env** en caso de ser necesario:
+4. Crear base de datos **fid_2022** en **MySQL** (Cotejamiento: **utf8_general_ci**).
+5. Establecer juego de caracteres en base de datos en **config\database.php**:
+    ```php
+    ≡
+    'mysql' => [
+        ≡
+        'charset' => 'utf8',
+        'collation' => 'utf8_general_ci',
+        ≡
+    ],
+    ≡
+    ```
+6. Hacer coincidir los parámetros de base de datos y de dominio del proyecto en **.env** en caso de ser necesario:
     ```env
     APP_NAME="FID"
     ≡
@@ -35,7 +46,7 @@
     DB_DATABASE=fid_2022
     ≡
     ```
-6. Ejecutar migraciones:
+7. Ejecutar migraciones:
     + $ php artisan migrate
 
 
@@ -133,10 +144,6 @@
     + app\Http\Controllers\diffusion
 
 
-
-
-
-
 ## Instalación de dependencias principales
 + [Laravel Permission](https://spatie.be/docs/laravel-permission/v3/basic-usage/basic-usage)
 + [Laravel AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE)
@@ -224,12 +231,109 @@
     + $ npm i font-awesome
 
 
+## Adaptación del proyecto al español
++ [Documentación Laravel Lang](https://github.com/laravel-lang/lang)
++ [Documentación Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Translations)
+1. Pasar AdminLTE a español:
+    + $ php artisan adminlte:install --only=translations
+2. Pasar Laravel a español:
+    + $ composer require laravel-lang/lang --dev
+3. Copiar directorio: **vendor\laravel-lang\lang\locales\es** y pegarlo en: **lang**.
+    + **Nota**: realizar todas las traducciones en **lang\es\es.json**.
+4. Configurar a español **config\app.php**:
+    ```php
+    ≡
+    'locale' => 'es',
+    ≡
+    ```
 
 
-8. Realizar commit:
-    + $ git add .
-    + $ git commit -m "Instalación de dependencias principales"
-    + $ git push -u origin main
+## Seeders para prueba de roles y permisos
+1. Crear seeder para roles y usuarios: 
+	+ $ php artisan make:seeder RoleSeeder
+    + $ php artisan make:seeder UserSeeder
+2. Modificar seeder **database\seeders\RoleSeeder.php**:
+    ```php
+    ≡
+    use Spatie\Permission\Models\Role;
+    use Spatie\Permission\Models\Permission;
+
+    class RoleSeeder extends Seeder
+    {
+        ≡
+        public function run()
+        {
+            // Roles
+            $rolAdministrador = Role::create(['name' => 'Administrador']);
+            $rolProduccion = Role::create(['name' => 'Produccion']);
+            $rolCliente = Role::create(['name' => 'Cliente']);
+
+            /*
+            Ejemplo para permisos en un crud
+            Permission::create(['name' => 'crud.agclientes.index'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
+            Permission::create(['name' => 'crud.agclientes.create'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
+            Permission::create(['name' => 'crud.agclientes.edit'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
+            Permission::create(['name' => 'crud.agclientes.destroy'])->syncRoles($rolAdministrador);
+            */
+        }
+    }
+    ```
+4. Modificar seeder **database\seeders\UserSeeder.php**:
+    ```php
+    ≡
+    use App\Models\User;
+
+    class UserSeeder extends Seeder
+    {
+        ≡
+        public function run()
+        {
+            User::create([
+                'name' => 'Pedro Bazó',
+                'email' => 'bazo.pedro@gmail.com',
+                'password' => bcrypt('12345678'),
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ])->assignRole('Administrador');
+
+            User::create([
+                'name' => 'Prueba Producción',
+                'email' => 'produccion@gmail.com',
+                'password' => bcrypt('12345678'),
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ])->assignRole('Produccion');
+
+            User::create([
+                'name' => 'Prueba cliente',
+                'email' => 'cliente@gmail.com',
+                'password' => bcrypt('12345678'),
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ])->assignRole('Cliente');
+
+            User::create([
+                'name' => 'Prueba Sin Rol',
+                'email' => 'sinrol@gmail.com',
+                'password' => bcrypt('12345678'),
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ]);
+
+            User::factory(99)->create();
+        }
+    }
+    ```
+5. Modificar seeder **database\seeders\DatabaseSeeder.php**:
+    ```php
+    ≡
+    public function run()
+    {
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+    }
+    ≡
+    ```
+6. Restablecer base de datos: 
+	+ $ php artisan migrate:fresh --seed
+	+ **Nota**: Para correr los seeder sin resetear la base de datos:
+		+ $ php artisan db:seed
 
 
 
@@ -240,8 +344,24 @@
 
 
 
+## Creación de enlaces simbólicos (symbolic link)
+1. Crear enlace simbólico en Windows 10
+	+ Ejecutar **C:\Windows\System32\cmd.exe como administrador**
+	+ $ Mklink/D C:\xampp\htdocs\sefar\public\doc C:\xampp\htdocs\universalsefar.com\documentos
+	+ $ Mklink/D C:\xampp\htdocs\sefar\storage\app\public\doc C:\xampp\htdocs\universalsefar.com\documentos 
+		+ **Lógica**: Mklink /D "ruta donde queremos crear el enlace" "ruta de origen de archivos"
+1. Crear enlace simbólico en el hosting
+	+ En el cPanel ir a **Trabajos de cron**.
+	+ Ubicarse en **Añadir nuevo trabajo de cron** y luego **Configuración común**, y seleccionar **Una vez por mínuto(* * * * *)**.
+	+ En **Comando:** escribir:
+		* ln -s /home/pxvim6av41qx/public_html/documentos /home/pxvim6av41qx/public_html/app.universalsefar.com/public/doc
+	+ Presionar **Añadir nuevo trabajo de cron** y esperar a que se ejecute la tarea.
+	+ Borrar tarea una vez creado el enlace en **Trabajos de cron actuales**.
+	+ Repetir el procedimiento pero ahora para:
+		* ln -s /home/pxvim6av41qx/public_html/documentos /home/pxvim6av41qx/public_html/app.universalsefar.com/storage/app/public/doc
 
-## Comandos git comunes:
+
+## Comandos git comunes
 1. Clonar repositorio:
     + $ git clone https://github.com/alejandrosfr1223/fid_2022
 2. Realizar commit:
@@ -299,3 +419,59 @@
     + $ git branch -d rama_a_eliminar
 + Traer las actualizaciones desde GitHub:
     + git pull origin main
+
+
+## Instrucciones básicas Laravel-permission
++ **Documentación**: https://spatie.be/docs/laravel-permission/v4/introduction
++ Crear un rol:
+    + Role::create(['name' => 'admin']);
++ Asignar un rol a un usuario:
+    + $user = User::find(1);
+    + $user->assignRole('admin');
++ Crear un permiso:
+    + Permission::create(['name' => 'universal']);
++ Asignar un permiso a un rol:
+    + $role = Role::find(1);
+    + $role->givePermissionTo('universal');
++ Asignar un permiso a un usuario:
+    + $user = User::find(2);
+    + $user->givePermissionTo('universal');
++ Revocar permiso a un usuario:
+    + $user->revokePermissionTo('universal');
++ Revocar rol a un usuario:
+    + $user->removeRole('writer');
++ Conocer si el usuario X tiene el rol “admin”:
+    + $user->hasRole('admin');
++ Conocer si el usuario X tiene el permiso “universal”:
+    + $user->hasPermissionTo("universal");
++ Lista de roles que posee el usuario X:
+    + $user->getRoleNames();
++ Lista de permisos que posee el usuario X:
+    + $user->getAllPermissions();
+
+
+## Crear modelo:
+1. Diferentes formas para crear modelos:
+	+ Crear solo el modelo
+		- $ php artisan make:model Model
+	+ Crear el modelo con migración:
+		- $ php artisan make:model Model -m
+	+ Crear el modelo con migración y controlador:
+		- $ php artisan make:model Model -mc
+	+ Crear el modelo con migración, controlador y seeder:
+		- $ php artisan make:model Model -mcs
+	+ Crear el modelo con migración, controlador, seeder y factory:
+		- $ php artisan make:model Model -mcsf
+	+ Crear el modelo con migración con todo:
+		- $ php artisan make:model Model -a
+
+
+## Temporal
+
+
+    ```php
+    ≡
+    ≡
+    ```
+
+
