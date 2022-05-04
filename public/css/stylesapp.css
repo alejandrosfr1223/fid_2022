@@ -1,0 +1,557 @@
+body {
+    font-family: "Dosis";
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.subtext {
+    text-decoration: none;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.recolor{
+    color: #12313a;
+}
+
+.notmain {
+    padding-top: 2rem;
+}
+
+.titles {
+    width: 100%;
+    top: 0;
+}
+
+p{
+    font-size:1.15rem;
+}
+
+.title_notmain {
+    margin: auto;
+    color: white;
+    font-weight: bolder;
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px #000000;
+}
+
+#whitebg {
+    background: url(/img/home/logo-overlay1.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    height: auto;
+    background-position-y: bottom;
+    background-size: contain;
+}
+#banner {
+    display: block;
+    width: 100%;
+}
+
+#logo_header {
+    width: 70px;
+}
+
+.right-border {
+    border-right: solid 1.5px #606060;
+}
+
+.nav-link {
+    color: #606060;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0px 30px;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+.buttonlogin{
+    background-color: #12313a !important;
+    transition: 0.4s;
+}
+
+.buttonlogin:hover{
+    background-color: #cca766 !important;
+    color: #12313a !important;
+}
+
+.active {
+    color: #cca766 !important;
+    text-decoration: underline;
+}
+
+#infomaintext {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    margin: revert;
+}
+
+.labelcontact {
+    font-size: 0.9rem;
+    color: #cca766 !important;
+    font-weight: bold;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    margin-bottom: -2px;
+    margin-top: 10px;
+}
+
+.svgcolor {
+    width: 8rem;
+}
+
+#message {
+    margin-top: 4px;
+    height: 7rem;
+}
+
+.inputs {
+    width: 60%;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    border: solid black 2px;
+    padding-left: 5px;
+}
+
+#send {
+    font-weight: bold;
+    width: 40%;
+    border-radius: 0.6rem;
+    font-size: 0.9rem;
+    border: solid black 2px;
+    background-color: #cca766 !important;
+    transition: background-color 0.4s;
+}
+
+#send:hover {
+    background-color: #e6c07e !important;
+    transition: background-color 0.4s;
+}
+
+.loginbtns {
+    text-align: center;
+    font-weight: bold;
+    width: 10rem;
+    border-radius: 0.6rem;
+    font-size: 0.9rem;
+    border: solid black 2px;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    color: white !important;
+    background-color: #12313a !important;
+
+    text-decoration: none;
+    color: initial;
+    transition: 0.4s;
+}
+
+.loginbtns:hover {
+    color: #060606 !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    transition: background-color 0.4s, color 0.4s;
+}
+
+.depbuttons {
+    margin: auto;
+    background-color: #12313a;
+    border-radius: 50%;
+    text-align: center;
+    width: 3.9rem;
+    height: 3.9rem;
+    padding: 15px;
+}
+
+#containerbackground {
+    background-image: url("/img/home/libros.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
+    padding: 28px 0px;
+}
+
+.containerfooter{
+    padding: 2rem 6rem;
+}
+
+.submain_container {
+    background-image: url("/img/home/libros.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.post_home_container {
+    background-color: #12313a;
+    width: 70vw;
+    padding: 5% 10%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    max-width: 950px;
+}
+
+#notmain {
+    display: none;
+}
+
+footer {
+    background-color: #12313a;
+}
+
+.marger {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1rem;
+    color: #060606;
+    text-decoration: none;
+}
+
+#departments_cont {
+    padding: 30px 0px;
+    width: 60%;
+    margin: auto;
+    display: flex;
+}
+
+#btns_cnt_dept {
+    width: 50%;
+    text-align: left;
+}
+
+.brand {
+    color: #12313a;
+}
+
+#dep_info_cnt {
+    width: 70%;
+    text-align: right;
+}
+
+.leftdivide {
+    border-right: solid #cca766;
+    padding-right: 3rem;
+    margin: auto;
+}
+.rightdivide {
+    float: right;
+    padding-left: 3rem;
+    margin: auto;
+}
+
+.first_key {
+    font-weight: bold;
+    color: white;
+    font-size: 5rem;
+}
+
+.first_img {
+    margin: auto;
+    width: 7rem;
+}
+
+.footer_key {
+    font-weight: bold;
+    color: white;
+    padding-left: 10px;
+    font-size: 3.5rem;
+    border-left: solid #cca766;
+}
+
+.footer_img {
+    margin-right: 10px;
+    width: 3rem;
+}
+
+#container_members {
+    position: relative;
+    background-image: url("/img/logos/logo-fid.png");
+    background-color: #cca766;
+    height: 20rem;
+    background-size: 6.7rem;
+}
+
+.blobb {
+    margin-top: 0.8rem;
+}
+
+.subtext {
+    display: inline-flex;
+}
+
+.member_menu {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.icons_members_index {
+    margin: auto 3rem;
+    font-weight: bolder;
+}
+
+.members_index_icons {
+    margin: auto;
+    z-index: 3;
+    transform: scale(0.96);
+    transition: transform 0.4s;
+}
+
+.returnback {
+    margin: 20px;
+}
+
+.members_index_icons:hover {
+    transform: scale(1.16);
+    transition: transform 0.4s;
+}
+
+.separator50 {
+    display: inline-flex;
+    height: 20rem;
+}
+
+#loginbuttons {
+    margin-top: 10px;
+    margin-right: 1.5rem;
+    text-align: right;
+}
+
+.mv_cont {
+    padding: 1rem;
+    width: 50%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.mv_cont p {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.mv_cont h2 {
+    text-align: center;
+    color: #cca766;
+}
+
+#missionvision {
+    background-color: #12313a;
+    position: relative;
+}
+
+.overlay2 {
+    content: (" ");
+    background-color: transparent;
+    height: 100% !important;
+}
+
+#containermv {
+    margin: auto;
+    width: 85%;
+    padding: 2rem 0;
+}
+
+.backg-ovrl2 {
+    top: 0;
+    height: 100%;
+    position: absolute;
+    opacity: 0.2;
+    filter: invert(5%) sepia(61%) saturate(2863%) hue-rotate(307deg)
+        brightness(86%) contrast(83%);
+}
+
+.ol2-r {
+    right: 0;
+}
+
+.smallscreen {
+    display: none;
+}
+
+#mission {
+    border-right: 2px solid #cca766;
+}
+
+.imglogo_subpage {
+    width: 120px;
+}
+
+.cont_redirects {
+    width: calc(100% / 3);
+    margin: 0 auto;
+    padding: 10px 0 20px 0;
+    text-align: center;
+}
+
+#sub_elementscont {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.padicons {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 990px) {
+    h2 {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .smallscreen {
+        display: block;
+        width: 100%;
+    }
+
+    .bigscreen {
+        display: none;
+    }
+
+    #mission {
+        border-right: 0;
+        border-bottom: 2px solid #cca766;
+    }
+
+    #overlay2-r {
+        display: none;
+    }
+
+    .mv_cont {
+        text-align: center;
+        padding: 1rem;
+        width: 100%;
+        display: block;
+    }
+
+    #loginbuttons {
+        margin-right: 1px;
+    }
+
+    .loginbtns {
+        width: 7rem;
+    }
+    .depbuttons {
+        width: 3.4rem;
+        height: 3.4rem;
+    }
+
+    .separator50 {
+        height: calc(20rem / 2);
+        width: -webkit-fill-available;
+    }
+
+    .icons_members_index {
+        margin: auto;
+        width: 100%;
+    }
+
+    .members_index_icons {
+        margin: auto 0;
+        font-size: 2rem;
+    }
+
+    .members_index_font {
+        margin: auto 0;
+    }
+
+    .marger {
+        font-size: 1rem;
+        margin-left: 0rem;
+    }
+
+    .blobb {
+        margin-top: 0rem;
+    }
+    .right-border {
+        border-right: none;
+    }
+    .post_home_container {
+        display: block;
+    }
+    #containerbackground {
+        background-size: 150%;
+        padding-top: 2rem;
+    }
+    #departments_cont {
+        display: block;
+        width: 100%;
+        padding-bottom: 0rem;
+    }
+    .cont_redirects {
+        width: 100%;
+        padding: 20px 0px;
+        text-align: center;
+    }
+    #sub_elementscont {
+        width: 60%;
+        display: block;
+    }
+    .subtext {
+        margin: 2rem auto;
+        font-size: 1rem;
+        display: block;
+    }
+    .rightdivide {
+        padding-left: 0;
+        float: none;
+        margin: auto;
+        display: -webkit-box;
+    }
+    #btns_cnt_dept {
+        width: 75%;
+        text-align: center;
+    }
+    .leftdivide {
+        border-right: 0;
+        margin: auto;
+        width: 100%;
+        padding-right: 0;
+        border-bottom: solid #cca766;
+    }
+    #dep_info_cnt {
+        text-align: center;
+    }
+    .first_img {
+        width: 4rem;
+    }
+    .first_key {
+        font-size: 3rem;
+    }
+    #infomaintext {
+        font-size: 0.9rem;
+    }
+    #notmain {
+        display: inline-block;
+    }
+    #main {
+        display: none;
+    }
+    footer {
+        text-align: center;
+    }
+    #footerlogo {
+        margin: auto;
+    }
+    #logo_subpage {
+        margin: auto;
+    }
+}
