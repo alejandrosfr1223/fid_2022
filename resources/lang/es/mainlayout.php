@@ -19,4 +19,7 @@ return [
     'message' => 'Mensaje',
     'send' => 'Enviar',
     'contactcountry' => '¿De que país nos contacta?',
+    'dashboard' => 'Panel de Control',
+    'logout' => 'Cerrar Sesión',
+    'welcome' => 'Bienvenido, ',
 ];

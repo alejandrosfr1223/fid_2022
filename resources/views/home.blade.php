@@ -34,7 +34,7 @@
                     </div>
                     <div class="rightdivide">
                         <p id="infomaintext">
-                        {{ trans("home.welcome_txt") }}
+                        {!! trans("home.welcome_txt") !!}
                         </p>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="leftdivide" id="dep_info_cnt">
                     <h2>{{ trans("home.departments") }}</h2>
                     <p>
-                    {{ trans("home.departments_txt") }}
+                    {!! trans("home.departments_txt") !!}
                     </p>
                 </div>
                 <div class="rightdivide" id="btns_cnt_dept">
