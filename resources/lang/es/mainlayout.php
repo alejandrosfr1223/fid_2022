@@ -5,7 +5,7 @@ return [
     'formation' => 'Formación',
     'documentation' => 'Documentación',
     'investigation' => 'Investigación',
-    'difussion' => 'Difusión',
+    'diffussion' => 'Difusión',
     'home' => 'Inicio',
     'login' => 'Iniciar sesión',
     'register' => 'Registro',
