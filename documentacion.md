@@ -336,8 +336,8 @@
 		+ $ php artisan db:seed
 
 
-
-
+## Establecer Google Drive como Storage por defecto
+*******
 
 
 
