@@ -258,6 +258,7 @@ footer {
 #btns_cnt_dept {
     width: 50%;
     text-align: left;
+    display: block;
 }
 
 .brand {
@@ -709,8 +710,9 @@ footer {
         display: -webkit-box;
     }
     #btns_cnt_dept {
-        width: 75%;
+        width: 70%;
         text-align: center;
+        display: flex;
     }
     .leftdivide {
         border-right: 0;

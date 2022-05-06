@@ -31,6 +31,7 @@
     @endif
     <div id="banner">
         <center>
+          <a href="{{route('home')}}" style="text-decoration: none;">
             <table style="margin-top:20px;">
                 <tr>
                     <td>
@@ -41,6 +42,7 @@
                     </td>
                 </tr>
             </table>
+          </a>
         </center>
     </div>
     <ul class="nav justify-content-center">
