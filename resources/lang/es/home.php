@@ -13,5 +13,13 @@ return [
     'library' => 'Libreria',
     'editorial' => 'Editorial',
     'welcome_txt' => 'Sefar Universal cuenta con su propio Centro de Documentación Digital, <b>FID</b>, que abarca tres áreas fundamentales del conocimiento humano: <b>Formación, Investigación y Difusión</b>. En cada una de ellas se desarrollan y/o promocionan actividades y proyectos vinculados con el derecho genealogista, la genealogía y la historia',
-    'departments_txt' => 'El <b>Centro de Documentación FID</b> tiene 4 departamentos:<br><b>Formación</b>, con una interesante oferta de cursos vinculados con los objetivos de FID<br><b>Investigación</b>, donde se desarrollan proyectos en áreas históricas<br><b>Documentación</b>, que se ocupa de la digitalización, conservación y catalogación de libros y documentos muy valiosos desde el punto de vista de la historia y la genealogía<br><b>Difusión</b> con la Editorial BV, encargada de la publicación y venta de trabajos vinculados con las áreas de interés del Centro de Documentación y de Sefar Universal.'
+    'departments_txt' => 'El <b>Centro de Documentación FID</b> tiene 4 departamentos:<br><b>Formación</b>, con una interesante oferta de cursos vinculados con los objetivos de FID<br><b>Investigación</b>, donde se desarrollan proyectos en áreas históricas<br><b>Documentación</b>, que se ocupa de la digitalización, conservación y catalogación de libros y documentos muy valiosos desde el punto de vista de la historia y la genealogía<br><b>Difusión</b> con la Editorial BV, encargada de la publicación y venta de trabajos vinculados con las áreas de interés del Centro de Documentación y de Sefar Universal.',
+    "divpastora" => "Proyecto Divina Pastora de las Almas",
+    "divpastora_txt" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "dp_p_1" =>"Fray Isidoro de Sevilla",
+    "dp_p_1_txt" =>"Padre de la devoción pastoreña",
+    "dp_p_2" =>"El convento de Sevilla",
+    "dp_p_2_txt" =>"Cuna de la devoción pastoreña",
+    "dp_p_3" =>"La Divina Pastora",
+    "dp_p_3_txt" =>"Una devoción universal",
 ];

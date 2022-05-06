@@ -38,27 +38,33 @@
             </div>
             <div style="margin:auto; width:100%;">
                 <div id="sub_elementscont">
-                    <div class="cont_redirects">
-                        <span class="padicons members_index_icons fa-stack fa-2x">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fas fa-book fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h3 class="bold">{{ trans("diffusion.ebv") }}</h3>
-                    </div>
-                    <div class="cont_redirects">
-                        <span class="padicons members_index_icons fa-stack fa-2x">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fas fa-gavel fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h3 class="bold">{{ trans("diffusion.audio") }}</h3>
-                    </div>
-                    <div class="cont_redirects">
-                        <span class="padicons members_index_icons fa-stack fa-2x">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-pagelines fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h3 class="bold">{{ trans("diffusion.visual") }}</h3>
-                    </div>
+                    <a href="{{route('diffusion.editorialbv')}}">
+                        <div class="cont_redirects">
+                            <span class="padicons members_index_icons fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-book fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h3 class="bold">{{ trans("diffusion.ebv") }}</h3>
+                        </div>
+                    </a>
+                    <a>
+                        <div class="cont_redirects">
+                            <span class="padicons members_index_icons fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-gavel fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h3 class="bold">{{ trans("diffusion.audio") }}</h3>
+                        </div>
+                    </a>
+                    <a>
+                        <div class="cont_redirects">
+                            <span class="padicons members_index_icons fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-pagelines fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h3 class="bold">{{ trans("diffusion.visual") }}</h3>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,4 +1,16 @@
 window.onload = function() {
+    var p = document.getElementsByClassName("book-cover"); 
+    for(var i=0; i<p.length; i++){
+        p[i].onclick = function(){ 
+            Swal.fire({
+                icon: 'info',
+                title: 'Proximamente disponible',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        } 
+    }
+
     var anchors = document.getElementsByClassName('icons_members_index');
     for(var i = 0; i < anchors.length; i++) {
         var anchor = anchors[i];

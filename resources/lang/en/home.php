@@ -13,5 +13,13 @@ return [
     'library' => 'Library',
     'editorial' => 'Editorial',
     'welcome_txt' => 'Sefar Universal has its own Digital Documentation Center, <b>FID</b>, which covers three fundamental areas of human knowledge: <b>Formation, Investigation and Diffusion</b>. In each of them, activities and projects related to genealogical law, genealogy and history are developed and/or promoted',
-    'departments_txt' => 'The <b>FID Documentation Center</b> has 4 departments:<br><b>Formation</b>, with an interesting offer of courses linked to the objectives of FID<br><b>Investigation</b >, where projects are developed in historical areas<br><b>Documentation</b>, which deals with the digitization, conservation and cataloging of very valuable books and documents from the point of view of history and genealogy<br ><b>Diffusion</b> with Editorial BV, in charge of publishing and selling works related to the areas of interest of the Documentation Center and Sefar Universal.'
+    'departments_txt' => 'The <b>FID Documentation Center</b> has 4 departments:<br><b>Formation</b>, with an interesting offer of courses linked to the objectives of FID<br><b>Investigation</b >, where projects are developed in historical areas<br><b>Documentation</b>, which deals with the digitization, conservation and cataloging of very valuable books and documents from the point of view of history and genealogy<br ><b>Diffusion</b> with Editorial BV, in charge of publishing and selling works related to the areas of interest of the Documentation Center and Sefar Universal.',
+    "divpastora" => "Divine Shepherdess of Souls Project",
+    "divpastora_txt" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "dp_p_1" =>"Fray Isidore of Seville",
+    "dp_p_1_txt" =>"Father of pastoral devotion",
+    "dp_p_2" =>"The convent of Seville",
+    "dp_p_2_txt" =>"Cradle of pastoral devotion",
+    "dp_p_3" =>"The Divine Shepherdess",
+    "dp_p_3_txt" =>"A universal devotion",
 ];
