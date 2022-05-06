@@ -336,8 +336,127 @@
 		+ $ php artisan db:seed
 
 
+## Personalización inicial del proyecto
+1. Modificar modelo **app\Models\User.php**:
+    ```php
+    ≡
+    use Illuminate\Support\Facades\Auth;
+
+    class User extends Authenticatable
+    {
+        ≡
+        // Permite incorporar una imagen de usuario
+        // Se debe configurar en config\adminlte.php: 'usermenu_image' => true,
+        public function adminlte_image(){
+            //return 'https://picsum.photos/300/300'; /* Retorna una imagen aleatoria*/
+            return Auth::user()->profile_photo_url;
+        }
+
+        // Permite incorporar alguna descripción del usuario
+        // Se debe configurar en config\adminlte.php: 'usermenu_desc' => ' => true,
+        public function adminlte_desc(){
+            return 'Aquí la información';
+        }
+
+        // Permite incorporar el perfil
+        // Se debe configurar en config\adminlte.php: 'usermenu_profile_url' => true,
+        public function adminlte_profile_url(){
+            return 'user/profile';
+        }
+    }
+    ```
+2. Adaptar la configuración del archivo **config\adminlte.php** al proyecto:
+    ```php
+    ≡
+    return [
+        ≡
+
+        'title_postfix' => '| FID',
+        ≡
+        'logo' => '<b>FID</b>',
+        'logo_img' => 'img/logos/logo-fid.png',
+        'logo_img_class' => 'brand-image img-circle elevation-3',
+        'logo_img_xl' => null,
+        'logo_img_xl_class' => 'brand-image-xs',
+        'logo_img_alt' => 'FID',
+        ≡
+        'usermenu_enabled' => true,
+        'usermenu_header' => false,
+        'usermenu_header_class' => 'bg-primary',
+        'usermenu_image' => false,
+        'usermenu_desc' => true,
+        'usermenu_profile_url' => true,
+        ≡
+        'layout_fixed_sidebar' => true,
+        'layout_fixed_navbar' => true,
+        ≡
+        'use_route_url' => false,
+        'dashboard_url' => '/',
+        'logout_url' => 'logout',
+        'login_url' => 'login',
+        'register_url' => 'register',
+        'password_reset_url' => 'reset-password',
+        'password_email_url' => '' /* 'password/email' */,
+        'profile_url' => false,
+        ≡
+        'menu' => [
+            // Navbar items:
+            [
+                'type'         => 'fullscreen-widget',
+                'topnav_right' => true,
+            ],
+
+            /* Administración de usuarios */
+            ['header' => 'ADMINISTRAR USUARIOS'],
+            [
+                'text' => 'Usuarios',
+                'url'  => 'admin/users',
+                'icon' => 'fas fa-fw fa-users',
+            ],
+            [
+                'text' => 'Roles',
+                'url'  => 'admin/rols',
+                'icon' => 'fas fa-fw fa-user-tag',
+            ],
+            [
+                'text' => 'Permisos',
+                'url'  => 'admin/permissions',
+                'icon' => 'fas fa-fw fa-universal-access',
+            ],
+
+            /* Administración de tablas */
+            ['header' => 'ADMINISTRAR TABLAS'],
+            [
+                'text' => 'Libros',
+                'url'  => 'admin/books',
+                'icon' => 'fas fa-fw fa-book',
+            ],
+        ],
+        ≡
+    ]
+    ```
+    + **Iconos**: https://fontawesome.com/icons
+	+ **Tutorial**: https://www.youtube.com/playlist?list=PLZ2ovOgdI-kWTCkbH749Ukvq7FMz5ahpP
+3. Solicitar logos de la empresa en distintos formatos y ubicarlos en:
+	+ public\favicon.ico
+	+ public\img\logos\logo-fid.png
+
+
+
+    ```php
+    ≡
+    ≡
+    ```
+
+
+
+## CRUD Editorial
+*******
+
+
 ## Establecer Google Drive como Storage por defecto
 *******
+
 
 
 

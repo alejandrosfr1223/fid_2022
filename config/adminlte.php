@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => '',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => '| FID',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>FID</b>',
+    'logo_img' => 'img/logos/logo-fid.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'FID',
 
     /*
     |--------------------------------------------------------------------------
@@ -68,8 +68,8 @@ return [
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -188,12 +188,12 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
-    'password_reset_url' => 'password/reset',
-    'password_email_url' => 'password/email',
+    'password_reset_url' => 'reset-password',
+    'password_email_url' => '' /* 'password/email' */,
     'profile_url' => false,
 
     /*
@@ -226,34 +226,62 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+        /* [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
-        ],
+        ], */
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
+        /* [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
-        ],
-        [
+        ], */
+        /* [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
-        ],
-        [
+        ], */
+        /* [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
+        ], */
+
+        /* Administración de usuarios */
+        ['header' => 'ADMINISTRAR USUARIOS'],
+        [
+            'text' => 'Usuarios',
+            'url'  => 'admin/users',
+            'icon' => 'fas fa-fw fa-users',
         ],
-        ['header' => 'account_settings'],
+        [
+            'text' => 'Roles',
+            'url'  => 'admin/rols',
+            'icon' => 'fas fa-fw fa-user-tag',
+        ],
+        [
+            'text' => 'Permisos',
+            'url'  => 'admin/permissions',
+            'icon' => 'fas fa-fw fa-universal-access',
+        ],
+
+        /* Administración de tablas */
+        ['header' => 'ADMINISTRAR TABLAS'],
+        [
+            'text' => 'Libros',
+            'url'  => 'admin/books',
+            'icon' => 'fas fa-fw fa-book',
+        ],
+
+        /* Administración de la cuenta FID */
+        /* ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -263,8 +291,10 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
+        ], */
+
+        /* Ejemplo de multinivel */
+        /* [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -301,8 +331,10 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ], */
+
+        /* Ejemplo de etiquetas */
+        /* ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
@@ -317,7 +349,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ], */
     ],
 
     /*
