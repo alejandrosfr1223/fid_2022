@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div style="margin:30px 0px; width:80%; text-align: center; margin: auto; padding: 0px 0px 30px 0px;">
+            <div style="margin:30px 0px; width:95%; text-align: center; margin: auto; padding: 0px 0px 30px 0px;">
                 <div class="row bookrow">
                     <div class="col-6 col-md-3 books">
                         <div class="book-cover">

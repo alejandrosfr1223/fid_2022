@@ -561,8 +561,12 @@ footer {
 
 @media screen and (max-width: 990px) {
     .books {
-        margin:  15px auto;
+        margin:  7px auto;
+        transform: scale(0.9);
     }
+	.books:hover {
+	    transform: scale(1);
+	}
     #sub_elementscont a {
         width: 100%;
     }
@@ -662,10 +666,6 @@ footer {
     .post_home_container {
         position: relative;
         display: block;
-    }
-    #containerbackground {
-        background-size: 150%;
-        padding-top: 2rem;
     }
     #departments_cont {
         display: block;

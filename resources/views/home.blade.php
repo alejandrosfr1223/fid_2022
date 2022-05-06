@@ -51,9 +51,9 @@
                         {!! trans("home.departments_txt") !!}
                         </p>
                     </div>
-                    <div class="rightdivide" id="btns_cnt_dept">
+                    <div class="rightdivide row" id="btns_cnt_dept">
                         
-                        <a class="subtext" href="{{route('formation.home')}}">
+                        <a class="subtext col-6 col-md-3" href="{{route('formation.home')}}">
                             <div>
                                 <span class="members_index_icons fa-stack fa-2x">
                                     <i class="fas fa-circle fa-stack-2x recolor"></i>
@@ -63,7 +63,7 @@
                             <h2 class="marger">{{ trans("home.formation") }}</h2>
                         </a><br><br>
 
-                        <a class="subtext" href="{{route('investigation.home')}}">
+                        <a class="subtext col-6 col-md-3" href="{{route('investigation.home')}}">
                             <div>
                                 <span class="members_index_icons fa-stack fa-2x">
                                     <i class="fas fa-circle fa-stack-2x recolor"></i>
@@ -73,7 +73,7 @@
                             <h2 class="marger">{{ trans("home.investigation") }}</h2>
                         </a><br><br>
 
-                        <a class="subtext" href="{{route('documentation.home')}}">
+                        <a class="subtext col-6 col-md-3" href="{{route('documentation.home')}}">
                             <div>
                                 <span class="members_index_icons fa-stack fa-2x">
                                     <i class="fas fa-circle fa-stack-2x recolor"></i>
@@ -83,7 +83,7 @@
                             <h2 class="marger">{{ trans("home.documentation") }}</h2>
                         </a><br><br>
 
-                        <a class="subtext" href="{{route('diffusion.home')}}">
+                        <a class="subtext col-6 col-md-3" href="{{route('diffusion.home')}}">
                             <div>
                                 <span class="members_index_icons fa-stack fa-2x">
                                     <i class="fas fa-circle fa-stack-2x recolor"></i>
