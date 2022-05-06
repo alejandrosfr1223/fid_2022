@@ -587,6 +587,10 @@ footer {
         font-size: 1.5rem;
     }
 
+    .inputs {
+    	width: 100%;
+    }
+
     #div_inapastoral{
         width: 100%;
     }
@@ -637,6 +641,10 @@ footer {
     .depbuttons {
         width: 3.4rem;
         height: 3.4rem;
+    }
+
+    .containerfooter{
+    	padding: 2rem 2rem;
     }
 
     .separator50 {
