@@ -199,9 +199,23 @@
             @stop
             ```
         + **Nota 3**: Crear vista para pruebas igual a la anterior con el nombre **resources\views\admin\layouts\test.blade.php**.
-3. Instalar **Laravel Collective** para hacer formularios:
+3. Modificar template **resources\views\vendor\adminlte\page.blade.php** para incorporar los scripts de Livewire:
+    ```php
+    ≡
+    @section('adminlte_css')
+        ≡
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stop
+    ≡
+    @section('adminlte_js')
+        ≡
+        @livewireScripts
+        @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+    @stop
+    ```
+4. Instalar **Laravel Collective** para hacer formularios:
     + $ composer require laravelcollective/html
-4. Instalar **Sweetalert2** para notificaciones:
+5. Instalar **Sweetalert2** para notificaciones:
     + $ php artisan adminlte:plugins install
     + Modificar en **config\adminlte.php**:
         ```php
@@ -268,13 +282,29 @@
             $rolProduccion = Role::create(['name' => 'Produccion']);
             $rolCliente = Role::create(['name' => 'Cliente']);
 
-            /*
-            Ejemplo para permisos en un crud
-            Permission::create(['name' => 'crud.agclientes.index'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
-            Permission::create(['name' => 'crud.agclientes.create'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
-            Permission::create(['name' => 'crud.agclientes.edit'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
-            Permission::create(['name' => 'crud.agclientes.destroy'])->syncRoles($rolAdministrador);
-            */
+            // Permisos CRUD users
+            Permission::create(['name' => 'admin.crud.users.index'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.users.create'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.users.edit'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.users.destroy'])->syncRoles($rolAdministrador);
+
+            // Permisos CRUD rols
+            Permission::create(['name' => 'admin.crud.rols.index'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.rols.create'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.rols.edit'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.rols.destroy'])->syncRoles($rolAdministrador);
+
+            // Permisos CRUD permissions
+            Permission::create(['name' => 'admin.crud.permissions.index'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.permissions.create'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.permissions.edit'])->syncRoles($rolAdministrador);
+            Permission::create(['name' => 'admin.crud.permissions.destroy'])->syncRoles($rolAdministrador);
+
+            // Permisos CRUD books
+            Permission::create(['name' => 'admin.crud.books.index'])->syncRoles($rolAdministrador, $rolProduccion);
+            Permission::create(['name' => 'admin.crud.books.create'])->syncRoles($rolAdministrador, $rolProduccion);
+            Permission::create(['name' => 'admin.crud.books.edit'])->syncRoles($rolAdministrador, $rolProduccion);
+            Permission::create(['name' => 'admin.crud.books.destroy'])->syncRoles($rolAdministrador);
         }
     }
     ```
@@ -442,6 +472,436 @@
 	+ public\img\logos\logo-fid.png
 
 
+## CRUD Roles
+
+## CRUD Permisos
+1. Crear el modelo Permission:
+    + $ php artisan make:model admin/Permission
+2. Establecer asignación masiva al modelo **app\Models\admin\Permission.php**:
+    ```php
+    ≡
+    class Permission extends Model
+    {
+        ≡  
+        protected $fillable = [
+            'name',
+        ];
+    }
+    ```
+3. Crear controlador Permission con todos sus recursos:
+	+ $ php artisan make:controller admin/PermissionController -r
+4. Programar controlador **app\Http\Controllers\admin\PermissionController.php**:
+    ```php
+    ≡
+    use Spatie\Permission\Models\Permission;
+    use Spatie\Permission\Models\Role;
+    use Spatie\Permission\Traits\HasRoles;
+    use RealRashid\SweetAlert\Facades\Alert;
+
+    class PermissionController extends Controller
+    {
+        ≡
+        public function index()
+        {
+            return view('admin.crud.permissions.index');
+        }
+        ≡
+        public function create()
+        {
+            $permission = new Permission();
+            $roles = Role::all();
+            $origen = 'create';
+            return view('admin.crud.permissions.create', compact('roles', 'permission', 'origen'));
+        }
+        ≡
+        public function store(Request $request)
+        {
+            // Validación
+            $request->validate([
+                'name' => 'required|max:254'
+            ]);
+
+            // Creando permiso
+            $permission = Permission::create(['name' => $request->name]);
+
+            // Asignando permisos a roles seleccionados
+            $roles = Role::all();
+            foreach($roles as $role){
+                if($request->input("role" . $role->id)){
+                    $roles->find($role->id)->givePermissionTo($permission);
+                }
+            }
+
+            // Mensaje
+            Alert::success('¡Éxito!', 'Se ha creado el permiso: ' . $request->name);
+
+            // Redireccionar a la vista index
+            return redirect()->route('admin.permissions.index');
+        }
+        ≡
+        public function show(Permission $permission)
+        {
+            $roles = Role::all();
+            $origen = 'show';
+            return view('admin.crud.permissions.edit', compact('permission', 'roles', 'origen'));
+        }
+        ≡
+        public function edit(Permission $permission)
+        {
+            $roles = Role::all();
+            $origen = 'edit';
+            return view('admin.crud.permissions.edit', compact('permission', 'roles', 'origen'));
+        }
+        ≡
+        public function update(Request $request, Permission $permission)
+        {
+            // Validación
+            $request->validate([
+                'name' => 'required|max:254'
+            ]);
+
+            // actualizando permiso
+            $permission->name = $request->name;
+            $permission->save();
+
+            // Actualizando permisos a roles seleccionados
+            $roles = Role::all();
+            foreach($roles as $role){
+                if($request->input("role" . $role->id)){
+                    $roles->find($role->id)->givePermissionTo($permission);
+                }else {
+                    $roles->find($role->id)->revokePermissionTo($permission);
+                }
+            }
+
+            // Mensaje
+            Alert::success('¡Éxito!', 'Se ha actualizado el permiso a: ' . $request->name);
+
+            // Redireccionar a la vista index
+            return redirect()->route('admin.permissions.index');
+        }
+        ≡
+        public function destroy(Permission $permission)
+        {
+            $nombre = $permission->name;
+            $permission->delete();
+            Alert::info('¡Advertencia!', 'Se ha eliminado el permiso: ' . $nombre);
+            return redirect()->route('admin.permissions.index');
+        }
+    }
+    ```
+5. Agregar el juego de rutas permissions en **routes\admin.php**:
+    ```php
+    ≡
+    use App\Http\Controllers\admin\PermissionController;
+    ≡
+    Route::resource('permissions', PermissionController::class)->names('permissions')
+        ->middleware('can:admin.crud.permissions.index');
+    ```
+6. Crear componente Livewire para el modelo Permission: 
+	+ $ php artisan make:livewire permissions-table
+7. Programar controlador Livewire asociado al modelo Permission en **app\Http\Livewire\Admin\PermissionsTable.php**:
+    ```php
+    <?php
+
+    namespace App\Http\Livewire\Admin;
+
+    use App\Models\admin\Permission;
+    use Livewire\Component;
+    use Livewire\WithPagination;
+
+    class PermissionsTable extends Component
+    {
+        use WithPagination;
+
+        protected $queryString = [
+            'search' => ['except' => ''],
+            'perPage' => ['except' => '15']
+        ];
+
+        public $search = '';
+        public $perPage = '15';
+
+        public function render()
+        {
+            $permissions = Permission::where('name','LIKE',"%$this->search%")
+                ->orderBy('updated_at','DESC')
+                ->paginate($this->perPage);
+            return view('livewire.admin.permissions-table', compact('permissions'));
+        }
+
+        public function clear(){
+            $this->search = '';
+            $this->page = 1;
+            $this->perPage = '15';
+        }
+
+        public function limpiar_page(){
+            $this->reset('page');
+        }
+    }
+    ```
+8. Diseñar vista para la tabla Permissions en **resources\views\livewire\admin\crud\permissions-table.blade.php**:
+    ```php
+    <div>
+        <div class="p-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row m-2">
+                        <h2 class="card-title flex-1"><strong>Permisos de usuarios</strong></h2>
+                        <div class="card-tools flex-1">
+                            <div class="input-group input-group-sm">
+                                <input wire:model="search" type="text" class="form-control float-right" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group-sm mx-3 flex" style="width: 140px">
+                            <select wire:model="perPage" class="form-control float-right">
+                                <option value="5">5 por pág. </option>
+                                <option value="10">10 por pág.</option>
+                                <option value="15">15 por pág.</option>
+                                <option value="25">25 por pág.</option>
+                                <option value="50">50 por pág.</option>
+                                <option value="100">100 por pág.</option>
+                            </select>
+                            @if ($search !== '')
+                            <div class="input-group-sm flex">
+                                <button wire:click="clear" class="btn btn-secondary form-control float-right"><i class="far fa-window-close"></i></button>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @can('admin.crud.permissions.create')
+                    <a href="{{ route('admin.permissions.create') }}" class="btn btn-secondary m-4">
+                        Añadir permiso
+                    </a>
+                @endcan
+
+                <div class="card-body table-responsive p-0">
+                    @if ($permissions->count())
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Guard</th>
+                                <th>Creado</th>
+                                <th>Actualizado</th>
+                                @can('admin.crud.permissions.edit')
+                                <th class="text-center">Editar</th>
+                                @endcan
+                                @can('admin.crud.permissions.destroy')
+                                <th class="text-center">Eliminar</th>
+                                @endcan
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($permissions as $permission)
+                            <tr>
+                                <td>{{ $permission->id }}</td>
+                                <td>{{ $permission->name }}</td>
+                                <td>{{ $permission->guard_name }}</td>
+                                <td>{{ $permission->created_at }}</td>
+                                <td>{{ $permission->updated_at }}</td>
+                                @can('admin.crud.permissions.edit')
+                                <td class="text-center">
+                                    <a href="{{ route('admin.permissions.edit', $permission) }}" title="Editar"><i class="fas fa-edit"></i></a>
+                                </td>
+                                @endcan
+                                @can('admin.crud.permissions.destroy')
+                                <td class="text-center">
+                                    <form action="{{ route('admin.permissions.destroy', $permission) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button
+                                            type="submit"
+                                            title="Eliminar"
+                                            onclick="return confirm('¿Está seguro que desea eliminar el permiso?')"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                @endcan
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="m-4">
+                        {{ $permissions->links() }}
+                    </div>
+                    @else
+                        <div class="m-4">
+                            <p>No hay resultado para la búsqueda: <strong>{{ $search }}</strong></p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    ```
+9. Diseñar las vistas para el CRUD Permisos:
+    + resources\views\admin\crud\permissions\index.blade.php:
+        ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Permisos de usuarios')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+            @livewire('admin.permissions-table')
+        @stop
+
+        @section('css')
+        @stop
+
+        @section('js')
+        @stop
+        ```
+    + resources\views\admin\crud\permissions\\_form.blade.php:
+        ```php
+        <div class="card-body m-4">
+            <div class="form-group">
+                <label for="name">Nombre del permiso</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="Introduzca el nombre del permiso"
+                    value="{{ old('name', $permission->name) }}"
+                >
+            </div>
+            @error('name')
+                <div class="col-span-12 sm:col-span-12">
+                    <small style="color:red">*{{ $message }}*</small>
+                </div>
+            @enderror
+            <div class="form-check">
+                <p><label>Roles a asignarle al permiso</label></p>
+                <div class="flex">
+                    @foreach ($roles as $role)
+                    <div class="mx-4">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                @if($origen == 'edit')
+                                    @if ($role->hasPermissionTo($permission->name))
+                                    <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input" checked>
+                                    @else
+                                    <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                                    @endif
+                                @else
+                                    <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                                @endif
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="{{ "role" . $role->id }}" class="form-check-label">{{ $role->name }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        ```
+    + resources\views\admin\crud\permissions\create.blade.php:
+        ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Crear Permiso')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+        <div class="card card-primary">
+            <div class="card-header m-4">
+                <h3 class="card-title">Crear permiso</h3>
+            </div>
+            <form action="{{ route('admin.permissions.store') }}" method="POST">
+                @csrf
+
+                @include('admin.crud.permissions._form')
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-secondary btn-actualizar">Actualizar permiso</button>
+                </div>
+            </form>
+        </div>
+        @stop
+
+        @section('css')
+            <style>
+                .btn-actualizar {
+                    background-color: gray!important;
+                }
+                .btn-actualizar:hover {
+                    background-color: rgb(69, 69, 69)!important;
+                }
+            </style>
+        @stop
+
+        @section('js')
+        @stop
+        ```
+    + resources\views\admin\crud\permissions\edit.blade.php:
+        ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Editar Permiso')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+        <div class="card card-primary">
+            <div class="card-header m-4">
+                <h3 class="card-title">Editar permiso</h3>
+            </div>
+            <form action="{{ route('admin.permissions.update', $permission) }}" method="POST">
+                @csrf
+                @method('put')
+
+                @include('admin.crud.permissions._form')
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-secondary btn-actualizar">Actualizar permiso</button>
+                </div>
+            </form>
+        </div>
+        @stop
+
+        @section('css')
+            <style>
+                .btn-actualizar {
+                    background-color: gray!important;
+                }
+                .btn-actualizar:hover {
+                    background-color: rgb(69, 69, 69)!important;
+                }
+            </style>
+        @stop
+
+        @section('js')
+        @stop
+        ```
+
+
+
+
+## CRUD Editorial
+*******
+
+
+
+
 
     ```php
     ≡
@@ -449,9 +909,6 @@
     ```
 
 
-
-## CRUD Editorial
-*******
 
 
 ## Establecer Google Drive como Storage por defecto

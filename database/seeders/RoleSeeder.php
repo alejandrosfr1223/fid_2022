@@ -21,12 +21,28 @@ class RoleSeeder extends Seeder
         $rolProduccion = Role::create(['name' => 'Produccion']);
         $rolCliente = Role::create(['name' => 'Cliente']);
 
-        /*
-        Ejemplo para permisos en un crud
-        Permission::create(['name' => 'crud.agclientes.index'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
-        Permission::create(['name' => 'crud.agclientes.create'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
-        Permission::create(['name' => 'crud.agclientes.edit'])->syncRoles($rolAdministrador, $rolGenealogista, $rolCliente);
-        Permission::create(['name' => 'crud.agclientes.destroy'])->syncRoles($rolAdministrador);
-        */
+        // Permisos CRUD users
+        Permission::create(['name' => 'admin.crud.users.index'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.users.create'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.users.edit'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.users.destroy'])->syncRoles($rolAdministrador);
+
+        // Permisos CRUD rols
+        Permission::create(['name' => 'admin.crud.rols.index'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.rols.create'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.rols.edit'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.rols.destroy'])->syncRoles($rolAdministrador);
+
+        // Permisos CRUD permissions
+        Permission::create(['name' => 'admin.crud.permissions.index'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.permissions.create'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.permissions.edit'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.permissions.destroy'])->syncRoles($rolAdministrador);
+
+        // Permisos CRUD books
+        Permission::create(['name' => 'admin.crud.books.index'])->syncRoles($rolAdministrador, $rolProduccion);
+        Permission::create(['name' => 'admin.crud.books.create'])->syncRoles($rolAdministrador, $rolProduccion);
+        Permission::create(['name' => 'admin.crud.books.edit'])->syncRoles($rolAdministrador, $rolProduccion);
+        Permission::create(['name' => 'admin.crud.books.destroy'])->syncRoles($rolAdministrador);
     }
 }

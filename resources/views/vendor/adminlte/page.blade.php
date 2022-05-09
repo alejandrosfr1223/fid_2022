@@ -5,6 +5,8 @@
 @section('adminlte_css')
     @stack('css')
     @yield('css')
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @stop
 
 @section('classes_body', $layoutHelper->makeBodyClasses())
@@ -49,4 +51,6 @@
 @section('adminlte_js')
     @stack('js')
     @yield('js')
+    @livewireScripts
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 @stop
