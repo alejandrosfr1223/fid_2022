@@ -61,7 +61,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    
+
     // Permite incorporar una imagen de usuario
     // Se debe configurar en config\adminlte.php: 'usermenu_image' => true,
     public function adminlte_image(){

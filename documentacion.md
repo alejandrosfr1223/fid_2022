@@ -472,64 +472,511 @@
 3. Solicitar logos de la empresa en distintos formatos y ubicarlos en:
 	+ public\favicon.ico
 	+ public\img\logos\logo-fid.png
-
-
-
-
-????????????
-## CRUD Users
-1. Crear el modelo Rol:
-    + $ php artisan make:model admin/Rol
-2. Establecer asignación masiva al modelo **app\Models\admin\Rol.php**:
+4. Ajustar la configuración de Jetstream en **config\jetstream.php**:
     ```php
     ≡
-    class Rol extends Model
+    'features' => [
+        // Features::termsAndPrivacyPolicy(),
+        Features::profilePhotos(),
+        // Features::api(),
+        // Features::teams(['invitations' => true]),
+        Features::accountDeletion(),
+    ],
+    ≡
+    ```
+5. Crear un acceso directo (simbolic link) a **storage**:
+    + $ php artisan storage:link
+
+
+## CRUD Users
+1. Crear controlador User con todos sus recursos:
+	+ $ php artisan make:controller admin/UserController -r
+2. Programar controlador **app\Http\Controllers\admin\UserController.php**:
+    ```php
+    ≡
+    use App\Models\User;
+    use Spatie\Permission\Models\Permission;
+    use Spatie\Permission\Models\Role;
+    use Spatie\Permission\Traits\HasRoles;
+    use RealRashid\SweetAlert\Facades\Alert;
+
+    class UserController extends Controller
     {
-        ≡  
-        protected $fillable = [
-            'name',
-        ];
+        ≡
+        public function index()
+        {
+            return view('admin.crud.users.index');
+        }
+        ≡
+        public function create()
+        {
+            $roles = Role::all();
+            $user = new User();
+            $origen = 'create';
+            return view('admin.crud.users.create', compact('roles', 'user', 'origen'));
+        }
+        ≡
+        public function store(Request $request)
+        {
+            // Validación
+            $request->validate([
+                'name' => 'required|max:254',
+                'password' => 'min:5',
+                'email' => 'required|unique:users,email'
+            ]);
+
+            // Creando usuario
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                // Comentar esta asignación cuando se decida activar la verificación de usuario
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ]);
+
+            // Asignando roles seleccionados
+            $roles = Role::all();
+            foreach($roles as $role){
+                if($request->input("role" . $role->id)){
+                    $user->assignRole($role->name);
+                }
+            }
+
+            // Mensaje
+            Alert::success('¡Éxito!', 'Se ha creado el usuario: ' . $request->name);
+
+            // Redireccionar a la vista index
+            return redirect()->route('admin.users.index');
+        }
+        ≡
+        public function show(User $user)
+        {
+            $roles = Role::all();
+            $permissions = Permission::all();
+            $origen = 'show';
+            return view('admin.crud.users.edit', compact('user', 'roles', 'permissions', 'origen'));
+        }
+        ≡
+        public function edit(User $user)
+        {
+            $roles = Role::all();
+            $permissions = Permission::all();
+            $origen = 'edit';
+            return view('admin.crud.users.edit', compact('user', 'roles', 'permissions', 'origen'));
+        }
+        ≡
+        public function update(Request $request, User $user)
+        {
+            // Validación
+            if($request->password){
+                $request->validate([
+                    'name' => 'required|max:254',
+                    'password' => 'min:5',
+                    'email' => 'email|required|unique:users,email,'.$user->id
+                ]);
+                $user->password = bcrypt($request->password);
+            } else {
+                $request->validate([
+                    'name' => 'required|max:254',
+                    'email' => 'email|required|unique:users,email,'.$user->id
+                ]);
+            }
+
+            // Actualizando usuario
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
+
+            // Actualizando los roles del usuario
+            $roles = Role::all();
+            foreach($roles as $role){
+                if($request->input("role" . $role->id)){
+                    $user->assignRole($role->name);
+                }else {
+                    $user->removeRole($role->name);
+                }
+            }
+
+            // Actualizando los permisos del usuario
+            $permissions = Permission::all();
+            foreach($permissions as $permission){
+                if($request->input("permiso" . $permission->id)){
+                    $user->givePermissionTo($permission->name);
+                }else {
+                    $user->revokePermissionTo($permission->name);
+                }
+            }
+
+            // Mensaje
+            Alert::success('¡Éxito!', 'Se ha actualizado el usuario: ' . $request->name);
+
+            // Redireccionar a la vista index
+            return redirect()->route('admin.users.index');
+        }
+        ≡
+        public function destroy(User $user)
+        {
+            $nombre = $user->name;
+            $user->delete();
+            Alert::info('¡Advertencia!', 'Se ha eliminado el usuario: ' . $nombre);
+            return redirect()->route('admin.users.index');
+        }
     }
     ```
-3. Crear controlador Rol con todos sus recursos:
-	+ $ php artisan make:controller admin/RolController -r
-4. Programar controlador **app\Http\Controllers\admin\RolController.php**:
+3. Agregar el juego de rutas users en **routes\admin.php**:
     ```php
     ≡
-    ```
-5. Agregar el juego de rutas permissions en **routes\admin.php**:
-    ```php
+    use App\Http\Controllers\admin\UserController;
     ≡
-    use App\Http\Controllers\admin\RolController;
-    ≡
-    Route::resource('rols', RolController::class)->names('rols')
-        ->middleware('can:admin.crud.rols.index');
+    Route::resource('users', UserController::class)->names('users')
+        ->middleware('can:admin.crud.users.index');
     ```
-6. Crear componente Livewire para el modelo Rols: 
-	+ $ php artisan make:livewire rols-table
-7. Programar controlador Livewire asociado al modelo Rols en **app\Http\Livewire\Admin\RolsTable.php**:
+4. Crear componente Livewire para el modelo User: 
+	+ $ php artisan make:livewire admin/users-table
+5. Programar controlador Livewire asociado al modelo Rols en **app\Http\Livewire\Admin\UsersTable.php**:
     ```php
+    <?php
+
+    namespace App\Http\Livewire\Admin;
+
+    use App\Models\User;
+    use Livewire\Component;
+    use Livewire\WithPagination;
+
+    class UsersTable extends Component
+    {
+
+        use WithPagination;
+
+        protected $queryString = [
+            'search' => ['except' => ''],
+            'perPage' => ['except' => '15']
+        ];
+
+        public $search = '';
+        public $perPage = '15';
+
+        public function render()
+        {
+            $users = User::where('name','LIKE',"%$this->search%")
+                ->orWhere('email','LIKE',"%$this->search%")
+                ->orderBy('updated_at','DESC')
+                ->paginate($this->perPage);
+            return view('livewire.admin.users-table', compact('users'));
+        }
+
+        public function clear(){
+            $this->search = '';
+            $this->page = 1;
+            $this->perPage = '15';
+        }
+
+        public function limpiar_page(){
+            $this->reset('page');
+        }
+    }
     ```
-8. Diseñar vista para la tabla Rols en **resources\views\livewire\admin\crud\rols-table.blade.php**:
+6. Diseñar vista para la tabla Users en **resources\views\livewire\admin\crud\users-table.blade.php**:
     ```php
+    <div>
+        <div class="p-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row m-2">
+                        <h2 class="card-title flex-1"><strong>Lista de usuarios</strong></h2>
+                        <div class="card-tools flex-1">
+                            <div class="input-group input-group-sm">
+                                <input wire:model="search" type="text" class="form-control float-right" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group-sm mx-3 flex" style="width: 140px">
+                            <select wire:model="perPage" class="form-control float-right">
+                                <option value="5">5 por pág. </option>
+                                <option value="10">10 por pág.</option>
+                                <option value="15">15 por pág.</option>
+                                <option value="25">25 por pág.</option>
+                                <option value="50">50 por pág.</option>
+                                <option value="100">100 por pág.</option>
+                            </select>
+                            @if ($search !== '')
+                            <div class="input-group-sm flex">
+                                <button wire:click="clear" class="btn btn-secondary form-control float-right"><i class="far fa-window-close"></i></button>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @can('admin.crud.users.create')
+                    <a href="{{ route('admin.users.create') }}" class="btn btn-secondary m-4">
+                        Añadir usuario
+                    </a>
+                @endcan
+
+                <div class="card-body table-responsive p-0">
+                    @if ($users->count())
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Foto</th> {{-- ID --}}
+                                <th>Nombre</th>
+                                <th>e-mail</th>
+                                <th>Creado</th>
+                                <th>Actualizado</th>
+                                @can('admin.crud.users.edit')
+                                <th class="text-center">Editar</th>
+                                @endcan
+                                @can('admin.crud.users.destroy')
+                                <th class="text-center">Eliminar</th>
+                                @endcan
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                            <tr>
+                                <td title="{{ $user->id }}">
+                                    <img
+                                        src="{{ asset('storage/' . $user->profile_photo_path) }}"
+                                        onerror="this.onerror=null; this.src='/img/person.png'"
+                                        alt="{{ 'Imagen de ' . $user->name }}"
+                                        class="img-circle img-size-32 mr-2"
+                                    >
+                                </td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->created_at }}</td>
+                                <td>{{ $user->updated_at }}</td>
+                                @can('admin.crud.users.edit')
+                                <td class="text-center">
+                                    <a href="{{ route('admin.users.edit', $user) }}" title="Editar"><i class="fas fa-edit"></i></a>
+                                </td>
+                                @endcan
+                                @can('admin.crud.users.destroy')
+                                <td class="text-center">
+                                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button
+                                            type="submit"
+                                            title="Eliminar"
+                                            style="color: red"
+                                            onclick="return confirm('¿Está seguro que desea eliminar a este usuario?')"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                @endcan
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="m-4">
+                        {{ $users->links() }}
+                    </div>
+                    @else
+                        <div class="m-4">
+                            <p>No hay resultado para la búsqueda: <strong>{{ $search }}</strong></p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
     ```
-9. Diseñar las vistas para el CRUD Roles:
-    + resources\views\admin\crud\rols\index.blade.php:
+7. Diseñar las vistas para el CRUD Users:
+    + resources\views\admin\crud\users\index.blade.php:
         ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Lista de usuarios')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+            @livewire('admin.users-table')
+        @stop
+
+        @section('css')
+        @stop
+
+        @section('js')
+        @stop
         ```
-    + resources\views\admin\crud\rols\\_form.blade.php:
+    + resources\views\admin\crud\users\\_form.blade.php:
         ```php
+        <div class="card-body m-4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="name">Nombre del usuario</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="name"
+                            placeholder="Introduzca el nombre del usuario"
+                            value="{{ old('name', $user->name) }}"
+                        >
+                    </div>
+                    @error('name')
+                        <div class="col-span-12 sm:col-span-12">
+                            <small style="color:red">*{{ $message }}*</small>
+                        </div>
+                    @enderror
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            placeholder="Introduzca el e-mail del usuario"
+                            value="{{ old('email', $user->email) }}"
+                        >
+                    </div>
+                    @error('email')
+                        <div class="col-span-12 sm:col-span-12">
+                            <small style="color:red">*{{ $message }}*</small>
+                        </div>
+                    @enderror
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        @if($origen == 'edit')
+                        <label for="name">Reasignar password</label>
+                        @else
+                        <label for="name">Asignar password</label>
+                        @endif
+                        <input
+                            type="password"
+                            class="form-control"
+                            name="password"
+                            placeholder="Introduzca el password del usuario"
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="form-check">
+
+                <p><label>Roles del usuario</label></p>
+                <div class="m-4">
+                    <div class="row">
+                        @foreach ($roles as $role)
+                        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                            @if($origen == 'edit')
+                                @if ($user->hasRole($role->name))
+                                <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input" checked>
+                                @else
+                                <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                                @endif
+                            @else
+                                <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                            @endif
+                            <label for="{{ "role" . $role->id }}" class="form-check-label">{{ $role->name }}</label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                @if($origen == 'edit')
+                <p><label>Permisos del usuario</label></p>
+                <div class="m-4">
+                    <div class="row">
+                        @foreach ($permissions as $permission)
+                        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                            @if ($user->hasPermissionTo($permission->name))
+                            <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input" checked>
+                            @else
+                            <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input">
+                            @endif
+                            <label for="{{ "permiso" . $permission->id }}" class="form-check-label">{{ $permission->name }}</label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
+            </div>
+        </div>
         ```
-    + resources\views\admin\crud\rols\create.blade.php:
+    + resources\views\admin\crud\users\create.blade.php:
         ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Crear Usuario')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+        <div class="p-4">
+            <div class="card card-primary">
+                <div class="card-header m-4">
+                    <h3 class="card-title">Crear usuario</h3>
+                </div>
+                <form action="{{ route('admin.users.store') }}" method="POST">
+                    @csrf
+
+                    @include('admin.crud.users._form')
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-secondary">Crear user</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @stop
+
+        @section('css')
+        @stop
+
+        @section('js')
+        @stop
         ```
-    + resources\views\admin\crud\rols\edit.blade.php:
+    + resources\views\admin\crud\users\edit.blade.php:
         ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Editar Usuario')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+        <div class="p-4">
+            <div class="card card-primary m-2">
+                <div class="card-header m-4">
+                    <h3 class="card-title">Editar usuario</h3>
+                </div>
+                <form action="{{ route('admin.users.update', $user) }}" method="POST">
+                    @csrf
+                    @method('put')
+
+                    @include('admin.crud.users._form')
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-secondary">Actualizar usuario</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @stop
+
+        @section('css')
+        @stop
+
+        @section('js')
+        @stop
         ```
 
 
-
-????????????
 ## CRUD Roles
 1. Crear el modelo Rol:
     + $ php artisan make:model admin/Role
