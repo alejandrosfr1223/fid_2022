@@ -263,7 +263,7 @@ return [
         ],
         [
             'text' => 'Roles',
-            'url'  => 'admin/rols',
+            'url'  => 'admin/roles',
             'icon' => 'fas fa-fw fa-user-tag',
         ],
         [

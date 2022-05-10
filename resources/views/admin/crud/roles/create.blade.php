@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear Permiso')
+@section('title', 'Crear Rol')
 
 @section('content_header')
 
@@ -10,15 +10,15 @@
 <div class="p-4">
     <div class="card card-primary">
         <div class="card-header m-4">
-            <h3 class="card-title">Crear permiso</h3>
+            <h3 class="card-title">Crear rol</h3>
         </div>
-        <form action="{{ route('admin.permissions.store') }}" method="POST">
+        <form action="{{ route('admin.roles.store') }}" method="POST">
             @csrf
 
-            @include('admin.crud.permissions._form')
+            @include('admin.crud.roles._form')
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-secondary">Crear permiso</button>
+                <button type="submit" class="btn btn-secondary">Crear rol</button>
             </div>
         </form>
     </div>

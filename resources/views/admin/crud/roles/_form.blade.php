@@ -1,12 +1,12 @@
 <div class="card-body m-4">
     <div class="form-group">
-        <label for="name">Nombre del permiso</label>
+        <label for="name">Nombre del rol</label>
         <input
             type="text"
             class="form-control"
             name="name"
-            placeholder="Introduzca el nombre del permiso"
-            value="{{ old('name', $permission->name) }}"
+            placeholder="Introduzca el nombre del rol"
+            value="{{ old('name', $role->name) }}"
         >
     </div>
     @error('name')
@@ -15,21 +15,21 @@
         </div>
     @enderror
     <div class="form-check">
-        <p><label>Roles a asignarle el permiso</label></p>
+        <p><label>Permisos a asignarle el rol</label></p>
         <div class="m-4">
             <div class="row">
-                @foreach ($roles as $role)
+                @foreach ($permissions as $permission)
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                     @if($origen == 'edit')
                         @if ($role->hasPermissionTo($permission->name))
-                        <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input" checked>
+                        <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input" checked>
                         @else
-                        <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                        <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input">
                         @endif
                     @else
-                        <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                        <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input">
                     @endif
-                    <label for="{{ "role" . $role->id }}" class="form-check-label">{{ $role->name }}</label>
+                    <label for="{{ "permiso" . $permission->id }}" class="form-check-label">{{ $permission->name }}</label>
                 </div>
                 @endforeach
             </div>

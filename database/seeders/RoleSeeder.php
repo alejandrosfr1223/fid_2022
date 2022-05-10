@@ -28,10 +28,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.crud.users.destroy'])->syncRoles($rolAdministrador);
 
         // Permisos CRUD rols
-        Permission::create(['name' => 'admin.crud.rols.index'])->syncRoles($rolAdministrador);
-        Permission::create(['name' => 'admin.crud.rols.create'])->syncRoles($rolAdministrador);
-        Permission::create(['name' => 'admin.crud.rols.edit'])->syncRoles($rolAdministrador);
-        Permission::create(['name' => 'admin.crud.rols.destroy'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.roles.index'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.roles.create'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.roles.edit'])->syncRoles($rolAdministrador);
+        Permission::create(['name' => 'admin.crud.roles.destroy'])->syncRoles($rolAdministrador);
 
         // Permisos CRUD permissions
         Permission::create(['name' => 'admin.crud.permissions.index'])->syncRoles($rolAdministrador);

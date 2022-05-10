@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row m-2">
-                    <h2 class="card-title flex-1"><strong>Permisos de usuarios</strong></h2>
+                    <h2 class="card-title flex-1"><strong>Roles de usuarios</strong></h2>
                     <div class="card-tools flex-1">
                         <div class="input-group input-group-sm">
                             <input wire:model="search" type="text" class="form-control float-right" placeholder="Buscar">
@@ -31,14 +31,14 @@
                     </div>
                 </div>
             </div>
-            @can('admin.crud.permissions.create')
-                <a href="{{ route('admin.permissions.create') }}" class="btn btn-secondary m-4">
-                    Añadir permiso
+            @can('admin.crud.roles.create')
+                <a href="{{ route('admin.roles.create') }}" class="btn btn-secondary m-4">
+                    Añadir rol
                 </a>
             @endcan
 
             <div class="card-body table-responsive p-0">
-                @if ($permissions->count())
+                @if ($roles->count())
                 <table class="table table-hover text-nowrap">
                     <thead>
                         <tr>
@@ -47,37 +47,37 @@
                             <th>Guard</th>
                             <th>Creado</th>
                             <th>Actualizado</th>
-                            @can('admin.crud.permissions.edit')
+                            @can('admin.crud.roles.edit')
                             <th class="text-center">Editar</th>
                             @endcan
-                            @can('admin.crud.permissions.destroy')
+                            @can('admin.crud.roles.destroy')
                             <th class="text-center">Eliminar</th>
                             @endcan
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($permissions as $permission)
+                        @foreach ($roles as $role)
                         <tr>
-                            <td>{{ $permission->id }}</td>
-                            <td>{{ $permission->name }}</td>
-                            <td>{{ $permission->guard_name }}</td>
-                            <td>{{ $permission->created_at }}</td>
-                            <td>{{ $permission->updated_at }}</td>
-                            @can('admin.crud.permissions.edit')
+                            <td>{{ $role->id }}</td>
+                            <td>{{ $role->name }}</td>
+                            <td>{{ $role->guard_name }}</td>
+                            <td>{{ $role->created_at }}</td>
+                            <td>{{ $role->updated_at }}</td>
+                            @can('admin.crud.roles.edit')
                             <td class="text-center">
-                                <a href="{{ route('admin.permissions.edit', $permission) }}" title="Editar"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('admin.roles.edit', $role) }}" title="Editar"><i class="fas fa-edit"></i></a>
                             </td>
                             @endcan
-                            @can('admin.crud.permissions.destroy')
+                            @can('admin.crud.roles.destroy')
                             <td class="text-center">
-                                <form action="{{ route('admin.permissions.destroy', $permission) }}" method="POST">
+                                <form action="{{ route('admin.roles.destroy', $role) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button
                                         type="submit"
                                         title="Eliminar"
                                         style="color: red"
-                                        onclick="return confirm('¿Está seguro que desea eliminar el permiso?')"><i class="fas fa-trash"></i>
+                                        onclick="return confirm('¿Está seguro que desea eliminar el rol?')"><i class="fas fa-trash"></i>
                                     </button>
                                 </form>
                             </td>
@@ -87,7 +87,7 @@
                     </tbody>
                 </table>
                 <div class="m-4">
-                    {{ $permissions->links() }}
+                    {{ $roles->links() }}
                 </div>
                 @else
                     <div class="m-4">

@@ -44,7 +44,7 @@ class PermissionController extends Controller
     {
         // Validación
         $request->validate([
-            'name' => 'required|max:254'
+            'name' => 'required|unique:permissions,name|max:254'
         ]);
 
         // Creando permiso
@@ -102,7 +102,7 @@ class PermissionController extends Controller
     {
         // Validación
         $request->validate([
-            'name' => 'required|max:254'
+            'name' => 'required|max:254|unique:permissions,name,'.$permission->name.',name'
         ]);
 
         // actualizando permiso

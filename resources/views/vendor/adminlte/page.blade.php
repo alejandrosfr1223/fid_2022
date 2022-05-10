@@ -7,6 +7,7 @@
     @yield('css')
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
 @stop
 
 @section('classes_body', $layoutHelper->makeBodyClasses())
