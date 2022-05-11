@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
     {
         // Roles
         $rolAdministrador = Role::create(['name' => 'Administrador']);
-        $rolProduccion = Role::create(['name' => 'Produccion']);
+        $rolOperador = Role::create(['name' => 'Operador']);
         $rolCliente = Role::create(['name' => 'Cliente']);
 
         // Permisos CRUD users
@@ -40,9 +40,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.crud.permissions.destroy'])->syncRoles($rolAdministrador);
 
         // Permisos CRUD books
-        Permission::create(['name' => 'admin.crud.books.index'])->syncRoles($rolAdministrador, $rolProduccion);
-        Permission::create(['name' => 'admin.crud.books.create'])->syncRoles($rolAdministrador, $rolProduccion);
-        Permission::create(['name' => 'admin.crud.books.edit'])->syncRoles($rolAdministrador, $rolProduccion);
+        Permission::create(['name' => 'admin.crud.books.index'])->syncRoles($rolAdministrador, $rolOperador);
+        Permission::create(['name' => 'admin.crud.books.create'])->syncRoles($rolAdministrador, $rolOperador);
+        Permission::create(['name' => 'admin.crud.books.edit'])->syncRoles($rolAdministrador, $rolOperador);
         Permission::create(['name' => 'admin.crud.books.destroy'])->syncRoles($rolAdministrador);
     }
 }

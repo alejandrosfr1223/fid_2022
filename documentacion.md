@@ -281,7 +281,7 @@
         {
             // Roles
             $rolAdministrador = Role::create(['name' => 'Administrador']);
-            $rolProduccion = Role::create(['name' => 'Produccion']);
+            $rolOperador = Role::create(['name' => 'Operador']);
             $rolCliente = Role::create(['name' => 'Cliente']);
 
             // Permisos CRUD users
@@ -303,9 +303,9 @@
             Permission::create(['name' => 'admin.crud.permissions.destroy'])->syncRoles($rolAdministrador);
 
             // Permisos CRUD books
-            Permission::create(['name' => 'admin.crud.books.index'])->syncRoles($rolAdministrador, $rolProduccion);
-            Permission::create(['name' => 'admin.crud.books.create'])->syncRoles($rolAdministrador, $rolProduccion);
-            Permission::create(['name' => 'admin.crud.books.edit'])->syncRoles($rolAdministrador, $rolProduccion);
+            Permission::create(['name' => 'admin.crud.books.index'])->syncRoles($rolAdministrador, $rolOperador);
+            Permission::create(['name' => 'admin.crud.books.create'])->syncRoles($rolAdministrador, $rolOperador);
+            Permission::create(['name' => 'admin.crud.books.edit'])->syncRoles($rolAdministrador, $rolOperador);
             Permission::create(['name' => 'admin.crud.books.destroy'])->syncRoles($rolAdministrador);
         }
     }
@@ -328,11 +328,11 @@
             ])->assignRole('Administrador');
 
             User::create([
-                'name' => 'Prueba Producción',
-                'email' => 'produccion@gmail.com',
+                'name' => 'Prueba Operador',
+                'email' => 'operador@gmail.com',
                 'password' => bcrypt('12345678'),
                 'email_verified_at' => date('Y-m-d H:i:s')
-            ])->assignRole('Produccion');
+            ])->assignRole('Operador');
 
             User::create([
                 'name' => 'Prueba cliente',
@@ -439,30 +439,31 @@
             ],
 
             /* Administración de usuarios */
-            ['header' => 'ADMINISTRAR USUARIOS'],
+            [
+                'header' => 'ADMINISTRAR USUARIOS',
+                'can'  => 'admin.crud.users.index',
+            ],
             [
                 'text' => 'Usuarios',
                 'url'  => 'admin/users',
                 'icon' => 'fas fa-fw fa-users',
+                'can'  => 'admin.crud.users.index',
             ],
             [
                 'text' => 'Roles',
                 'url'  => 'admin/roles',
                 'icon' => 'fas fa-fw fa-user-tag',
+                'can'  => 'admin.crud.roles.index',
             ],
             [
                 'text' => 'Permisos',
                 'url'  => 'admin/permissions',
                 'icon' => 'fas fa-fw fa-universal-access',
+                'can'  => 'admin.crud.permissions.index',
             ],
 
             /* Administración de tablas */
             ['header' => 'ADMINISTRAR TABLAS'],
-            [
-                'text' => 'Libros',
-                'url'  => 'admin/books',
-                'icon' => 'fas fa-fw fa-book',
-            ],
         ],
         ≡
     ]
@@ -486,6 +487,225 @@
     ```
 5. Crear un acceso directo (simbolic link) a **storage**:
     + $ php artisan storage:link
+6. Agregar ruta raíz admin en **routes\admin.php**:
+    ```php
+    ≡
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Route;
+    use Spatie\Permission\Traits\HasRoles;
+
+    Route::get('/', function () {
+        if(Auth::user()->hasRole('Administrador')){
+            return view('admin.crud.users.index');
+        }else{
+            if(Auth::user()->hasRole('Operador')){
+                return view('admin.crud.books.index');
+            } else {
+                return view('dashboard');
+            }
+        }
+    });
+    ```
+
+## Rutas para el mantenimiento de la aplicación
+1. Crear controlador Maintenance:
+	+ $ php artisan make:controller admin/MaintenanceController
+2. Programar controlador **app\Http\Controllers\admin\MaintenanceController.php**:
+    ```php
+    ≡
+    use Illuminate\Support\Facades\Artisan;
+    use RealRashid\SweetAlert\Facades\Alert;
+
+    class MaintenanceController extends Controller
+    {
+        public function index(){
+            return view('admin.pages.maintenance');
+        }
+
+        public function key_generate(){
+            Artisan::call('key:generate');
+            Alert::success('!Una nueva llave para la aplicación se generó exitosamente!');
+            return view('admin.pages.maintenance');
+        }
+
+        public function storage_link(){
+            Artisan::call('storage:link');
+            Alert::success('!El enlace directo a storage se generó exitosamente!');
+            return view('admin.pages.maintenance');
+        }
+
+        public function cache_clear(){
+            Artisan::call('cache:clear');
+            Alert::success('!El caché de la aplicación se limpió exitosamente!');
+            return view('admin.pages.maintenance');
+        }
+
+        public function config_cache(){
+            Artisan::call('config:cache');
+            Alert::success('!La caché de la configuración de la aplicación se limpió exitosamente!');
+            return view('admin.pages.maintenance');
+        }
+
+        public function route_clear(){
+            Artisan::call('route:clear');
+            Alert::success('!Las rutas de la aplicación se limpiaron exitosamente!');
+            return view('admin.pages.maintenance');
+        }
+
+        public function config_clear(){
+            Artisan::call('config:clear');
+            Alert::success('!La configuración de la aplicación se limpió exitosamente!');
+            return view('admin.pages.maintenance');
+        }
+
+        public function view_clear(){
+            Artisan::call('view:clear');
+            Alert::success('!Las vistas de la aplicación se limpiaron exitosamente!');
+            return view('admin.pages.maintenance');
+        }
+
+        public function migrate_fresh(){
+            Artisan::call('migrate:fresh');
+            Artisan::call('db:seed');
+            Alert::success('!La base de datos se reestableció exitosamente!');
+            return view('admin.pages.maintenance');
+        }
+    }
+    ```
+3. Crear grupo de rutas de mantenimiento en **routes\admin.php**:
+    ```php
+    ≡
+    use App\Http\Controllers\admin\MaintenanceController;
+    ≡
+    // Grupo de rutas para realizar mantenimiento a la aplicación
+    Route::group(['middleware' => ['auth', 'can:admin.crud.users.index'], 'as' => 'maintenance.'], function(){
+        // Página principal
+        Route::get('maintenance', [MaintenanceController::class, 'index']);
+        // Generar llave: $ php artisan key:generate
+        Route::get('key-generate', [MaintenanceController::class, 'key_generate'])->name('key-generate');
+        // Enlace directo a storage: $ php artisan storage:link
+        Route::get('storage-link', [MaintenanceController::class, 'storage_link'])->name('storage-link');
+        // Limpiar caché: $ php artisan cache:clear
+        Route::get('cache-clear', [MaintenanceController::class, 'cache_clear'])->name('cache-clear');
+        // Limpiar caché de la configuración: $ php artisan config:cache
+        Route::get('config-cache', [MaintenanceController::class, 'config_cache'])->name('config-cache');
+        // Limpiar rutas: $ php artisan route:clear
+        Route::get('route-clear', [MaintenanceController::class, 'route_clear'])->name('route-clear');
+        // Limpiar configuración: $ php artisan config:clear
+        Route::get('config-clear', [MaintenanceController::class, 'config_clear'])->name('config-clear');
+        // Limpiar vistas: $ php artisan view:clear
+        Route::get('view-clear', [MaintenanceController::class, 'view_clear'])->name('view-clear');
+        // Reestablecer base de datos: $ php artisan migrate:fresh --seed
+        Route::get('migrate-fresh', [MaintenanceController::class, 'migrate_fresh'])->name('migrate-fresh');
+    });
+    ```
+4. Agregar menú para herramientas adminisitrativas en **config\adminlte.php**:
+    ```php
+    ≡
+    'menu' => [
+        ≡
+        [
+            'header' => 'HERRAMIENTAS ADMIN.',
+            'can'  => 'admin.crud.users.index',
+        ],
+        [
+            'text' => 'Mtto. app.',
+            'url'  => 'admin/maintenance',
+            'icon' => 'fas fa-fw fa-briefcase-medical',
+            'can'  => 'admin.crud.users.index',
+        ],
+    ],
+    ≡
+    ```
+5. Crear vista **resources\views\admin\pages\maintenance.blade.php**:
+    ```php
+    @extends('adminlte::page')
+
+    @section('title', 'Mantenimiento de la aplicación')
+
+    @section('content_header')
+
+    @stop
+
+    @section('content')
+    <div class="p-4">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Mantenimiento de la aplicación</h3>
+            </div>
+            <div class="card-body m-2">
+                <div class="row p-0 m-0">
+                    <p style="color:red">
+                        <strong>Nota: </strong>
+                        El uso indebido de estos comandos puede causar fallas en la aplicación.
+                    </p>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                        <form action="{{ route('admin.maintenance.key-generate') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning w-60">Key generate</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                        <form action="{{ route('admin.maintenance.storage-link') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning w-60">Storage Link</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                        <form action="{{ route('admin.maintenance.cache-clear') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning w-60">Cache clear</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                        <form action="{{ route('admin.maintenance.config-cache') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning w-60">Config cache</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                        <form action="{{ route('admin.maintenance.route-clear') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning w-60">Route clear</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                        <form action="{{ route('admin.maintenance.config-clear') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning w-60">Config clear</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                        <form action="{{ route('admin.maintenance.view-clear') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning w-60">View clear</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                        <form action="{{ route('admin.maintenance.migrate-fresh') }}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning w-60">Migrate fresh seed</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @stop
+
+    @section('css')
+    @stop
+
+    @section('js')
+    @stop
+    ≡
+    ```
 
 
 ## CRUD Users
@@ -811,107 +1031,116 @@
         ```php
         <div class="card-body m-4">
             <div class="row">
-                <div class="col-sm-12 mb-3">
+                <div class="col-sm-12 col-md-2 p-3">
                     <img
                         src="{{ asset('storage/' . $user->profile_photo_path) }}"
                         onerror="this.onerror=null; this.src='/img/person.png'"
                         alt="{{ 'Imagen de ' . $user->name }}"
                         class="img-circle"
                         width="150px"
+                        class="mt-5"
                     >
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <label for="name">Nombre del usuario</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="name"
-                            placeholder="Introduzca el nombre del usuario"
-                            value="{{ old('name', $user->name) }}"
-                        >
-                    </div>
-                    @error('name')
-                        <div class="col-span-12 sm:col-span-12">
-                            <small style="color:red">*{{ $message }}*</small>
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input
-                            type="email"
-                            class="form-control"
-                            name="email"
-                            placeholder="Introduzca el e-mail del usuario"
-                            value="{{ old('email', $user->email) }}"
-                        >
-                    </div>
-                    @error('email')
-                        <div class="col-span-12 sm:col-span-12">
-                            <small style="color:red">*{{ $message }}*</small>
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        @if($origen == 'edit')
-                        <label for="name">Reasignar password</label>
-                        @else
-                        <label for="name">Asignar password</label>
-                        @endif
-                        <input
-                            type="password"
-                            class="form-control"
-                            name="password"
-                            placeholder="Introduzca el password del usuario"
-                        >
-                    </div>
-                </div>
-            </div>
-            <div class="form-check">
-
-                <p><label>Roles del usuario</label></p>
-                <div class="m-4">
+                <div class="col-sm-12 col-md-10 mb-3">
                     <div class="row">
-                        @foreach ($roles as $role)
-                        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                            @if($origen == 'edit')
-                                @if ($user->hasRole($role->name))
-                                <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input" checked>
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="name">Nombre del usuario</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="name"
+                                    placeholder="Introduzca el nombre del usuario"
+                                    value="{{ old('name', $user->name) }}"
+                                >
+                            </div>
+                            @error('name')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="email">Correo electrónico</label>
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    name="email"
+                                    placeholder="Introduzca el e-mail del usuario"
+                                    value="{{ old('email', $user->email) }}"
+                                >
+                            </div>
+                            @error('email')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                @if($origen == 'edit')
+                                <label for="name">Reasignar password</label>
                                 @else
-                                <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                                <label for="name">Asignar password</label>
                                 @endif
-                            @else
-                                <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
-                            @endif
-                            <label for="{{ "role" . $role->id }}" class="form-check-label">{{ $role->name }}</label>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    name="password"
+                                    placeholder="Introduzca el password del usuario"
+                                >
+                            </div>
                         </div>
-                        @endforeach
                     </div>
                 </div>
+            </div>
 
-                @if($origen == 'edit')
-                <p><label>Permisos del usuario</label></p>
-                <div class="m-4">
-                    <div class="row">
-                        @foreach ($permissions as $permission)
-                        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                            @if ($user->hasPermissionTo($permission->name))
-                            <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input" checked>
-                            @else
-                            <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input">
-                            @endif
-                            <label for="{{ "permiso" . $permission->id }}" class="form-check-label">{{ $permission->name }}</label>
+            <div class="row">
+                <div class="col-sm-12 mb-0">
+                    <div class="form-check">
+                        <p><label>Roles del usuario</label></p>
+                        <div class="m-4">
+                            <div class="row">
+                                @foreach ($roles as $role)
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    @if($origen == 'edit')
+                                        @if ($user->hasRole($role->name))
+                                        <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input" checked>
+                                        @else
+                                        <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                                        @endif
+                                    @else
+                                        <input name="{{ "role" . $role->id }}" type="checkbox" class="form-check-input">
+                                    @endif
+                                    <label for="{{ "role" . $role->id }}" class="form-check-label">{{ $role->name }}</label>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
-                        @endforeach
+
+                        @if($origen == 'edit')
+                        <p><label>Permisos del usuario</label></p>
+                        <div class="m-4">
+                            <div class="row">
+                                @foreach ($permissions as $permission)
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    @if ($user->hasPermissionTo($permission->name))
+                                    <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input" checked>
+                                    @else
+                                    <input name="{{ "permiso" . $permission->id }}" type="checkbox" class="form-check-input">
+                                    @endif
+                                    <label for="{{ "permiso" . $permission->id }}" class="form-check-label">{{ $permission->name }}</label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
                     </div>
                 </div>
-                @endif
-
             </div>
         </div>
         ```
@@ -1822,7 +2051,23 @@
     }
     ≡
     ```
-3. Programar seeder **database\seeders\BookSeeder.php**:
+3. Adaptar la configuración del archivo **config\adminlte.php** el menú libros:
+    ```php
+    ≡
+    'menu' => [
+        ≡
+        /* Administración de tablas */
+        ['header' => 'ADMINISTRAR TABLAS'],
+        [
+            'text' => 'Libros',
+            'url'  => 'admin/books',
+            'icon' => 'fas fa-fw fa-book',
+            'can'  => 'admin.crud.books.index',
+        ],
+    ],
+    ≡
+    ```
+4. Programar seeder **database\seeders\BookSeeder.php**:
     ```php
     ≡
     public function run()
@@ -1859,7 +2104,7 @@
     }
     ≡
     ```
-4. Incluir seeder Book en **database\seeders\DatabaseSeeder.php**:
+5. Incluir seeder Book en **database\seeders\DatabaseSeeder.php**:
     ```php
     ≡
     public function run()
@@ -1869,9 +2114,9 @@
     }
     ≡
     ```
-5. Reestablecer la base de datos:
+6. Reestablecer la base de datos:
     + $ php artisan migrate:fresh --seed
-6. Establecer asignación masiva al modelo **app\Models\Book.php**:
+7. Establecer asignación masiva al modelo **app\Models\Book.php**:
     ```php
     ≡
     class Book extends Model
@@ -1890,7 +2135,7 @@
         ];
     }
     ```
-7. Programar controlador **app\Http\Controllers\BookController.php**:
+8. Programar controlador **app\Http\Controllers\BookController.php**:
     ```php
     ≡
     use App\Models\Book;
@@ -1965,7 +2210,7 @@
         }
     }
     ```
-8. Agregar el juego de rutas books en **routes\admin.php**:
+9.  Agregar el juego de rutas books en **routes\admin.php**:
     ```php
     ≡
     use App\Http\Controllers\BookController;
@@ -1973,7 +2218,7 @@
     Route::resource('books', BookController::class)->names('books')
         ->middleware('can:admin.crud.books.index');
     ```
-9. Crear componente Livewire para el modelo Book: 
+10. Crear componente Livewire para el modelo Book: 
 	+ $ php artisan make:livewire admin/books-table
 10. Programar controlador Livewire asociado al modelo Book en **app\Http\Livewire\Admin\BookTable.php**:
     ```php

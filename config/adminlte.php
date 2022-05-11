@@ -255,21 +255,27 @@ return [
         ], */
 
         /* Administración de usuarios */
-        ['header' => 'ADMINISTRAR USUARIOS'],
+        [
+            'header' => 'ADMINISTRAR USUARIOS',
+            'can'  => 'admin.crud.users.index',
+        ],
         [
             'text' => 'Usuarios',
             'url'  => 'admin/users',
             'icon' => 'fas fa-fw fa-users',
+            'can'  => 'admin.crud.users.index',
         ],
         [
             'text' => 'Roles',
             'url'  => 'admin/roles',
             'icon' => 'fas fa-fw fa-user-tag',
+            'can'  => 'admin.crud.roles.index',
         ],
         [
             'text' => 'Permisos',
             'url'  => 'admin/permissions',
             'icon' => 'fas fa-fw fa-universal-access',
+            'can'  => 'admin.crud.permissions.index',
         ],
 
         /* Administración de tablas */
@@ -278,6 +284,7 @@ return [
             'text' => 'Libros',
             'url'  => 'admin/books',
             'icon' => 'fas fa-fw fa-book',
+            'can'  => 'admin.crud.books.index',
         ],
 
         /* Administración de la cuenta FID */
@@ -292,6 +299,18 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ], */
+
+        /* Herramientas administrativas */
+        [
+            'header' => 'HERRAMIENTAS ADMIN.',
+            'can'  => 'admin.crud.users.index',
+        ],
+        [
+            'text' => 'Mtto. app.',
+            'url'  => 'admin/maintenance',
+            'icon' => 'fas fa-fw fa-briefcase-medical',
+            'can'  => 'admin.crud.users.index',
+        ],
 
         /* Ejemplo de multinivel */
         /* [
