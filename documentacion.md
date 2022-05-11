@@ -811,6 +811,17 @@
         ```php
         <div class="card-body m-4">
             <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <img
+                        src="{{ asset('storage/' . $user->profile_photo_path) }}"
+                        onerror="this.onerror=null; this.src='/img/person.png'"
+                        alt="{{ 'Imagen de ' . $user->name }}"
+                        class="img-circle"
+                        width="150px"
+                    >
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="name">Nombre del usuario</label>
@@ -926,7 +937,7 @@
                     @include('admin.crud.users._form')
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-secondary">Crear user</button>
+                        <button type="submit" class="btn btn-secondary">Crear usuario</button>
                     </div>
                 </form>
             </div>
@@ -1787,58 +1798,609 @@
         ```
 
 
-
-
-????????????
 ## CRUD Books
-1. Crear el modelo Rol:
-    + $ php artisan make:model admin/Rol
-2. Establecer asignación masiva al modelo **app\Models\admin\Rol.php**:
+1. Crear el modelo Book con migración, controlador (con todos sus recursos) y seeder:
+    + $ php artisan make:model Book -mcrs
+2. Establecer los atributos de la migración Book en **database\migrations\2022_05_10_212414_create_books_table.php**:
     ```php
     ≡
-    class Rol extends Model
+    public function up()
+    {
+        Schema::create('books', function (Blueprint $table) {
+            $table->id();
+            $table->string('titulo');
+            $table->string('autor')->nullable();
+            $table->string('editorial')->nullable();
+            $table->string('edicion')->nullable();              // Número de edición
+            $table->string('paginas')->nullable();
+            $table->string('isbn')->nullable();
+            $table->string('enlace');                           // Enlace o url del documento
+            $table->string('url_img_caratula')->nullable();     // URL de la imagen de la caratula del libro
+            $table->text('notas')->nullable();
+            $table->timestamps();
+        });
+    }
+    ≡
+    ```
+3. Programar seeder **database\seeders\BookSeeder.php**:
+    ```php
+    ≡
+    public function run()
+    {
+        Book::create([
+            'titulo' => 'Trilogía sobre los primeros pobladores de Tunja',
+            'autor' => 'Dra. Magdalena Corradine',
+            'enlace' => 'https://docs.google.com/spreadsheets/d/1_M5G5TjL4uG54XlvtzW30Qr9pIUmgxEl/edit?usp=sharing&ouid=104133285580700555053&rtpof=true&sd=true'
+        ]);
+
+        Book::create([
+            'titulo' => 'Obra ampliada sobre los llenerenses que pasaron a América',
+            'autor' => 'Luis Garraín Villa',
+            'enlace' => 'https://docs.google.com/spreadsheets/d/1_M5G5TjL4uG54XlvtzW30Qr9pIUmgxEl/edit?usp=sharing&ouid=104133285580700555053&rtpof=true&sd=true'
+        ]);
+
+        Book::create([
+            'titulo' => 'Médicos coloniales venezolanos',
+            'autor' => 'Dr. Manuel Hernández González',
+            'enlace' => 'https://docs.google.com/spreadsheets/d/1_M5G5TjL4uG54XlvtzW30Qr9pIUmgxEl/edit?usp=sharing&ouid=104133285580700555053&rtpof=true&sd=true'
+        ]);
+
+        Book::create([
+            'titulo' => 'Familiares y funcionarios del Santo Oficio en Venezuela',
+            'autor' => 'Dr. Emanuel Amodio',
+            'enlace' => 'https://docs.google.com/spreadsheets/d/1_M5G5TjL4uG54XlvtzW30Qr9pIUmgxEl/edit?usp=sharing&ouid=104133285580700555053&rtpof=true&sd=true'
+        ]);
+
+        Book::create([
+            'titulo' => 'Contenido práctico-teórico del Derecho Genealogista',
+            'autor' => 'Dr. Crisanto Bello',
+            'enlace' => 'https://docs.google.com/spreadsheets/d/1_M5G5TjL4uG54XlvtzW30Qr9pIUmgxEl/edit?usp=sharing&ouid=104133285580700555053&rtpof=true&sd=true'
+        ]);
+    }
+    ≡
+    ```
+4. Incluir seeder Book en **database\seeders\DatabaseSeeder.php**:
+    ```php
+    ≡
+    public function run()
+    {
+        ≡
+        $this->call(BookSeeder::class);
+    }
+    ≡
+    ```
+5. Reestablecer la base de datos:
+    + $ php artisan migrate:fresh --seed
+6. Establecer asignación masiva al modelo **app\Models\Book.php**:
+    ```php
+    ≡
+    class Book extends Model
     {
         ≡  
         protected $fillable = [
-            'name',
+            'titulo',
+            'autor',
+            'editorial',
+            'edicion',
+            'paginas',
+            'isbn',
+            'enlace',
+            'url_img_caratula',
+            'notas'
         ];
     }
     ```
-3. Crear controlador Rol con todos sus recursos:
-	+ $ php artisan make:controller admin/RolController -r
-4. Programar controlador **app\Http\Controllers\admin\RolController.php**:
+7. Programar controlador **app\Http\Controllers\BookController.php**:
     ```php
     ≡
+    use App\Models\Book;
+    use RealRashid\SweetAlert\Facades\Alert;
+
+    class BookController extends Controller
+    {
+        ≡
+        public function index()
+        {
+            return view('admin.crud.books.index');
+        }
+        ≡
+        public function create()
+        {
+            $book = new Book();
+            return view('admin.crud.books.create', compact('book'));
+        }
+        ≡
+        public function store(Request $request)
+        {
+            // Validación
+            $request->validate([
+                'titulo' => 'required|max:254',
+                'enlace' => 'required'
+            ]);
+
+            // almacenando libro
+            $book = Book::create($request->all());
+
+            // Mensaje
+            Alert::success('¡Éxito!', 'Se ha creado el libro: ' . $request->titulo);
+
+            // Redireccionar a la vista index
+            return redirect()->route('admin.books.index');
+        }
+        ≡
+        public function show(Book $book)
+        {
+            return view('admin.crud.books.edit', compact('book'));
+        }
+        ≡
+        public function edit(Book $book)
+        {
+            return view('admin.crud.books.edit', compact('book'));
+        }
+        ≡
+        public function update(Request $request, Book $book)
+        {
+            // Validación
+            $request->validate([
+                'titulo' => 'required|max:254',
+                'enlace' => 'required'
+            ]);
+
+            // actualizando book
+            $book->update($request->all());
+
+            // Mensaje
+            Alert::success('¡Éxito!', 'Se ha actualizado el libro: ' . $request->titulo);
+
+            // Redireccionar a la vista index
+            return redirect()->route('admin.books.index');
+        }
+        ≡
+        public function destroy(Book $book)
+        {
+            $titulo = $book->titulo;
+            $book->delete();
+            Alert::info('¡Advertencia!', 'Se ha eliminado el libro: ' . $titulo);
+            return redirect()->route('admin.books.index');
+        }
+    }
     ```
-5. Agregar el juego de rutas permissions en **routes\admin.php**:
+8. Agregar el juego de rutas books en **routes\admin.php**:
     ```php
     ≡
-    use App\Http\Controllers\admin\RolController;
+    use App\Http\Controllers\BookController;
     ≡
-    Route::resource('rols', RolController::class)->names('rols')
-        ->middleware('can:admin.crud.rols.index');
+    Route::resource('books', BookController::class)->names('books')
+        ->middleware('can:admin.crud.books.index');
     ```
-6. Crear componente Livewire para el modelo Rols: 
-	+ $ php artisan make:livewire rols-table
-7. Programar controlador Livewire asociado al modelo Rols en **app\Http\Livewire\Admin\RolsTable.php**:
+9. Crear componente Livewire para el modelo Book: 
+	+ $ php artisan make:livewire admin/books-table
+10. Programar controlador Livewire asociado al modelo Book en **app\Http\Livewire\Admin\BookTable.php**:
     ```php
+    <?php
+
+    namespace App\Http\Livewire\Admin;
+
+    use App\Models\Book;
+    use Livewire\Component;
+    use Livewire\WithPagination;
+
+    class BooksTable extends Component
+    {
+        use WithPagination;
+
+        protected $queryString = [
+            'search' => ['except' => ''],
+            'perPage' => ['except' => '15']
+        ];
+
+        public $search = '';
+        public $perPage = '15';
+
+        public function render()
+        {
+            $books = Book::where('titulo','LIKE',"%$this->search%")
+                ->orWhere('autor','LIKE',"%$this->search%")
+                ->orWhere('editorial','LIKE',"%$this->search%")
+                ->orWhere('isbn','LIKE',"%$this->search%")
+                ->orWhere('notas','LIKE',"%$this->search%")
+                ->orderBy('updated_at','DESC')
+                ->paginate($this->perPage);
+            return view('livewire.admin.books-table', compact('books'));
+        }
+
+        public function clear(){
+            $this->search = '';
+            $this->page = 1;
+            $this->perPage = '15';
+        }
+
+        public function limpiar_page(){
+            $this->reset('page');
+        }
+    }
     ```
-8. Diseñar vista para la tabla Rols en **resources\views\livewire\admin\crud\rols-table.blade.php**:
+11. Diseñar vista para la tabla Books en **resources\views\livewire\admin\crud\books-table.blade.php**:
     ```php
+    <div>
+        <div class="p-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row m-2">
+                        <h2 class="card-title flex-1"><strong>Lista de libros</strong></h2>
+                        <div class="card-tools flex-1">
+                            <div class="input-group input-group-sm">
+                                <input wire:model="search" type="text" class="form-control float-right" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group-sm mx-3 flex" style="width: 140px">
+                            <select wire:model="perPage" class="form-control float-right">
+                                <option value="5">5 por pág. </option>
+                                <option value="10">10 por pág.</option>
+                                <option value="15">15 por pág.</option>
+                                <option value="25">25 por pág.</option>
+                                <option value="50">50 por pág.</option>
+                                <option value="100">100 por pág.</option>
+                            </select>
+                            @if ($search !== '')
+                            <div class="input-group-sm flex">
+                                <button wire:click="clear" class="btn btn-secondary form-control float-right"><i class="far fa-window-close"></i></button>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @can('admin.crud.books.create')
+                    <a href="{{ route('admin.books.create') }}" class="btn btn-secondary m-4">
+                        Añadir libro
+                    </a>
+                @endcan
+
+                <div class="card-body table-responsive p-0">
+                    @if ($books->count())
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Tapa</th> {{-- ID --}}
+                                <th>Titulo / Autor</th>
+                                <th>Creado</th>
+                                <th>Actualizado</th>
+                                @can('admin.crud.books.edit')
+                                <th class="text-center">Editar</th>
+                                @endcan
+                                @can('admin.crud.books.destroy')
+                                <th class="text-center">Eliminar</th>
+                                @endcan
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($books as $book)
+                            <tr>
+                                <td title="{{ $book->id }}">
+                                    <img
+                                        src="{{ $book->url_img_caratula }}"
+                                        onerror="this.onerror=null; this.src='/img/caratula.jpg'"
+                                        alt="{{ 'Caratula de ' . $book->titulo }}"
+                                        class="img-size-32 mr-2"
+                                    >
+                                </td>
+                                <td>
+                                    <p class="m-0">{{ $book->titulo }}</p>
+                                    <small><strong>{{ $book->autor }}</strong></small>
+                                </td>
+                                <td>{{ $book->created_at }}</td>
+                                <td>{{ $book->updated_at }}</td>
+                                @can('admin.crud.books.edit')
+                                <td class="text-center">
+                                    <a href="{{ route('admin.books.edit', $book) }}" title="Editar"><i class="fas fa-edit"></i></a>
+                                </td>
+                                @endcan
+                                @can('admin.crud.books.destroy')
+                                <td class="text-center">
+                                    <form action="{{ route('admin.books.destroy', $book) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button
+                                            type="submit"
+                                            title="Eliminar"
+                                            style="color: red"
+                                            onclick="return confirm('¿Está seguro que desea eliminar a este libro?')"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                @endcan
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="m-4">
+                        {{ $books->links() }}
+                    </div>
+                    @else
+                        <div class="m-4">
+                            <p>No hay resultado para la búsqueda: <strong>{{ $search }}</strong></p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
     ```
-9. Diseñar las vistas para el CRUD Roles:
-    + resources\views\admin\crud\rols\index.blade.php:
+12. Diseñar las vistas para el CRUD Books:
+    + resources\views\admin\crud\books\index.blade.php:
         ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Lista de libros')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+            @livewire('admin.books-table')
+        @stop
+
+        @section('css')
+        @stop
+
+        @section('js')
+        @stop
         ```
-    + resources\views\admin\crud\rols\\_form.blade.php:
+    + resources\views\admin\crud\books\\_form.blade.php:
         ```php
+        <div class="card-body m-4">
+            <div class="row">
+                <div class="col-sm-12 col-md-2 mb-3">
+                    <img
+                        src="{{ $book->url_img_caratula }}"
+                        onerror="this.onerror=null; this.src='/img/caratula.jpg'"
+                        alt="{{ 'Caratula de ' . $book->titulo }}"
+                        width="150px"
+                        class="mt-5"
+                    >
+                </div>
+                <div class="col-sm-12 col-md-10 mb-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="titulo">Título del libro</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="titulo"
+                                    placeholder="Introduzca el título del libro"
+                                    value="{{ old('titulo', $book->titulo) }}"
+                                >
+                            </div>
+                            @error('titulo')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="autor">Autor</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="autor"
+                                    placeholder="Introduzca el autor del libro"
+                                    value="{{ old('autor', $book->autor) }}"
+                                >
+                            </div>
+                            @error('autor')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="enlace">URL del libro</label>
+                                <input
+                                    type="url"
+                                    class="form-control"
+                                    name="enlace"
+                                    placeholder="Introduzca la URL del libro"
+                                    value="{{ old('enlace', $book->enlace) }}"
+                                >
+                            </div>
+                            @error('enlace')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="url_img_caratula">URL de la caratula</label>
+                                <input
+                                    type="url"
+                                    class="form-control"
+                                    name="url_img_caratula"
+                                    placeholder="Introduzca la URL de la caratula del libro"
+                                    value="{{ old('url_img_caratula', $book->url_img_caratula) }}"
+                                >
+                            </div>
+                            @error('url_img_caratula')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="editorial">Editorial</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="editorial"
+                                    placeholder="Introduzca la editorial del libro"
+                                    value="{{ old('editorial', $book->editorial) }}"
+                                >
+                            </div>
+                            @error('editorial')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="edicion">Edición</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="edicion"
+                                    placeholder="Introduzca el edición del libro"
+                                    value="{{ old('edicion', $book->edicion) }}"
+                                >
+                            </div>
+                            @error('edicion')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="isbn">ISBN</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="isbn"
+                                    placeholder="Introduzca el ISBN del libro"
+                                    value="{{ old('isbn', $book->isbn) }}"
+                                >
+                            </div>
+                            @error('isbn')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-0">
+                            <div class="form-group">
+                                <label for="paginas">Páginas</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    name="paginas"
+                                    placeholder="Introduzca el número de páginas del libro"
+                                    value="{{ old('paginas', $book->paginas) }}"
+                                >
+                            </div>
+                            @error('paginas')
+                                <div class="col-span-12 sm:col-span-12">
+                                    <small style="color:red">*{{ $message }}*</small>
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <div class="form-group">
+                        <label for="notas">Notas</label>
+                        <textarea class="form-control" name="notas" rows="3" placeholder="Escriba comentarios acerca del libro">{{ old('notas', $book->notas) }}</textarea>
+                    </div>
+                    @error('isbn')
+                        <div class="col-span-12 sm:col-span-12">
+                            <small style="color:red">*{{ $message }}*</small>
+                        </div>
+                    @enderror
+                </div>
+            </div>
+        </div>
         ```
-    + resources\views\admin\crud\rols\create.blade.php:
+    + resources\views\admin\crud\books\create.blade.php:
         ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Añadir libro')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+        <div class="p-4">
+            <div class="card card-primary">
+                <div class="card-header m-4">
+                    <h3 class="card-title">Añadir libro</h3>
+                </div>
+                <form action="{{ route('admin.books.store') }}" method="POST">
+                    @csrf
+
+                    @include('admin.crud.books._form')
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-secondary">Añadir libro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @stop
+
+        @section('css')
+        @stop
+
+        @section('js')
+        @stop
         ```
-    + resources\views\admin\crud\rols\edit.blade.php:
+    + resources\views\admin\crud\books\edit.blade.php:
         ```php
+        @extends('adminlte::page')
+
+        @section('title', 'Editar libro')
+
+        @section('content_header')
+
+        @stop
+
+        @section('content')
+        <div class="p-4">
+            <div class="card card-primary m-2">
+                <div class="card-header m-4">
+                    <h3 class="card-title">Editar libro</h3>
+                </div>
+                <form action="{{ route('admin.books.update', $book) }}" method="POST">
+                    @csrf
+                    @method('put')
+
+                    @include('admin.crud.books._form')
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-secondary">Actualizar libro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @stop
+
+        @section('css')
+        @stop
+
+        @section('js')
+        @stop
         ```
+
+
+## Establecer Google Drive como unidad de almacenamiento por defecto
 
 
 
@@ -1852,8 +2414,6 @@
 
 
 
-## Establecer Google Drive como Storage por defecto
-*******
 
 
 

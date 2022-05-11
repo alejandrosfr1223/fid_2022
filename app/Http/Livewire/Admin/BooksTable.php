@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\User;
+use App\Models\Book;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class UsersTable extends Component
+class BooksTable extends Component
 {
     use WithPagination;
 
@@ -20,11 +20,14 @@ class UsersTable extends Component
 
     public function render()
     {
-        $users = User::where('name','LIKE',"%$this->search%")
-            ->orWhere('email','LIKE',"%$this->search%")
+        $books = Book::where('titulo','LIKE',"%$this->search%")
+            ->orWhere('autor','LIKE',"%$this->search%")
+            ->orWhere('editorial','LIKE',"%$this->search%")
+            ->orWhere('isbn','LIKE',"%$this->search%")
+            ->orWhere('notas','LIKE',"%$this->search%")
             ->orderBy('updated_at','DESC')
             ->paginate($this->perPage);
-        return view('livewire.admin.users-table', compact('users'));
+        return view('livewire.admin.books-table', compact('books'));
     }
 
     public function clear(){

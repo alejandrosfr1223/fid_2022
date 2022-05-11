@@ -1,5 +1,16 @@
 <div class="card-body m-4">
     <div class="row">
+        <div class="col-sm-12 mb-3">
+            <img
+                src="{{ asset('storage/' . $user->profile_photo_path) }}"
+                onerror="this.onerror=null; this.src='/img/person.png'"
+                alt="{{ 'Imagen de ' . $user->name }}"
+                class="img-circle"
+                width="150px"
+            >
+        </div>
+    </div>
+    <div class="row">
         <div class="col-sm-12 col-md-6">
             <div class="form-group">
                 <label for="name">Nombre del usuario</label>

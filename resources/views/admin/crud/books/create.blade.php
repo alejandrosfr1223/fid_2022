@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear Usuario')
+@section('title', 'Añadir libro')
 
 @section('content_header')
 
@@ -10,15 +10,15 @@
 <div class="p-4">
     <div class="card card-primary">
         <div class="card-header m-4">
-            <h3 class="card-title">Crear usuario</h3>
+            <h3 class="card-title">Añadir libro</h3>
         </div>
-        <form action="{{ route('admin.users.store') }}" method="POST">
+        <form action="{{ route('admin.books.store') }}" method="POST">
             @csrf
 
-            @include('admin.crud.users._form')
+            @include('admin.crud.books._form')
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-secondary">Crear usuario</button>
+                <button type="submit" class="btn btn-secondary">Añadir libro</button>
             </div>
         </form>
     </div>
