@@ -75,7 +75,7 @@
                   <a class="nav-link {{ request()->routeIs('diffusion.home') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{route('dashboard')}}">{{ trans("mainlayout.dashboard") }}</a>
+                  <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="/admin">{{ trans("mainlayout.dashboard") }}</a>
                 </li>
             @else
                 <li class="nav-item">

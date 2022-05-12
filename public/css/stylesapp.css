@@ -144,7 +144,7 @@ p{
 }
 
 .inputs {
-    width: 60% !important;
+    width: 60%;
     border-radius: 0.6rem !important;
     font-size: 1rem !important;
     border: solid black 2px !important;

@@ -452,14 +452,14 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => true,   /* Activamos para todas las vistas de la plantilla Sweetalert2 */
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => 'vendor/sweetalert2/sweetalert2.all.min.js',
+            'active' => true,
+                'files' => [
+                    [
+                        'type' => 'js',
+                        'asset' => true,
+                        'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9',
+                    ]
                 ],
-            ],
         ],
         'Pace' => [
             'active' => false,
