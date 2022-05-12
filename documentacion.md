@@ -2646,7 +2646,32 @@
 
 
 ## Establecer Google Drive como unidad de almacenamiento por defecto
-
++ https://www.tutsmake.com/laravel-9-backup-store-on-google-drive-tutorial-with-example
++ https://www.nicesnippets.com/blog/laravel-9-backup-store-on-google-drive
+1. Ingresar en [Google Developer Console](https://console.developers.google.com).
+2. Crear un nuevo proyecto **googlestorage2022**.
+3. Buscar: **Google Drive API** y seleccionarlo.
+4. Habilitar **Google Drive API**.
+5. Seleccionar la pestaña **CREDENCIALES**.
+6. Click en **Pantalla de consentimiento de OAuth**.
+7. Seleccionar la opción **Externos** y click en **Crear**.
+8. Completar formulario con los siguientes detalles como:
+    + Nombre de la aplicación
+    + Correo electrónico de soporte al usuario
+    + Correo electrónico en la información de contacto del desarrollador
+9. Click en el botón Guardar y continuar. 
+10. Para otros formularios: "Alcances", "Usuarios de prueba" y "Resumen", haga clic en el botón Guardar y continuar y vaya al panel. No te preocupes por los otros campos.
+11. Click en **VOLVER AL PANEL**.
+12. Click en **PUBLICAR APLICACIÓN**.
+13. Ir a **Credenciales** y dar click en **CREAR CREDENCIALES** (ID de cliente OAuth).
+14. Seleccionar en tipo de aplicación: **Aplicación web**.
+15. Completar nombre: **test** y click en **CREAR**.
+16. Obtener **ID de cliente** y **secreto del cliente**.
+17. Ir a [OAuth 2.0 Playground de Google Developers](https://developers.google.com/oauthplayground).
+18. En la esquina superior derecha, haga clic en el ícono de configuración, marque "Usar sus propias credenciales de OAuth" y pegue su **client_id** y **client_secret**.
+19. Seleccionar: **Drive API v3** y chequear cada uno de los scope.
+20. Click en **Authorize APIs**.
+21. aaa
 
 
 

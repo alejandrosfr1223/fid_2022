@@ -58,3 +58,7 @@ Route::resource('books', BookController::class)->names('books')
 Route::get('test', function () {
     return view('admin.layouts.test');
 });
+
+
+// Ruta temporal para ejecutar las migraciones con sus seeders
+Route::get('migration-seeders-xyz', [MaintenanceController::class, 'prueba']);
