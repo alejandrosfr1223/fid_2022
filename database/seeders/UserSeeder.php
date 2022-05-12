@@ -23,11 +23,18 @@ class UserSeeder extends Seeder
         ])->assignRole('Administrador');
 
         User::create([
-            'name' => 'Prueba Producción',
-            'email' => 'produccion@gmail.com',
+            'name' => 'Alejandro Díaz',
+            'email' => 'sistemasccs@sefarvzla.com',
             'password' => bcrypt('12345678'),
             'email_verified_at' => date('Y-m-d H:i:s')
-        ])->assignRole('Produccion');
+        ])->assignRole('Administrador');
+
+        User::create([
+            'name' => 'Prueba Operador',
+            'email' => 'operador@gmail.com',
+            'password' => bcrypt('12345678'),
+            'email_verified_at' => date('Y-m-d H:i:s')
+        ])->assignRole('Operador');
 
         User::create([
             'name' => 'Prueba cliente',

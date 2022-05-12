@@ -14,4 +14,5 @@
 return [
     'next'     => 'Siguiente &raquo;',
     'previous' => '&laquo; Anterior',
+    'Showing' => 'Mostrando'
 ];
