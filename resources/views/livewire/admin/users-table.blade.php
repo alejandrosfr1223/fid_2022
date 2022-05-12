@@ -61,7 +61,8 @@
                             <td title="{{ $user->id }}">
                                 <img
                                     src="{{ asset('storage/' . $user->profile_photo_path) }}"
-                                    onerror="this.onerror=null; this.src='/img/person.png'"
+                                    {{-- onerror="this.onerror=null; this.src='/img/person.png'" --}}
+                                    onerror="this.src='{{ asset('img/person.png') }}'"
                                     alt="{{ 'Imagen de ' . $user->name }}"
                                     class="img-circle img-size-32 mr-2"
                                 >

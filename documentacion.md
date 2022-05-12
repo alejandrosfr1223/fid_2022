@@ -211,7 +211,8 @@
     @section('adminlte_js')
         ≡
         @livewireScripts
-        @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        @include('sweetalert::alert')
     @stop
     ```
     + **Nota**: pegar los estilos **adminlte.min.css** de [AdminLTE](00soportes\Plantillas\AdminLTE-3.2.0) en **public\css**.
@@ -961,7 +962,7 @@
                                 <td title="{{ $user->id }}">
                                     <img
                                         src="{{ asset('storage/' . $user->profile_photo_path) }}"
-                                        onerror="this.onerror=null; this.src='/img/person.png'"
+                                        onerror="this.src='{{ asset('img/person.png') }}'"
                                         alt="{{ 'Imagen de ' . $user->name }}"
                                         class="img-circle img-size-32 mr-2"
                                     >
