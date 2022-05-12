@@ -53,5 +53,6 @@
     @stack('js')
     @yield('js')
     @livewireScripts
-    @section('plugins.Sweetalert2', true);
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    @include('sweetalert::alert')
 @stop
