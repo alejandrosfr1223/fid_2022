@@ -144,11 +144,11 @@ p{
 }
 
 .inputs {
-    width: 60%;
-    border-radius: 0.6rem;
-    font-size: 1rem;
-    border: solid black 2px;
-    padding-left: 5px;
+    width: 60% !important;
+    border-radius: 0.6rem !important;
+    font-size: 1rem !important;
+    border: solid black 2px !important;
+    padding-left: 5px !important;
 }
 
 #send {
@@ -596,7 +596,7 @@ footer {
     }
 
     .inputs {
-    	width: 100%;
+    	width: 100% !important;
     }
 
     #div_inapastoral{

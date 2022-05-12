@@ -20,7 +20,6 @@
         <div id="loginbuttons">
             @auth
                 <a>{{ trans("mainlayout.welcome") }}<b>{{auth()->user()->name}}</b></a>
-                <a>{{auth()->user()}}</b></a>
                 <a class="loginbtns" id="logout" name="logout"  href="{{route('logout')}}">{{ trans("mainlayout.logout") }}</a>
             @else
                 <a class="loginbtns" id="login" name="login"  href="{{route('login')}}">{{ trans("mainlayout.login") }}</a>
