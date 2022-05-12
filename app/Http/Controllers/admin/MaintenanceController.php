@@ -61,4 +61,12 @@ class MaintenanceController extends Controller
         Alert::success('!La base de datos se reestableció exitosamente!');
         return view('admin.pages.maintenance');
     }
+
+    public function prueba(){
+        /* Solicitar una clave para poder continuar */
+        Artisan::call('migrate:fresh');
+        Artisan::call('db:seed');
+        Alert::success('!La base de datos MySQL fid_2022 se generó exitosamente!');
+        return view('welcome');
+    }
 }
