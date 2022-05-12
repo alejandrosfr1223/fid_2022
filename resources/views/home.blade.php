@@ -130,6 +130,7 @@
         <img src="/img/home/logo-overlay2r.png" class="backg-ovrl2 bigscreen ol2-r">
         <img src="/img/logos/vector-logo.svg" class="backg-ovrl2 smallscreen">
         <div id="containermv">
+            <h2 style="text-align: center; padding-bottom: 20px;">El FID tiene como... </h2>
             <div class="mv_cont" id="mission">
                 <h2>{{ trans("home.mission") }}</h2>
                 <p>{{ trans("home.mission_txt") }}</p>
