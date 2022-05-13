@@ -22,4 +22,5 @@ return [
     'dashboard' => 'Panel de Control',
     'logout' => 'Cerrar Sesión',
     'welcome' => 'Bienvenido, ',
+    'myaccount' => 'Mi Cuenta',
 ];

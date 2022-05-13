@@ -1,5 +1,5 @@
 window.onload = function() {
-    var p = document.getElementsByClassName("book-cover"); 
+    var p = document.getElementsByClassName("viewbook"); 
     for(var i=0; i<p.length; i++){
         p[i].onclick = function(){ 
             Swal.fire({

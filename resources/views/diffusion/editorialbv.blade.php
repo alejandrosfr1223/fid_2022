@@ -37,53 +37,28 @@
                 </div>
             </div>
             <div id="cont-books">
-                <div class="row bookrow">
-                    <div class="col-6 col-md-3 books">
-                        <div class="book-cover">
-                            <div class="info">
-                                <p class="book-title">Trilogía sobre los primeros pobladores de Tunja</p>
-                                <br><br><br>
-                                <p class="book-author">Dra. Magdalena Corradine</p>
+                @foreach ($books as $book)
+                    @if ($book["editorial"] == "Editorial BV")
+                        <div class="bookrow downborder">
+                            <div class="books">
+                                <div class="book-cover">
+                                    <div class="info">
+                                        <p class="book-title">{{$book["titulo"]}}</p>
+                                        <br><br><br>
+                                        <p class="book-author">{{$book["autor"]}}</p>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="booksinfo">
+                                <h1>{{$book["titulo"]}}</h1>
+                                <h3>{{$book["autor"]}}</h3>
+                            </div> 
+                            <div class="booksmoreinfo">
+                                <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>{{ trans("diffusion.viewbook") }}</a><br>
+                            </div>                   
                         </div>
-                    </div>
-                    <div class="col-6 col-md-3 books">
-                        <div class="book-cover">
-                            <div class="info">
-                                <p class="book-title">Obra ampliada sobre los llenerenses que pasaron a América</p>
-                                <br><br><br>
-                                <p class="book-author">Luis Garraín Villa</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 books">
-                        <div class="book-cover">
-                            <div class="info">
-                                <p class="book-title">Médicos coloniales venezolanos</p>
-                                <br><br><br>
-                                <p class="book-author">Dr. Manuel Hernández González</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 books">
-                        <div class="book-cover">
-                            <div class="info">
-                                <p class="book-title">Familiares y funcionarios del Santo Oficio en Venezuela.</p>
-                                <br><br><br>
-                                <p class="book-author">Dr. Emanuel Amodio</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 books">
-                        <div class="book-cover">
-                            <div class="info">
-                                <p class="book-title">Contenido práctico-teórico del Derecho Genealogista</p>
-                                <br><br><br>
-                                <p class="book-author">Dr. Crisanto Bello</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>

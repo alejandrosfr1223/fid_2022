@@ -248,7 +248,7 @@ footer {
 }
 
 #departments_cont {
-    padding: 30px 0 30px 0;
+    padding: 30px 0 10px 0;
     width: 60%;
     margin: auto;
     display: flex;
@@ -359,9 +359,18 @@ footer {
     font-weight: bold;
 }
 
+#wel_div{
+	text-align: left;
+	padding-left: 4rem;
+}
+
+#but_div{
+	padding-right: 4rem;
+}
+
 #loginbuttons {
     margin-top: 10px;
-    margin-right: 1.5rem;
+    display: flex;
     text-align: right;
 }
 
@@ -389,9 +398,21 @@ footer {
 
 .books {
     text-align: center;
-    margin:  0 auto 50px auto;
+    width: 310px !important;
     transition: 0.5s;
     position: relative;
+}
+
+.booksinfo{
+	width: 100%;
+	margin: auto;
+	text-align: left;
+	padding-right: 1rem;
+}
+
+.booksmoreinfo{
+	width: 253px;
+	margin: auto 1rem;
 }
 
 .books:hover {
@@ -422,10 +443,9 @@ footer {
 .book-cover{
     width: 172px;
     height: 243px;
-    margin: auto;
     background: linear-gradient(to right, rgb(60, 13, 20) 3px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px, rgba(255, 255, 255, 0.25) 17px, transparent 22px), url("/img/books/hardbook.jfif");
     box-shadow: 0 0 5px -1px black, inset -1px 1px 2px rgba(255, 255, 255, 0.5);
-    margin: auto;
+    margin: auto  40px;
     border-radius: 5px;
 }
 
@@ -564,14 +584,41 @@ footer {
 	margin:30px 0px; width:75%; text-align: center; margin: auto; padding: 0px 0px 30px 0px;
 }
 
+.bookrow{
+	display: flex;
+	padding: 25px 0;
+	transition: 0.4s;
+}
+
+.bookrow:hover{
+	background-color: rgba(0,0,0,0.05);
+}
+
 @media screen and (max-width: 990px) {
+	.book-cover{
+		margin: auto;
+	}
+	.bookrow{
+		display: block;
+	}
 	#cont-books{
 		width:95%;
 	}
     .books {
-        margin:  7px auto;
+	    width: 100%;
+	    margin:  7px auto;
         transform: scale(0.9);
-    }
+	}
+	.booksinfo{
+		width: 100%;
+		text-align: center;
+		padding: 0 1rem 1rem 1rem;
+	}
+
+	.booksmoreinfo{
+		width: 100%;
+		margin: auto;
+	}
 	.books:hover {
 	    transform: scale(1);
 	}
@@ -638,9 +685,18 @@ footer {
         display: block;
     }
 
+    #wel_div{
+    	text-align: center;
+    }
+
+    #wel_div,#but_div{
+    	padding: 0;
+    }
+
     #loginbuttons {
         margin-right: 1px;
         text-align: center;
+        display: block;
     }
 
     .loginbtns {
@@ -749,16 +805,3 @@ footer {
         margin: auto;
     }
 }
-
-@media screen and (max-width: 300px){
-	#cont-books{
-		width:95%;
-	}
-	.books {
-	    margin: auto -0.5rem;
-	    transform: scale(0.65);
-	}
-	.books:hover {
-	    transform: scale(0.8);
-	}
-}	

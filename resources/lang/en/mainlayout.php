@@ -22,4 +22,5 @@ return [
     'dashboard' => 'Dashboard',
     'logout' => 'Log Out',
     'welcome' => 'Welcome, ',
+    'myaccount' => 'My Account',
 ]; 
