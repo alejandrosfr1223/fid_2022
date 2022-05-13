@@ -132,24 +132,28 @@
             <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
               @choice('mainlayout.phonenumbers', 2):
             </p>
-            <br>
-            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
               {!! Emoji::toImage(':flag_es:') !!} (+34) 911980993
             </p>
-            <br>
-            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
               {!! Emoji::toImage(':flag_ve:') !!} (+58) 2127201170
             </p>
-            <br>
-            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
               {!! Emoji::toImage(':flag_co:') !!} (+57) 0353195843
             </p>
+
             <br>
+
             <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
-              <br>
-              {{ trans("mainlayout.mail") }}:<br>
-              FID@sefaruniversal.com<br>
-              <br>
+              {{ trans("mainlayout.mail") }}:
+            </p>
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
+              {!! Emoji::toImage(':email:') !!} FID@sefaruniversal.com
+            </p>
+            
+            <br>
+
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
               <span class="fa-stack fa-1x">
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="brand fab fa-twitter fa-stack-1x"></i>
