@@ -132,13 +132,13 @@
             <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
               @choice('mainlayout.phonenumbers', 2):
             </p>
-            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
+            <p class="centeremojistext" style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
               {!! Emoji::toImage(':flag_es:') !!} (+34) 911980993
             </p>
-            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
+            <p class="centeremojistext" style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
               {!! Emoji::toImage(':flag_ve:') !!} (+58) 2127201170
             </p>
-            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
+            <p class="centeremojistext" style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
               {!! Emoji::toImage(':flag_co:') !!} (+57) 0353195843
             </p>
 
@@ -147,7 +147,7 @@
             <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
               {{ trans("mainlayout.mail") }}:
             </p>
-            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
+            <p class="centeremojistext" style="font-weight: bold; color: white; font-size: 1.2rem; display: flex; margin:10px 0;">
               {!! Emoji::toImage(':email:') !!} FID@sefaruniversal.com
             </p>
             

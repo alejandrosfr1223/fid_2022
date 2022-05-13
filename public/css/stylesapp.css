@@ -602,6 +602,10 @@ footer {
 	.book-cover{
 		margin: auto;
 	}
+	.centeremojistext{
+		justify-content: center;
+		align-content: center;
+	}
 	.bookrow{
 		display: block;
 	}
