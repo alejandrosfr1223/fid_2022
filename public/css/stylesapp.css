@@ -71,6 +71,10 @@ p{
     text-shadow: 2px 2px 5px #000000;
 }
 
+.emojione{
+	float:left;
+}
+
 #whitebg {
     background-repeat: no-repeat;
     background-position-x: right;

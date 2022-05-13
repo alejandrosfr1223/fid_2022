@@ -128,11 +128,24 @@
                     </td>
                 </tr>
             </table>
-            <p style="font-weight: bold; color: white; font-size: 1.2rem;">
-              @choice('mainlayout.phonenumbers', 2):<br>
-              🇪🇸 (+34 911980993)<br>
-              🇻🇪 (+58 2127201170)<br>
-              🇨🇴 (+57 0353195843)<br>
+
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
+              @choice('mainlayout.phonenumbers', 2):
+            </p>
+            <br>
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
+              {!! Emoji::toImage(':flag_es:') !!} (+34) 911980993
+            </p>
+            <br>
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
+              {!! Emoji::toImage(':flag_ve:') !!} (+58) 2127201170
+            </p>
+            <br>
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
+              {!! Emoji::toImage(':flag_co:') !!} (+57) 0353195843
+            </p>
+            <br>
+            <p style="font-weight: bold; color: white; font-size: 1.2rem; display: inline-block;">
               <br>
               {{ trans("mainlayout.mail") }}:<br>
               FID@sefaruniversal.com<br>
