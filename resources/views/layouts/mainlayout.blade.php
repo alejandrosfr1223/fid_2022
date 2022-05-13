@@ -27,10 +27,15 @@
                     <a class="loginbtns" id="logout" name="logout"  href="{{route('logout')}}">{{ trans("mainlayout.logout") }}</a>
                 </div>
             @else
-                <a class="loginbtns" id="login" name="login"  href="{{route('login')}}">{{ trans("mainlayout.login") }}</a>
-                @if (Route::has('register'))
-                    <a class="loginbtns" id="register" name="register" href="{{route('register')}}">{{ trans("mainlayout.register") }}</a>
-                @endif
+                <div class="col-lg-6 col-md-12 mb-1 mb-md-0" id="wel_div">
+                    <a> </a>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0" id="but_div">
+                    <a class="loginbtns" id="login" name="login"  href="{{route('login')}}">{{ trans("mainlayout.login") }}</a>
+                    @if (Route::has('register'))
+                        <a class="loginbtns" id="register" name="register" href="{{route('register')}}">{{ trans("mainlayout.register") }}</a>
+                    @endif
+                </div>
             @endauth
         </div>
     @endif
