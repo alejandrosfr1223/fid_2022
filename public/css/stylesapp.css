@@ -598,9 +598,43 @@ footer {
 	background-color: rgba(0,0,0,0.05);
 }
 
+.carousel-control-next-icon, .carousel-control-prev-icon, .carousel-indicators {
+	filter: invert(5%) sepia(61%) saturate(2863%) hue-rotate(307deg)
+        brightness(86%) contrast(83%);
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+	padding: 25px;
+	border: 5px solid;
+    border-radius: 100px;
+	background-color: rgba(255,255,255,0.3);
+}
+
+.carousel .carousel-item {
+  height: 40rem;
+}
+
+.carousel-item img {
+    position: absolute;
+    object-fit:cover;
+    top: 0;
+    left: 0;
+    min-height: 40rem;
+    top: 70%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 @media screen and (max-width: 990px) {
 	.book-cover{
 		margin: auto;
+	}
+	.carousel .carousel-item {
+	  height: 25rem;
+	}
+	.carousel-item img {
+		height: 25rem;
+	    top: 65%;
 	}
 	.centeremojistext{
 		justify-content: center;

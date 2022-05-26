@@ -47,7 +47,7 @@
                             <h3 class="bold">{{ trans("diffusion.ebv") }}</h3>
                         </div>
                     </a>
-                    <a>
+                    <a href="{{route('diffusion.audiovisual')}}">
                         <div class="cont_redirects">
                             <span class="padicons members_index_icons fa-stack fa-2x">
                                 <i class="fas fa-circle fa-stack-2x"></i>
@@ -56,7 +56,7 @@
                             <h3 class="bold">{{ trans("diffusion.audio") }}</h3>
                         </div>
                     </a>
-                    <a>
+                    <a href="{{route('diffusion.visualcom')}}">
                         <div class="cont_redirects">
                             <span class="padicons members_index_icons fa-stack fa-2x">
                                 <i class="fas fa-circle fa-stack-2x"></i>
