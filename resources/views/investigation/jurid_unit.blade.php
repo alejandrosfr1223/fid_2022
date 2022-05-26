@@ -13,7 +13,7 @@
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-users fa-stack-1x fa-inverse"></i>
                                 </span>
-                                <h1 class="title_notmain">{{ trans("investigation.formation") }}</h1>
+                                <h1 class="title_notmain">{{ trans("investigation.jurid_unit") }}</h1>
                             </div>
                         </td>
                     </tr>
@@ -32,7 +32,7 @@
                     <div style="width: 100%; padding: 20px;">
                         <center>
                             <img class="imglogo_subpage" src="/img/logos/onebranch.png" class="svgcolor" style="transform: rotate(270deg);" />
-                            <h2>{{ trans("investigation.formation") }}</h2>
+                            <h2>{{ trans("investigation.jurid_unit") }}</h2>
                         </center>
                     </div>
                 </div>
