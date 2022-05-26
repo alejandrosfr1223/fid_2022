@@ -72,36 +72,36 @@
               <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{route('home')}}">{{ trans("mainlayout.home") }}</a>
             </li>
             <li class="nav-item right-border">
-              <a class="nav-link {{ request()->routeIs('formation.home') ? 'active' : '' }}" href="{{route('formation.home')}}">{{ trans("mainlayout.formation") }}</a>
+              <a class="nav-link {{ request()->routeIs('formation.*') ? 'active' : '' }}" href="{{route('formation.home')}}">{{ trans("mainlayout.formation") }}</a>
             </li>
             <li class="nav-item right-border">
-              <a class="nav-link {{ request()->routeIs('investigation.home') ? 'active' : '' }}" href="{{route('investigation.home')}}">{{ trans("mainlayout.investigation") }}</a>
+              <a class="nav-link {{ request()->routeIs('investigation.*') ? 'active' : '' }}" href="{{route('investigation.home')}}">{{ trans("mainlayout.investigation") }}</a>
             </li>
             <li class="nav-item right-border">
-              <a class="nav-link {{ request()->routeIs('documentation.home') ? 'active' : '' }}" href="{{route('documentation.home')}}">{{ trans("mainlayout.documentation") }}</a>
+              <a class="nav-link {{ request()->routeIs('documentation.*') ? 'active' : '' }}" href="{{route('documentation.home')}}">{{ trans("mainlayout.documentation") }}</a>
             </li>
             @auth
                 @if (Auth::user()->roles->first() == [])
                     <li class="nav-item">
-                      <a class="nav-link {{ request()->routeIs('diffusion.home') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+                      <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
                     </li>
                 @else
                     @if (Auth::user()->roles->first()->name == "Administrador" || Auth::user()->roles->first()->name == "Operador")
                         <li class="nav-item right-border">
-                          <a class="nav-link {{ request()->routeIs('diffusion.home') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+                          <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="/admin">{{ trans("mainlayout.dashboard") }}</a>
                         </li>
                     @else
                         <li class="nav-item">
-                          <a class="nav-link {{ request()->routeIs('diffusion.home') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+                          <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
                         </li>
                     @endif
                 @endif
             @else
                 <li class="nav-item">
-                  <a class="nav-link {{ request()->routeIs('diffusion.home') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+                  <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
                 </li>
             @endauth
             
