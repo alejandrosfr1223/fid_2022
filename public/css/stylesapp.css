@@ -568,7 +568,8 @@ footer {
     margin: 20px 0 0 0;
     font-size: 1.5rem;
     position:relative; z-index:10;
-    width:350px;
+    max-width:350px;
+    width: 100%;
 }
 
 .backg-ovrl2 {
