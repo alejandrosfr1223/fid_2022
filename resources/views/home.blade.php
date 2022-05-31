@@ -6,7 +6,7 @@
         <div class="home_container">
             <div id="containerbackground">
                 <div class="post_home_container">
-                    <div class="leftdivide" style="text-align: center;">
+                    <div class="firstsquare leftdivide" style="text-align: center;">
                         <table id="main" style="text-align: center; align-content: center; margin: auto; ">
                             <tr>
                                 <td>

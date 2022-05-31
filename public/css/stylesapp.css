@@ -897,6 +897,10 @@ footer {
         padding-top: 20px;
         border-top: solid #cca766;
     }
+    .firstsquare{
+        border-top: 0;
+        border-bottom:solid #cca766;
+    }
     #dep_info_cnt {
         text-align: center;
     }
