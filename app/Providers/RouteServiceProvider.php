@@ -60,6 +60,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->name('diffusion.')
                 ->prefix('diffusion')
                 ->group(base_path('routes/diffusion.php'));
+
+            Route::middleware('web')
+                ->name('divinapastora.')
+                ->prefix('divinapastora')
+                ->group(base_path('routes/divinapastora.php'));
         });
     }
 

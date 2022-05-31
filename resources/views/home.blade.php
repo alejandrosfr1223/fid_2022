@@ -108,6 +108,7 @@
             <div id="div_inapastorar" class="clmain_divpastora mv_cont">
                 <h2>{{ trans("home.divpastora") }}</h2>
                 <p style="color: white;">{{ trans("home.divpastora_txt") }}</p>
+                <a class="loginbtns" id="discov_more" href="{{route('divinapastora.home')}}">Descubrir más</a>
             </div>
         </div>
         <div id="div_past_pestanas">
