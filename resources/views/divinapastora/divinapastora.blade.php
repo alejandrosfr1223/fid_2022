@@ -60,15 +60,15 @@
             <img src="/img/home/logo-overlay2.png" class="backg-ovrl3 bigscreen ol2-l">
             <img src="/img/logos/vector-logo.svg" class="backg-ovrl3 smallscreen">
             <div id="div_past_pestanas2">
-                <a href="#x" class="dp_cont">
+                <a href="{{route('divinapastora.fisidoro')}}" class="dp_cont">
                     <h2>{{ trans("home.dp_p_1") }}</h2>
                     <p style="color: white;">{{ trans("home.dp_p_1_txt") }}</p>
                 </a>
-                <a href="#x" class="dp_cont">
+                <a href="{{route('divinapastora.convsev')}}" class="dp_cont">
                     <h2>{{ trans("home.dp_p_2") }}</h2>
                     <p style="color: white;">{{ trans("home.dp_p_2_txt") }}</p>
                 </a>
-                <a href="#x" class="dp_cont">
+                <a href="{{route('divinapastora.div_pastora')}}" class="dp_cont">
                     <h2>{{ trans("home.dp_p_3") }}</h2>
                     <p style="color: white;">{{ trans("home.dp_p_3_txt") }}</p>
                 </a>

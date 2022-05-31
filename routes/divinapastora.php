@@ -7,13 +7,13 @@ Route::get('/', function () {
 })->name("home");
 
 Route::get('fisidoro', function () {
-    return view('diffusion.fisidoro');
+    return view('divinapastora.fisidoro');
 })->name("fisidoro");
 
 Route::get('convsev', function () {
-    return view('diffusion.convsev');
+    return view('divinapastora.convsev');
 })->name("convsev");
 
 Route::get('div_pastora', function () {
-    return view('diffusion.div_pastora');
+    return view('divinapastora.div_pastora');
 })->name("div_pastora");
