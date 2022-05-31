@@ -47,6 +47,13 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .recolor{
@@ -492,6 +499,13 @@ footer {
     vertical-align: middle;
 }
 
+.imgsdivpast{
+    object-fit: cover;
+    height: 102%;
+    text-align: center;
+    object-position: center;
+}
+
 .mv_cont p {
     color: black;
     font-size: 1.1rem;
@@ -553,6 +567,8 @@ footer {
 #discov_more{
     margin: 20px 0 0 0;
     font-size: 1.5rem;
+    position:relative; z-index:10;
+    width:350px;
 }
 
 .backg-ovrl2 {
@@ -661,7 +677,27 @@ footer {
 	transform: translate(-50%, -50%);
 }
 
+.welcomescreen{
+    margin:auto; display: inline-flex;
+}
+
 @media screen and (max-width: 990px) {
+    #pastora_cont{
+        flex-direction: column-reverse;
+    }
+    #ddivina_info_cnt, #ddivina_info_cntr{
+        width: 100%;
+    }
+    #ddivina_info_cnt{
+        border: 0;
+    }
+    #ddivina_info_cnt{
+        border-top: solid #cca766;
+        padding-top:20px;
+    }
+    #ddivina_info_cnt p{
+        text-align: center;
+    }
 	.book-cover{
 		margin: auto;
 	}
@@ -710,7 +746,13 @@ footer {
     .dp_cont{
         width: 100%;
     }
-    #div_past_pestanas{
+    .title_notmain{
+        font-size: 1.5rem;
+    }
+    .welcomescreen{
+        display: block;
+    }
+    #div_past_pestanas, #div_past_pestanas2{
         display: grid;
         width: 100%;
         text-align: center;
@@ -819,9 +861,8 @@ footer {
         display: block;
     }
     #departments_cont {
-        display: block;
-        width: 100%;
-        padding-bottom: 0rem;
+        flex-direction: column-reverse;
+        width: 90%;
     }
     .cont_redirects {
         width: 100%;
@@ -853,7 +894,8 @@ footer {
         margin: auto;
         width: 100%;
         padding-right: 0;
-        border-bottom: solid #cca766;
+        padding-top: 20px;
+        border-top: solid #cca766;
     }
     #dep_info_cnt {
         text-align: center;

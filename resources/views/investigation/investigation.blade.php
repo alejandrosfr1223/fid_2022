@@ -8,7 +8,7 @@
                 <table style="height: 15rem; width: 100%; text-align: center;">
                     <tr>
                         <td>
-                            <div style="margin:auto; display: inline-flex;">
+                            <div class='welcomescreen'>
                                 <span class="members_index_icons fa-stack fa-2x">
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-search fa-stack-1x fa-inverse"></i>

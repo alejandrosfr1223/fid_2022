@@ -8,7 +8,7 @@
                 <table style="height: 15rem; width: 100%; text-align: center;">
                     <tr>
                         <td>
-                            <div style="margin:auto; display: inline-flex;">
+                            <div class='welcomescreen'>
                                 <span class="members_index_icons fa-stack fa-2x">
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-users fa-stack-1x fa-inverse"></i>
@@ -38,6 +38,24 @@
                 </div>
             </div>
         </div>
+
+        <div class="home_container notmain">
+            <div class="row gx-0">
+                <div class="col-6 col-md-3 contimgdivpast">
+                    <img src="/img/divinapastora/IMG_3691.JPG" class="img-fluid imgsdivpast">
+                </div>
+                <div class="col-6 col-md-3 contimgdivpast">
+                    <img src="/img/divinapastora/20220513_105735.jpg" class="img-fluid imgsdivpast">
+                </div>
+                <div class="col-6 col-md-3 contimgdivpast">
+                    <img src="/img/divinapastora/20220513_100126.jpg" class="img-fluid imgsdivpast">
+                </div>
+                <div class="col-6 col-md-3 contimgdivpast">
+                    <img src="/img/divinapastora/20220513_102017.jpg" class="img-fluid imgsdivpast">
+                </div>
+            </div>
+        </div>
+
         <div class="bluebg">
             <img src="/img/home/logo-overlay2.png" class="backg-ovrl3 bigscreen ol2-l">
             <img src="/img/logos/vector-logo.svg" class="backg-ovrl3 smallscreen">
