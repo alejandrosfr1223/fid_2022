@@ -13,7 +13,7 @@
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-users fa-stack-1x fa-inverse"></i>
                                 </span>
-                                <h1 class="title_notmain">{{ trans("formation.tutor") }}</h1>
+                                <h1 class="title_notmain">{{ trans("formation.courses") }}</h1>
                             </div>
                         </td>
                     </tr>
@@ -32,12 +32,11 @@
                     <div style="width: 100%; padding: 20px;">
                         <center>
                             <img class="imglogo_subpage" src="/img/logos/onebranch.png" class="svgcolor" style="transform: rotate(180deg);" />
-                            <h2>{{ trans("formation.tutor") }}</h2>
+                            <h2>{{ trans("formation.courses") }}</h2>
                         </center>
                     </div>
                 </div>
             </div>
-
 
         </div>
     </div>

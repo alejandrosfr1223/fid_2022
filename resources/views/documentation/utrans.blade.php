@@ -38,6 +38,29 @@
                 </div>
             </div>
 
+            <div style="margin:auto; width:100%;">
+                <div id="sub_elementscont2">
+                    <a href="{{route('documentation.dig_books')}}">
+                        <div class="cont_redirects">
+                            <span class="padicons members_index_icons fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-book fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h3 class="bold">{{ trans("documentation.dig_books") }}</h3>
+                        </div>
+                    </a>
+                    <a href="{{route('documentation.dig_audiovideo')}}">
+                        <div class="cont_redirects">
+                            <span class="padicons members_index_icons fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-headphones fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h3 class="bold">{{ trans("documentation.dig_audiovideo") }}</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
             <div id="carouselindicators" class="carousel slide" data-bs-ride="true" data-interval="false">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselindicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -78,6 +101,7 @@
             </div>
             
         </div>
+        
     </div>
 
 @endsection

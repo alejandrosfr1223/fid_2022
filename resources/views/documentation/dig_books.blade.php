@@ -11,9 +11,9 @@
                             <div class='welcomescreen'>
                                 <span class="members_index_icons fa-stack fa-2x">
                                     <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-users fa-stack-1x fa-inverse"></i>
+                                    <i class="fas fa-book fa-stack-1x fa-inverse"></i>
                                 </span>
-                                <h1 class="title_notmain">{{ trans("formation.univ") }}</h1>
+                                <h1 class="title_notmain">{{ trans("documentation.dig_books") }}</h1>
                             </div>
                         </td>
                     </tr>
@@ -31,8 +31,8 @@
                 <div class="rightdivide" id="logo_subpage">
                     <div style="width: 100%; padding: 20px;">
                         <center>
-                            <img class="imglogo_subpage" src="/img/logos/onebranch.png" class="svgcolor" style="transform: rotate(180deg);" />
-                            <h2>{{ trans("formation.univ") }}</h2>
+                            <img src="/img/logos/onebranch.png" class="svgcolor" style="transform: rotate(90deg);" />
+                            <h2>{{ trans("documentation.dig_books") }}</h2>
                         </center>
                     </div>
                 </div>

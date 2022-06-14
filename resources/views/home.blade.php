@@ -99,6 +99,20 @@
         </div>
     </div>
     <div class="bluebg">
+        <img src="/img/home/logo-overlay2r.png" class="backg-ovrl4 bigscreen ol2-r">
+        <img src="/img/logos/vector-logo.svg" class="backg-ovrl4 smallscreen">
+        <div id="div_inapastora">
+            <div id="div_inapastoral" class="clmain_divpastora">
+                <img src="/img/juandelrincon/jdr.png" id="divimg" class="changecolorpngsyellow">
+            </div>
+            <div id="div_inapastorar" class="clmain_divpastora mv_cont2">
+                <h2>{{ trans("home.jdelrincon") }}</h2>
+                <p style="color: white;">{{ trans("home.jdelrincon_txt") }}</p>
+                <a class="loginbtns" id="discov_more2" href="{{route('divinapastora.home')}}">Descubrir más</a>
+            </div>
+        </div>
+    </div>
+    <div class="yellowbg">
         <img src="/img/home/logo-overlay2.png" class="backg-ovrl3 bigscreen ol2-l">
         <img src="/img/logos/vector-logo.svg" class="backg-ovrl3 smallscreen">
         <div id="div_inapastora">
@@ -110,20 +124,6 @@
                 <p style="color: white;">{{ trans("home.divpastora_txt") }}</p>
                 <a class="loginbtns" id="discov_more" href="{{route('divinapastora.home')}}">Descubrir más</a>
             </div>
-        </div>
-        <div id="div_past_pestanas">
-            <a href="{{route('divinapastora.fisidoro')}}" class="dp_cont">
-                <h2>{{ trans("home.dp_p_1") }}</h2>
-                <p style="color: white;">{{ trans("home.dp_p_1_txt") }}</p>
-            </a>
-            <a href="{{route('divinapastora.convsev')}}" class="dp_cont">
-                <h2>{{ trans("home.dp_p_2") }}</h2>
-                <p style="color: white;">{{ trans("home.dp_p_2_txt") }}</p>
-            </a>
-            <a href="{{route('divinapastora.div_pastora')}}" class="dp_cont">
-                <h2>{{ trans("home.dp_p_3") }}</h2>
-                <p style="color: white;">{{ trans("home.dp_p_3_txt") }}</p>
-            </a>
         </div>
     </div>
     <div id="missionvision" class="whitebg" style="position: relative;">

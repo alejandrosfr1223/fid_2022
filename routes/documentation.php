@@ -17,3 +17,11 @@ Route::get('ucat', function () {
 Route::get('ucon', function () {
     return view('documentation.ucon');
 })->name("ucon");
+
+Route::get('dig_audiovideo', function () {
+    return view('documentation.dig_audiovideo');
+})->name("dig_audiovideo");
+
+Route::get('dig_books', function () {
+    return view('documentation.dig_books');
+})->name("dig_books");

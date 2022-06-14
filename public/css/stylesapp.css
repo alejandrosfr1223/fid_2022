@@ -371,7 +371,7 @@ footer {
 
 #div_inapastora{
     width: 60%;
-    padding: 30px 0px 0px 0px;
+    padding: 30px 0px 30px 0px;
     display: flex;
     margin: auto;
 }
@@ -424,7 +424,23 @@ footer {
 #sub_elementscont a {
     -webkit-appearance: button;
     -moz-appearance: button;
-    width: calc(100%/3);
+    width: calc(100%);
+    text-decoration: none;
+    color:#12313a;
+}
+
+#sub_elementscont2 a {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    width: calc(100%);
+    text-decoration: none;
+    color:#12313a;
+}
+
+#sub_elementscont1 a {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    width: calc(100%);
     text-decoration: none;
     color:#12313a;
 }
@@ -507,7 +523,8 @@ footer {
 }
 
 .mv_cont p {
-    color: black;
+    padding: 0px 10px;
+    color: #12313a !important;
     font-size: 1.1rem;
 }
 
@@ -516,7 +533,23 @@ footer {
     color: #12313a;
 }
 
+.mv_cont2 p {
+    padding: 0px 10px;
+    color: black;
+    font-size: 1.1rem;
+}
+
+.mv_cont2 h2 {
+    text-align: center;
+    color: #cca766;
+}
+
 .bluebg{
+    background-color: #12313a;
+    position: relative;
+}
+
+.yellowbg{
     background-color: #cca766;
     position: relative;
 }
@@ -564,12 +597,16 @@ footer {
     text-align: center;
 }
 
-#discov_more{
+#discov_more, #discov_more2{
     margin: 20px 0 0 0;
     font-size: 1.5rem;
     position:relative; z-index:10;
     max-width:350px;
     width: 100%;
+}
+
+#discov_more2:hover{
+    background-color: #cca766 !important;
 }
 
 .backg-ovrl2 {
@@ -588,8 +625,20 @@ footer {
     opacity: 0.08;
 }
 
+.backg-ovrl4 {
+    top: 0;
+    height: 100%;
+    position: absolute;
+    opacity: 0.03;
+}
+
 .changecolorpngs {
     filter: brightness(0) saturate(100%) invert(16%) sepia(11%) saturate(2413%) hue-rotate(147deg) brightness(94%) contrast(95%);
+}
+
+.changecolorpngsyellow {
+    filter: invert(5%) sepia(61%) saturate(2863%) hue-rotate(307deg)
+        brightness(86%) contrast(83%);
 }
 
 #divimg{
@@ -615,11 +664,11 @@ footer {
 .cont_redirects {
     width: calc(100%);
     margin: 0 auto;
-    padding: 10px 0 20px 0;
+    padding: 20px 0 20px 0;
     text-align: center;
 }
 
-#sub_elementscont {
+#sub_elementscont, #sub_elementscont2  {
     display: flex;
     width: 80%;
     margin: auto;
@@ -799,7 +848,7 @@ footer {
         display: none;
     }
 
-    .mv_cont {
+    .mv_cont, .mv_cont2 {
         text-align: center;
         padding: 1rem;
         width: 100%;
@@ -870,8 +919,9 @@ footer {
         padding: 20px 0px;
         text-align: center;
     }
-    #sub_elementscont {
-        width: 60%;
+    #sub_elementscont, #sub_elementscont2, #sub_elementscont1 {
+        text-align: center;
+        width: 100%;
         display: block;
     }
     .subtext {

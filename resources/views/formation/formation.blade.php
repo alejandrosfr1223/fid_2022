@@ -39,32 +39,23 @@
             </div>
 
             <div style="margin:auto; width:100%;">
-                <div id="sub_elementscont">
-                    <a href="{{route('formation.univ')}}">
+                <div id="sub_elementscont2">
+                    <a href="{{route('formation.courses')}}">
                         <div class="cont_redirects">
                             <span class="padicons members_index_icons fa-stack fa-2x">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fas fa-book fa-stack-1x fa-inverse"></i>
                             </span>
-                            <h3 class="bold">{{ trans("formation.univ") }}</h3>
+                            <h3 class="bold">{{ trans("formation.courses") }}</h3>
                         </div>
                     </a>
-                    <a href="{{route('formation.instit')}}">
+                    <a href="{{route('formation.congress')}}">
                         <div class="cont_redirects">
                             <span class="padicons members_index_icons fa-stack fa-2x">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fas fa-gavel fa-stack-1x fa-inverse"></i>
                             </span>
-                            <h3 class="bold">{{ trans("formation.instit") }}</h3>
-                        </div>
-                    </a>
-                    <a href="{{route('formation.tutor')}}">
-                        <div class="cont_redirects">
-                            <span class="padicons members_index_icons fa-stack fa-2x">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-pagelines fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <h3 class="bold">{{ trans("formation.tutor") }}</h3>
+                            <h3 class="bold">{{ trans("formation.congress") }}</h3>
                         </div>
                     </a>
 

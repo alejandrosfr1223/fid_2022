@@ -22,4 +22,6 @@ return [
     "dp_p_2_txt" =>"Cradle of pastoral devotion",
     "dp_p_3" =>"The Divine Shepherdess",
     "dp_p_3_txt" =>"A universal devotion",
+    "jdelrincon" => "Proyecto Juan del Rincón",
+    "jdelrincon_txt" => "Te invitamos a colaborar con esta investigación histórica en torno al capitán Capitán Juan del Rincón Aguilar, Conquistador Sefardí de las Sierras Nevadas del Nuevo Reino de Granada y de Venezuela.",
 ];

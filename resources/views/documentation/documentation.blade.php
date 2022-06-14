@@ -39,7 +39,7 @@
             </div>
 
             <div style="margin:auto; width:100%;">
-                <div id="sub_elementscont">
+                <div id="sub_elementscont2">
                     <a href="{{route('documentation.utrans')}}">
                         <div class="cont_redirects">
                             <span class="padicons members_index_icons fa-stack fa-2x">
@@ -56,15 +56,6 @@
                                 <i class="fas fa-gavel fa-stack-1x fa-inverse"></i>
                             </span>
                             <h3 class="bold">{{ trans("documentation.cat_unit") }}</h3>
-                        </div>
-                    </a>
-                    <a href="{{route('documentation.ucon')}}">
-                        <div class="cont_redirects">
-                            <span class="padicons members_index_icons fa-stack fa-2x">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-pagelines fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <h3 class="bold">{{ trans("documentation.conserv_unit") }}</h3>
                         </div>
                     </a>
                 </div>

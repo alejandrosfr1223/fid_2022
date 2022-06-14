@@ -6,14 +6,10 @@ Route::get('/', function () {
     return view('formation.formation');
 })->name('home');
 
-Route::get('univ', function () {
-    return view('formation.univ');
-})->name("univ");
+Route::get('courses', function () {
+    return view('formation.courses');
+})->name("courses");
 
-Route::get('instit', function () {
-    return view('formation.instit');
-})->name("instit");
-
-Route::get('tutor', function () {
-    return view('formation.tutor');
-})->name("tutor");
+Route::get('congress', function () {
+    return view('formation.congress');
+})->name("congress");

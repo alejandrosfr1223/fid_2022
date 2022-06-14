@@ -22,4 +22,6 @@ return [
     "dp_p_2_txt" =>"Cuna de la devoción pastoreña",
     "dp_p_3" =>"La Divina Pastora",
     "dp_p_3_txt" =>"Una devoción universal",
+    "jdelrincon" => "Proyecto Juan del Rincón",
+    "jdelrincon_txt" => "Te invitamos a colaborar con esta investigación histórica en torno al capitán Capitán Juan del Rincón Aguilar, Conquistador Sefardí de las Sierras Nevadas del Nuevo Reino de Granada y de Venezuela.", 
 ];
