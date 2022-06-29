@@ -17,3 +17,11 @@ Route::get('hist_unit', function () {
 Route::get('jurid_unit', function () {
     return view('investigation.jurid_unit');
 })->name("jurid_unit");
+
+Route::get('hist_unit/libro_familia', function () {
+    return view('investigation.libro_familia');
+})->name("libro_familia");
+
+Route::get('hist_unit/arbol_genealogico', function () {
+    return view('investigation.arbol_genealogico');
+})->name("arbol_genealogico");

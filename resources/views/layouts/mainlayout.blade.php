@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FID</title>
 
-    <link rel="text/javascript" href="{{ URL::asset('/js/bootstrap.min.js') }}" />
+    <link rel="text/javascript" href="{{ asset('/js/bootstrap.min.js') }}" />
 
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ asset('/css/stylesapp.css') }}" rel="stylesheet" type="text/css" >

@@ -731,7 +731,138 @@ footer {
     margin:auto; display: inline-flex;
 }
 
+.filasproducts a{
+    text-decoration: none;
+}
+
+.infoproducts h2{
+    font-weight: 600;
+    color:black;
+}
+
+.filasproducts {
+    text-align: center;
+    justify-content: center;
+    --bs-gutter-x:0;
+}
+
+.infoproducts{
+    transition: 0.4s;
+    transform: scale(0.9);
+    margin:auto;
+}
+
+.cont_prod_inv{
+    width:100%;
+    display:flex;
+}
+
+.infoproducts:hover{
+    transform: scale(0.95);
+}
+
+.imgs_crs{
+    transition: 0.4s;
+    transform: scale(0.95);
+}
+
+.imgs_crs:hover{
+    transform: scale(1);
+}
+
+.glob_cont_prod_inv{
+    width:65%;
+    margin: 20px auto;
+    position: relative;
+}
+
+.pageprod{
+    margin: 10px auto;
+    height:210px;
+}
+
+#o_cont{
+    top:0;
+    z-index:-1;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    opacity:0;
+    transition:1s;
+    position: fixed;
+}
+
+#wbg {
+    margin:auto;
+    width: 70%;
+    height:90%;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    border-radius: 10px;
+}
+
+.half_prod_inv_l{
+    margin: auto 20px auto auto;
+    width:70%;
+    padding-right: 20px;
+    border-right:2px solid #cca766;
+}
+
+.half_prod_inv_l2{
+    margin: auto 20px auto auto;
+    width:55%;
+    padding-right: 20px;
+    border-right:2px solid #cca766;
+}
+
+.half_prod_inv_r{
+    width:30%;
+}
+
+.half_prod_inv_r2{
+    width:45%;
+}
+
+.img_logotitle{
+    width: 70px;
+}
+
 @media screen and (max-width: 990px) {
+    #wbg {
+        width: 90%;
+    }
+    .imgs_crs{
+        margin:auto;
+        height:350px;
+    }
+    .glob_cont_prod_inv{
+        width:90%;
+    }
+    .half_prod_inv_l{
+        margin: auto auto 20px auto;
+        padding-right: 0;
+        padding-bottom: 20px;
+        border-right:0;
+        border-bottom:2px solid #cca766;
+        text-align: center;
+    }
+    .half_prod_inv_l2{
+        margin: auto auto 20px auto;
+        padding-right: 0;
+        padding-bottom: 20px;
+        border-right:0;
+        border-bottom:2px solid #cca766;
+        text-align: center;
+    }
+    .half_prod_inv{
+        width:100%;
+    }
+    .cont_prod_inv{
+        display:block;
+    }
     #pastora_cont{
         flex-direction: column-reverse;
     }

@@ -38,9 +38,24 @@
                 </div>
             </div>
 
-            
-            
+            <div class="filasproducts row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                <a href="{{route('investigation.libro_familia')}}">
+                    <div class="col infoproducts">
+                        <img class="pageprod" src="/img/investigacion/LIBRO DE FAMILIA.png">
+                        <h2>Libros de Familia</h2>
+                    </div>
+                </a>
+                <a href="{{route('investigation.arbol_genealogico')}}">
+                    <div class="col infoproducts">
+                        <img class="pageprod" src="/img/investigacion/ARBOL GENEALOGICO2.png">
+                        <h2>Árboles Genealógicos</h2>
+                    </div>
+                </a>
+            </div>
         </div>
+    </div>
+
+    <div>
     </div>
 
 @endsection
