@@ -31,7 +31,7 @@
                 <div class="rightdivide" id="logo_subpage">
                     <div style="width: 100%; padding: 20px;">
                         <center>
-                            <img src="/img/logos/onebranch.png" class="svgcolor" style="transform: rotate(90deg);" />
+                            <img src="{{ asset('/img/logos/onebranch.png') }}" class="svgcolor" style="transform: rotate(90deg);" />
                             <h2>{{ trans("documentation.digtrans_unit") }}</h2>
                         </center>
                     </div>
@@ -72,22 +72,22 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="/img/documentacion/utrans/Mesa de trabajo 2.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/utrans/Mesa de trabajo 2.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/utrans/Mesa de trabajo 11.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/utrans/Mesa de trabajo 11.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/utrans/Mesa de trabajo 31.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/utrans/Mesa de trabajo 31.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/utrans/Mesa de trabajo 13.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/utrans/Mesa de trabajo 13.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/utrans/Mesa de trabajo 29.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/utrans/Mesa de trabajo 29.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/utrans/Mesa de trabajo 26.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/utrans/Mesa de trabajo 26.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselindicators" data-bs-slide="prev">

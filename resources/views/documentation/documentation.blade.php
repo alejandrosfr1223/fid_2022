@@ -31,7 +31,7 @@
                 <div class="rightdivide" id="logo_subpage">
                     <div style="width: 100%; padding: 20px;">
                         <center>
-                            <img src="/img/logos/onebranch.png" class="svgcolor" style="transform: rotate(90deg);" />
+                            <img src="{{ asset('/img/logos/onebranch.png') }}" class="svgcolor" style="transform: rotate(90deg);" />
                             <h2>{{ trans("documentation.documentation") }}</h2>
                         </center>
                     </div>

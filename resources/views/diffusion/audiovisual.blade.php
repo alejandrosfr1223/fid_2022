@@ -30,7 +30,7 @@
                 <div class="rightdivide" id="logo_subpage">
                     <div style="width: 100%; padding: 20px;">
                         <center>
-                            <img src="/img/logos/onebranch.png" class="svgcolor"/>
+                            <img src="{{ asset('/img/logos/onebranch.png') }}" class="svgcolor"/>
                             <h2>{{ trans("diffusion.audio") }}</h2>
                         </center>
                     </div>

@@ -31,7 +31,7 @@
                 <div class="rightdivide" id="logo_subpage">
                     <div style="width: 100%; padding: 20px;">
                         <center>
-                            <img src="/img/logos/onebranch.png" class="svgcolor" style="transform: rotate(90deg);" />
+                            <img src="{{ asset('/img/logos/onebranch.png') }}" class="svgcolor" style="transform: rotate(90deg);" />
                             <h2>{{ trans("documentation.cat_unit") }}</h2>
                         </center>
                     </div>
@@ -49,22 +49,22 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="/img/documentacion/ucat/DSC_0217 (2).jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/ucat/DSC_0217 (2).jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/ucat/DSC_0711-1.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/ucat/DSC_0711-1.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/ucat/DSC_0723.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/ucat/DSC_0723.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/ucat/DSC_0731.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/ucat/DSC_0731.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/ucat/DSC_0736.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/ucat/DSC_0736.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/documentacion/ucat/DSC_0773.jpg" class="imgcarousel d-block w-100" alt="...">
+                        <img src="{{ asset('/img/documentacion/ucat/DSC_0773.jpg') }}" class="imgcarousel d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselindicators" data-bs-slide="prev">

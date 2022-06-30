@@ -31,7 +31,7 @@
                 <div class="rightdivide" id="logo_subpage">
                     <div style="width: 100%; padding: 20px;">
                         <center>
-                            <img class="imglogo_subpage" src="/img/logos/onebranch.png" class="svgcolor" style="transform: rotate(270deg);" />
+                            <img class="imglogo_subpage" src="{{ asset('/img/logos/onebranch.png') }}" class="svgcolor" style="transform: rotate(270deg);" />
                             <h2>{{ trans("investigation.jurid_unit") }}</h2>
                         </center>
                     </div>

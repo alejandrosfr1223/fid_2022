@@ -21,9 +21,9 @@
                     align-content: center;
                     justify-content: center;
                     width: 100%;">
-            <img class="img_logotitle" src="/img/logos/onebranch.png" style="margin-top: 10px; transform: rotate(0deg) scale(-1);" />
+            <img class="img_logotitle" src="{{ asset('/img/logos/onebranch.png') }}" style="margin-top: 10px; transform: rotate(0deg) scale(-1);" />
             <h2 style="text-align: center; margin: auto 0px;">Libros de Familia</h2>
-            <img class="img_logotitle" src="/img/logos/onebranch.png" style="margin-top: -10px; transform: rotate(0deg);" />
+            <img class="img_logotitle" src="{{ asset('/img/logos/onebranch.png') }}" style="margin-top: -10px; transform: rotate(0deg);" />
         </div>
         <div class="cont_prod_inv">
             <div class="half_prod_inv half_prod_inv_l">
@@ -34,7 +34,7 @@
             </div>
             <div class="half_prod_inv half_prod_inv_r">
                 <a onclick="showmodal()" style="height:100%; position:relative;">
-                    <img class="imgs_crs" src="/img/investigacion/LIBRO DE FAMILIA1.png">
+                    <img class="imgs_crs" src="{{ asset('/img/investigacion/LIBRO DE FAMILIA1.png') }}">
                 </a>
             </div>
         </div>
@@ -77,13 +77,13 @@
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img src="/img/investigacion/LIBRO DE FAMILIA1.png" class="d-block w-100" alt="...">
+                    <img src="{{ asset('/img/investigacion/LIBRO DE FAMILIA1.png') }}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                    <img src="/img/investigacion/LIBRO DE FAMILIA2.png" class="d-block w-100" alt="...">
+                    <img src="{{ asset('/img/investigacion/LIBRO DE FAMILIA2.png') }}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                    <img src="/img/investigacion/LIBRO DE FAMILIA3.png" class="d-block w-100" alt="...">
+                    <img src="{{ asset('/img/investigacion/LIBRO DE FAMILIA3.png') }}" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

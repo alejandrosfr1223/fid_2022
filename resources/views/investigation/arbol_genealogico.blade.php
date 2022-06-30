@@ -21,9 +21,9 @@
                     align-content: center;
                     justify-content: center;
                     width: 100%;">
-            <img class="img_logotitle" src="/img/logos/onebranch.png" style="margin-top: 10px; transform: rotate(0deg) scale(-1);" />
+            <img class="img_logotitle" src="{{ asset('/img/logos/onebranch.png') }}" style="margin-top: 10px; transform: rotate(0deg) scale(-1);" />
             <h2 style="text-align: center; margin: auto 0px;">Árboles Genealógicos</h2>
-            <img class="img_logotitle" src="/img/logos/onebranch.png" style="margin-top: -10px; transform: rotate(0deg);" />
+            <img class="img_logotitle" src="{{ asset('/img/logos/onebranch.png') }}" style="margin-top: -10px; transform: rotate(0deg);" />
         </div>
         <div class="cont_prod_inv">
             <div class="half_prod_inv half_prod_inv_l2">
@@ -34,7 +34,7 @@
             </div>
             <div class="half_prod_inv half_prod_inv_r2">
                 <a onclick="showmodal()" style="height:100%; position:relative;">
-                    <img class="imgs_crs" src="/img/investigacion/ARBOL GENEALOGICO.png">
+                    <img class="imgs_crs" src="{{ asset('/img/investigacion/ARBOL GENEALOGICO.png') }}">
                 </a>
             </div>
         </div>
@@ -79,7 +79,7 @@
                         position: relative;
                         top: 50%;
                         left: 50%;
-                        transform: inherit;" src="/img/investigacion/ARBOL GENEALOGICO.png">
+                        transform: inherit;" src="{{ asset('/img/investigacion/ARBOL GENEALOGICO.png') }}">
         </div>
     </div>
 
