@@ -9,6 +9,7 @@
     <link rel="text/javascript" href="{{ asset('/js/bootstrap.min.js') }}" />
 
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('/css/imgdeclare.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ asset('/css/stylesapp.css') }}" rel="stylesheet" type="text/css" >
 
     <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
