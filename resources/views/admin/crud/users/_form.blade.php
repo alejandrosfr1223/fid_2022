@@ -3,7 +3,7 @@
         <div class="col-sm-12 col-md-2 p-3">
             <img
                 src="{{ asset('storage/' . $user->profile_photo_path) }}"
-                onerror="this.onerror=null; this.src='/img/person.png'"
+                onerror="this.src='{{ asset('img/person.png') }}'"
                 alt="{{ 'Imagen de ' . $user->name }}"
                 class="img-circle"
                 width="150px"
