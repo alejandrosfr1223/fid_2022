@@ -60,7 +60,7 @@
                             <td title="{{ $book->id }}">
                                 <img
                                     src="{{ $book->url_img_caratula }}"
-                                    onerror="this.onerror=null; this.src='/img/caratula.jpg'"
+                                    onerror="this.onerror=null; this.src={{ asset('/img/caratula.jpg') }}"
                                     alt="{{ 'Caratula de ' . $book->titulo }}"
                                     class="img-size-32 mr-2"
                                 >
