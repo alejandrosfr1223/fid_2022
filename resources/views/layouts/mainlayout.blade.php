@@ -24,7 +24,7 @@
                     <a>{{ trans("mainlayout.welcome") }}<b>{{auth()->user()->name}}</b></a>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0" id="but_div">
-                    <a class="loginbtns" id="myaccount" name="myaccount"  href="/user/profile">{{ trans("mainlayout.myaccount") }}</a>
+                    <a class="loginbtns" id="myaccount" name="myaccount"  href="/fid/user/profile">{{ trans("mainlayout.myaccount") }}</a>
                     <a class="loginbtns" id="logout" name="logout"  href="{{route('logout')}}">{{ trans("mainlayout.logout") }}</a>
                 </div>
             @else
@@ -92,7 +92,7 @@
                           <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="/admin">{{ trans("mainlayout.dashboard") }}</a>
+                          <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="/fid/admin">{{ trans("mainlayout.dashboard") }}</a>
                         </li>
                     @else
                         <li class="nav-item">
