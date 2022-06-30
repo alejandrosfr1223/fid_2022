@@ -34,10 +34,3 @@ Route::get('logout', function ()
 
     return Redirect::to('/');
 })->name('logout');
-
-Route::get('/symlink', function () {
-    $target =$_SERVER['DOCUMENT_ROOT'].'/fid/storage/app/public';
-    $link = $_SERVER['DOCUMENT_ROOT'].'/fid/public/storage';
-    symlink($target, $link);
-    echo "Done";
-});
