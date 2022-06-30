@@ -36,8 +36,8 @@ Route::get('logout', function ()
 })->name('logout');
 
 Route::get('/symlink', function () {
-    $target =$_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
-    $link = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
+    $target =$_SERVER['DOCUMENT_ROOT'].'/fid/storage/app/public';
+    $link = $_SERVER['DOCUMENT_ROOT'].'/fid/public/storage';
     symlink($target, $link);
     echo "Done";
 });
