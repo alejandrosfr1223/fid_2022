@@ -45,7 +45,7 @@
             <table style="margin-top:20px;">
                 <tr>
                     <td>
-                        <img src="/img/logos/logo-fid-llave.png" style="margin-right: 10px; width: 5rem;">
+                        <img src="{{ asset('/img/logos/logo-fid-llave.png') }}" style="margin-right: 10px; width: 5rem;">
                     </td>
                     <td>
                         <h1 style="margin: auto; font-weight:bold; padding-left: 10px; color:#606060; font-size: 5rem; border-left: 1px #606060 solid;">FID</h1>
@@ -121,7 +121,7 @@
             <table id="footerlogo">
                 <tr>
                     <td>
-                        <img class="footer_img" src="/img/logos/logo-fid-llave.png">
+                        <img class="footer_img" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
                     </td>
                     <td>
                         <h1 class="footer_key">FID</h1>
