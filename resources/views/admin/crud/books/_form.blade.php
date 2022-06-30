@@ -3,7 +3,8 @@
         <div class="col-sm-12 col-md-2 mb-3">
             <img
                 src="{{ $book->url_img_caratula }}"
-                onerror="this.onerror=null; this.src='/img/caratula.jpg'"
+                {{-- onerror="this.onerror=null; this.src='/img/caratula.jpg'" --}}
+                onerror="this.src='{{ asset('img/caratula.jpg') }}'"
                 alt="{{ 'Caratula de ' . $book->titulo }}"
                 width="150px"
                 class="mt-5"
