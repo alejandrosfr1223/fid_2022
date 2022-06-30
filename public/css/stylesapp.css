@@ -212,7 +212,7 @@ p{
 }
 
 #containerbackground {
-    background-image: url("/img/home/libros.png");
+    background-image: url("{{ asset('/img/home/libros.png') }}");
     background-size: cover;
     background-repeat: no-repeat;
     margin: auto;
