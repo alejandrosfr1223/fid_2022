@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FID</title>
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico) }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
 
     <link rel="text/javascript" href="{{ asset('/js/bootstrap.min.js') }}" />
 
