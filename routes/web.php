@@ -34,3 +34,7 @@ Route::get('logout', function ()
 
     return Redirect::to('/');
 })->name('logout');
+
+Route::get('/symlink', function () {
+    Artisan::call('storage:link');
+});
