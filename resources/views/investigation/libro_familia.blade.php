@@ -27,7 +27,7 @@
         </div>
         <div class="cont_prod_inv">
             <div class="half_prod_inv half_prod_inv_l">
-                <img src="/img/logos/vector-logo.svg" class="backg-ovrl2">
+                <img src="{{ asset('/img/logos/vector-logo.svg') }}" class="backg-ovrl2">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
