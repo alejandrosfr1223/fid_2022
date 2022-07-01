@@ -38,26 +38,31 @@
             </div>
             <div id="cont-books">
                 @foreach ($books as $book)
-                    @if ($book["editorial"] == "Editorial BV")
-                        <div class="bookrow downborder">
-                            <div class="books">
-                                <div class="book-cover">
-                                    <div class="info">
-                                        <p class="book-title">{{$book["titulo"]}}</p>
-                                        <br><br><br>
-                                        <p class="book-author">{{$book["autor"]}}</p>
-                                    </div>
+                    @php
+                        $array = json_decode($book['clasific']);
+                        if (in_array("EditorialBV", $array)) {
+                    @endphp
+                    <div class="bookrow downborder">
+                        <div class="books">
+                            <div class="book-cover">
+                                <div class="info">
+                                    <p class="book-title">{{$book["titulo"]}}</p>
+                                    <br><br><br>
+                                    <p class="book-author">{{$book["autor"]}}</p>
                                 </div>
                             </div>
-                            <div class="booksinfo">
-                                <h1>{{$book["titulo"]}}</h1>
-                                <h3>{{$book["autor"]}}</h3>
-                            </div> 
-                            <div class="booksmoreinfo">
-                                <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>{{ trans("diffusion.viewbook") }}</a><br>
-                            </div>                   
                         </div>
-                    @endif
+                        <div class="booksinfo">
+                            <h1>{{$book["titulo"]}}</h1>
+                            <h3>{{$book["autor"]}}</h3>
+                        </div> 
+                        <div class="booksmoreinfo">
+                            <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>{{ trans("diffusion.viewbook") }}</a><br>
+                        </div>                   
+                    </div>
+                    @php
+                        }
+                    @endphp
                 @endforeach
             </div>
         </div>

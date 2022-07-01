@@ -37,7 +37,60 @@
                     </div>
                 </div>
             </div>
-
+            <div id="cont-books">
+                <center>
+                    <h2>Investigaciones</h2>
+                </center>
+                <div class="bookrow downborder">
+                    <div class="books">
+                        <img style="width:100%; padding:20px;" src="{{ asset('/img/home/Divinapastora.png') }}" class="changecolorpngsyellow"/>
+                    </div>
+                    <div class="booksinfo">
+                        <h1>{{ trans("home.divpastora") }}</h1>
+                        <p>{{ trans("home.divpastora_txt") }}</p>
+                    </div> 
+                    <div class="booksmoreinfo">
+                        <a class="loginbtns" id='goto_divinapastora'>Descubrir más</a><br>
+                    </div>                   
+                </div>
+                <div class="bookrow downborder">
+                    <div class="books">
+                        <img style="width:100%; padding:20px;" src="{{ asset('/img/juandelrincon/jdr.png') }}" class="changecolorpngsyellow"/>
+                    </div>
+                    <div class="booksinfo">
+                        <h1>{{ trans("home.jdelrincon") }}</h1>
+                        <p>{{ trans("home.jdelrincon_txt") }}</p>
+                    </div> 
+                    <div class="booksmoreinfo">
+                        <a class="loginbtns" id='goto_divinapastora'>Descubrir más</a><br>
+                    </div>                   
+                </div>
+                @foreach ($books as $book)
+                    @php
+                        $array = json_decode($book['clasific']);
+                        if (in_array("InvestigacionFID", $array)) {
+                    @endphp
+                    <div class="bookrow downborder">
+                        <div class="books">
+                            <img style="width:90%; padding:20px; margin:auto;" src="{{ asset('/img/logos/logo-fid-llave.png') }}" />
+                        </div>
+                        <div class="booksinfo">
+                            <h1>{{$book["titulo"]}}</h1>
+                            <h3>{{$book["autor"]}}</h3>
+                            <p>{{$book["notas"]}}</p>
+                        </div> 
+                        <div class="booksmoreinfo">
+                            <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>Descubrir más</a><br>
+                        </div>                   
+                    </div>
+                    @php
+                        }
+                    @endphp
+                @endforeach
+            </div>
+            <center>
+                <h2>Servicios Disponibles</h2>
+            </center>
             <div class="filasproducts row row-cols-1 row-cols-sm-2 row-cols-md-4">
                 <a href="{{route('investigation.libro_familia')}}">
                     <div class="col infoproducts">

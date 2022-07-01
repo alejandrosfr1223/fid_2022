@@ -18,6 +18,7 @@ class Book extends Model
         'isbn',
         'enlace',
         'url_img_caratula',
-        'notas'
+        'notas',
+        'clasific',
     ];
 }

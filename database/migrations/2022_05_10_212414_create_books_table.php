@@ -24,10 +24,7 @@ return new class extends Migration
             $table->string('enlace');                           // Enlace o url del documento
             $table->string('url_img_caratula')->nullable();     // URL de la imagen de la caratula del libro
             $table->text('notas')->nullable();
-            $table->boolean('ebv')->nullable();
-            $table->boolean('jdr')->nullable();
-            $table->boolean('fid_inv')->nullable();
-            $table->boolean('divpast')->nullable();
+            $table->string('clasific')->nullable();
             $table->timestamps();
         });
     }

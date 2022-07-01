@@ -52,8 +52,12 @@ class BookController extends Controller
             */
         ]);
 
+        $input = $request->all();
+
+        $input["clasific"] = json_encode($request->clasific);
+
         // almacenando libro
-        $book = Book::create($request->all());
+        $book = Book::create($input);
 
         // Mensaje
         Alert::success('¡Éxito!', 'Se ha creado el libro: ' . $request->titulo);
@@ -71,6 +75,16 @@ class BookController extends Controller
     public function show(Book $book)
     {
         return view('admin.crud.books.edit', compact('book'));
+    }
+
+    function showBooks(){
+    	$books= Book::all();
+    	return view('diffusion.editorialbv', ["books"=>$books]);
+    }
+
+    function showInvest(){
+    	$books= Book::all();
+    	return view('investigation.hist_unit', ["books"=>$books]);
     }
 
     /**
@@ -93,6 +107,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+
         // Validación
         $request->validate([
             'titulo' => 'required|max:254',

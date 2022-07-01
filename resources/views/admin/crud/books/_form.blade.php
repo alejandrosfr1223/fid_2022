@@ -170,4 +170,48 @@
             @enderror
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <center><label>Clasificación del Material</label></center>
+        </div>
+    </div>
+    <style>
+        .form-control2 {
+            width: calc(2rem + 2px);
+            height: calc(2rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            box-shadow: inset 0 0 0 transparent;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+    </style>
+    @php
+        $clasification = json_decode($book->clasific);
+        if (is_null($clasification)){
+            $clasification=[];
+        }
+    @endphp
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mb-0">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" class="form-control2" name="clasific[]" value="EditorialBV" {{ in_array('EditorialBV', $clasification) ? 'checked' : '' }}> Editorial BV
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mb-0">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" class="form-control2" name="clasific[]" value="InvestigacionFID" {{ in_array('InvestigacionFID', $clasification) ? 'checked' : '' }}> Investigacion FID
+                </label>
+            </div>
+        </div>
+    </div>
 </div>

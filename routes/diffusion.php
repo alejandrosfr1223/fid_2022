@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublicBookController;
+use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
     return view('diffusion.diffusion');
@@ -15,4 +15,4 @@ Route::get('visualcom', function () {
     return view('diffusion.visualcom');
 })->name("visualcom");
 
-Route::get('editorialbv', [PublicBookController::class,"show"])->name("editorialbv");
+Route::get('editorialbv', [BookController::class,"showBooks"])->name("editorialbv");
