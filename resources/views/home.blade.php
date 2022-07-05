@@ -108,7 +108,7 @@
             <div id="div_inapastorar" class="clmain_divpastora mv_cont2">
                 <h2>{{ trans("home.jdelrincon") }}</h2>
                 <p style="color: white;">{{ trans("home.jdelrincon_txt") }}</p>
-                <a class="loginbtns" id="discov_more2" href="https://www.corporacioncabv.com/fid">Descubrir más</a>
+                <a class="loginbtns" id="discov_more2" href="https://www.corporacioncabv.com/jdr">Descubrir más</a>
             </div>
         </div>
     </div>
