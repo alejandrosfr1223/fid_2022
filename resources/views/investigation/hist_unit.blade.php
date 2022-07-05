@@ -50,7 +50,7 @@
                         <p>{{ trans("home.divpastora_txt") }}</p>
                     </div> 
                     <div class="booksmoreinfo">
-                        <a class="loginbtns" id='goto_divinapastora'>Descubrir más</a><br>
+                        <a class="loginbtns" id='goto_divinapastora' href="https://www.corporacioncabv.com/divinapastora">Descubrir más</a><br>
                     </div>                   
                 </div>
                 <div class="bookrow downborder">
@@ -62,7 +62,7 @@
                         <p>{{ trans("home.jdelrincon_txt") }}</p>
                     </div> 
                     <div class="booksmoreinfo">
-                        <a class="loginbtns" id='goto_divinapastora'>Descubrir más</a><br>
+                        <a class="loginbtns" id='goto_divinapastora' href="https://www.corporacioncabv.com/jdr">Descubrir más</a><br>
                     </div>                   
                 </div>
                 @foreach ($books as $book)
