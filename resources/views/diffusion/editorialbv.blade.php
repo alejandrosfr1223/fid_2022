@@ -40,6 +40,7 @@
                 @foreach ($books as $book)
                     @php
                         $array = json_decode($book['clasific']);
+                        $disponible = json_decode($book['disponib']);
                         if (in_array("EditorialBV", $array)) {
                     @endphp
                     <div class="bookrow downborder">
@@ -57,7 +58,31 @@
                             <h3>{{$book["autor"]}}</h3>
                         </div> 
                         <div class="booksmoreinfo">
+                            @php
+                                if (isset($disponible)) {
+                                    if(in_array('Disponible', $disponible)){
+                            @endphp
+                            
+
+                            <a class="loginbtns" id='libro_{{$book["id"]}}' href='/fid/diffusion/editorialbv/bookbv/{{$book["id"]}}'>{{ trans("diffusion.viewbook") }}</a><br>
+
+                            @php
+                                    } else {
+                            @endphp
+
                             <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>{{ trans("diffusion.viewbook") }}</a><br>
+
+                            @php            
+                                    }
+                                } else {
+                            @endphp
+                            
+                            <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>{{ trans("diffusion.viewbook") }}</a><br>
+
+                            @php
+                                }
+                            @endphp
+                            
                         </div>                   
                     </div>
                     @php

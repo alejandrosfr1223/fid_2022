@@ -16,3 +16,5 @@ Route::get('visualcom', function () {
 })->name("visualcom");
 
 Route::get('editorialbv', [BookController::class,"showBooks"])->name("editorialbv");
+
+Route::get('editorialbv/bookbv/{id}', [BookController::class,"showBookInfo"])->name("bookbv");

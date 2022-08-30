@@ -55,7 +55,16 @@ class BookController extends Controller
         $input = $request->all();
 
         $input["clasific"] = json_encode($request->clasific);
+        $input["disponib"] = json_encode($request->disponib);
 
+        if (!isset($input["disponib"])){
+            $input["disponib"] = [];
+        }
+
+        if (!isset($input["clasific"])){
+            $input["clasification"] = [];
+        }
+        
         // almacenando libro
         $book = Book::create($input);
 
@@ -78,8 +87,13 @@ class BookController extends Controller
     }
 
     function showBooks(){
-    	$books= Book::all();
+    	$books = Book::all();
     	return view('diffusion.editorialbv', ["books"=>$books]);
+    }
+
+    function showBookInfo($id){
+        $book = Book::find($id);
+        return view('diffusion.bookbv', ["book"=>$book]);
     }
 
     function showInvest(){
@@ -123,8 +137,19 @@ class BookController extends Controller
             */
         ]);
 
+
+        $input = $request->all();
+
+        if (!isset($input["disponib"])){
+            $input["disponib"] = [];
+        }
+
+        if (!isset($input["clasific"])){
+            $input["clasification"] = [];
+        }
+
         // actualizando book
-        $book->update($request->all());
+        $book->update($input);
 
         // Mensaje
         Alert::success('¡Éxito!', 'Se ha actualizado el libro: ' . $request->titulo);

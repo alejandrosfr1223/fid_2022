@@ -20,5 +20,7 @@ class Book extends Model
         'url_img_caratula',
         'notas',
         'clasific',
+        'precio',
+        'disponib',
     ];
 }

@@ -155,6 +155,25 @@
                     @enderror
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mb-0">
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="precio"
+                            placeholder="Introduzca el precio del libro"
+                            value="{{ old('precio', $book->precio) }}"
+                        >
+                    </div>
+                    @error('precio')
+                        <div class="col-span-12 sm:col-span-12">
+                            <small style="color:red">*{{ $message }}*</small>
+                        </div>
+                    @enderror
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -163,7 +182,7 @@
                 <label for="notas">Notas</label>
                 <textarea class="form-control" name="notas" rows="3" placeholder="Escriba comentarios acerca del libro">{{ old('notas', $book->notas) }}</textarea>
             </div>
-            @error('isbn')
+            @error('notas')
                 <div class="col-span-12 sm:col-span-12">
                     <small style="color:red">*{{ $message }}*</small>
                 </div>
@@ -210,6 +229,26 @@
             <div class="form-group">
                 <label>
                     <input type="checkbox" class="form-control2" name="clasific[]" value="InvestigacionFID" {{ in_array('InvestigacionFID', $clasification) ? 'checked' : '' }}> Investigacion FID
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <center><label>Disponibilidad</label></center>
+        </div>
+    </div>
+    @php
+        $disponible = json_decode($book->disponib);
+        if (is_null($disponible)){
+            $disponible=[];
+        }
+    @endphp
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mb-0">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" class="form-control2" name="disponib[]" value="Disponible" {{ in_array('Disponible', $disponible) ? 'checked' : '' }}> Disponible
                 </label>
             </div>
         </div>

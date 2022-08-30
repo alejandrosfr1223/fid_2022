@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('url_img_caratula')->nullable();     // URL de la imagen de la caratula del libro
             $table->text('notas')->nullable();
             $table->string('clasific')->nullable();
+            $table->string('precio')->nullable();
+            $table->string('disponib')->nullable();
             $table->timestamps();
         });
     }
