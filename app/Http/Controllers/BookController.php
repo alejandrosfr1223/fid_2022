@@ -91,6 +91,11 @@ class BookController extends Controller
     	return view('diffusion.editorialbv', ["books"=>$books]);
     }
 
+    function showDigs(){
+        $books = Book::all();
+        return view('documentation.dig_books', ["books"=>$books]);
+    }
+
     function showBookInfo($id){
         $book = Book::find($id);
         return view('diffusion.bookbv', ["book"=>$book]);

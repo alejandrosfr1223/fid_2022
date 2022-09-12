@@ -23,6 +23,6 @@ Route::get('dig_audiovideo', function () {
     return view('documentation.dig_audiovideo');
 })->name("dig_audiovideo");
 
-Route::get('dig_books', [BookController::class,"showBooks"])->name("dig_books");
+Route::get('dig_books', [BookController::class,"showDigs"])->name("dig_books");
 
 Route::get('dig_books/bookdig/{id}', [BookController::class,"showDigInfo"])->name("bookdig");
