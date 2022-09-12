@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
     return view('documentation.documentation');
@@ -22,6 +23,6 @@ Route::get('dig_audiovideo', function () {
     return view('documentation.dig_audiovideo');
 })->name("dig_audiovideo");
 
-Route::get('dig_books', function () {
-    return view('documentation.dig_books');
-})->name("dig_books");
+Route::get('dig_books', [BookController::class,"showBooks"])->name("dig_books");
+
+Route::get('dig_books/bookdig/{id}', [BookController::class,"showDigInfo"])->name("bookdig");

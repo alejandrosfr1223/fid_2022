@@ -232,6 +232,20 @@
                 </label>
             </div>
         </div>
+        <div class="col-sm-12 col-md-6 mb-0">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" class="form-control2" name="clasific[]" value="Digitalizacion1" {{ in_array('Digitalizacion1', $clasification) ? 'checked' : '' }}> Digitalización (Libro)
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mb-0">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" class="form-control2" name="clasific[]" value="Digitalizacion2" {{ in_array('Digitalizacion2', $clasification) ? 'checked' : '' }}> Digitalización (Audiovisual)
+                </label>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-12 mb-3">

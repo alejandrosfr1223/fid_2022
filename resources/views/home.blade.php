@@ -34,7 +34,7 @@
                     </div>
                     <div class="rightdivide">
                         <p id="infomaintext">
-                        {!! trans("home.welcome_txt") !!}
+                        El <b>Centro de Documentación FID</b> basa su actividad en la Formación, Investigación y Difusión en tres áreas fundamentales del conocimiento humano: la genealogía, el derecho genealogista y la historia. Para el desarrollo y promoción de sus actividades y proyectos dispone de un importante y extenso fondo bibliográfico y documental, el cual sirve de apoyo a las investigaciones genealógicas de <a href="https://sefaruniversal.com" style="text-decoration: none; color:white; font-weight: bold;">Sefar Universal</a>. 
                         </p>
                     </div>
                 </div>
@@ -48,7 +48,11 @@
                     <div class="leftdivide" id="dep_info_cnt">
                         <h2 style="color:#cca766;">{{ trans("home.departments") }}</h2>
                         <p>
-                        {!! trans("home.departments_txt") !!}
+                        El Centro de Documentación FID se compone de cuatro ramas:<br>
+                        <b>Formación</b>, con una atractiva oferta de cursos relacionados con los temas que rigen la labor de FID.<br>
+                        <b>Investigación</b>, con los trabajos y proyectos de investigación que se desarrollan en las áreas de genealogía, historia y derecho genealogista.<br>
+                        <b>Documentación</b>, con capacidad para la digitalización y catalogación de archivos biblio-hemerográficos, documentales y audiovisuales.<br>
+                        <b>Difusión</b>, que comprende las publicaciones de la Editorial BV, cuyos contenidos responden a las áreas temáticas del Centro de Documentación FID.
                         </p>
                     </div>
                     <div class="rightdivide row" id="btns_cnt_dept">
@@ -107,7 +111,7 @@
             </div>
             <div id="div_inapastorar" class="clmain_divpastora mv_cont2">
                 <h2>{{ trans("home.jdelrincon") }}</h2>
-                <p style="color: white;">{{ trans("home.jdelrincon_txt") }}</p>
+                <p style="color: white;">Te invitamos a colaborar con esta investigación histórico-genealógica en torno al capitán Juan del Rincón, descubridor y poblador de las Sierras Nevadas del Nuevo Reino de Granada, cuyo objeto es demostrar, mediante documentación fidedigna, el origen sefardí de este tronco común de muchos apellidos hispanoamericanos.</p>
                 <a class="loginbtns" id="discov_more2" href="https://www.corporacioncabv.com/jdr">Descubrir más</a>
             </div>
         </div>
@@ -121,7 +125,7 @@
             </div>
             <div id="div_inapastorar" class="clmain_divpastora mv_cont">
                 <h2>{{ trans("home.divpastora") }}</h2>
-                <p style="color: white;">{{ trans("home.divpastora_txt") }}</p>
+                <p style="color: white;">Te invitamos a colaborar con la investigación histórico-devocional que realizamos en torno a la Divina Pastora y a fray Isidoro de Sevilla, iniciador del culto a esta advocación mariana desde el convento de Capuchinos de Sevilla, cuna de la devoción pastoreña.</p>
                 <a class="loginbtns" id="discov_more" href="https://www.corporacioncabv.com/divinapastora">Descubrir más</a>
             </div>
         </div>
@@ -134,11 +138,11 @@
             <h2 style="text-align: center; padding-bottom: 20px;">El FID tiene como... </h2>
             <div class="mv_cont" id="mission">
                 <h2>{{ trans("home.mission") }}</h2>
-                <p>{{ trans("home.mission_txt") }}</p>
+                <p>Gestionar y difundir el conocimiento en las áreas de la genealogía, la historia y el derecho genealógico, garantizando el acceso a la información especializada que ofrece su fondo bibliográfico y documental; satisfacer la demanda de formación en dichas áreas, y contribuir al fomento de la cultura mediante la concepción y el desarrollo de proyectos editoriales sobre los temas mencionados.</p>
             </div>
             <div class="mv_cont" id="vision">
                 <h2>{{ trans("home.vision") }}</h2>
-                <p>{{ trans("home.vision_txt") }}</p>
+                <p>Alcanzar la excelencia en el manejo de los recursos de información, formación y difusión del conocimiento, con el fin de apoyar de manera eficiente el desarrollo de investigaciones, y la generación de productos y servicios en las materias de su competencia.</p>
             </div>
         </div>
     </div>

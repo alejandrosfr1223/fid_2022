@@ -96,6 +96,11 @@ class BookController extends Controller
         return view('diffusion.bookbv', ["book"=>$book]);
     }
 
+    function showDigInfo($id){
+        $book = Book::find($id);
+        return view('documentation.bookdig', ["book"=>$book]);
+    }
+
     function showInvest(){
     	$books= Book::all();
     	return view('investigation.hist_unit', ["books"=>$books]);

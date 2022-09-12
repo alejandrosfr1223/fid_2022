@@ -4,63 +4,6 @@
 
     <div>
         <div class="home_container">
-            <div class="submain_container">
-                <table style="height: 15rem; width: 100%; text-align: center;">
-                    <tr>
-                        <td>
-                            <div class='welcomescreen'>
-                                <span class="members_index_icons fa-stack fa-2x">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-book fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <h1 class="title_notmain">{{ trans("documentation.digtrans_unit") }}</h1>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="home_container notmain" id="whitebg">
-            <div id='departments_cont'>
-                <div class="leftdivide" id="dep_info_cnt">
-                    
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                </div>
-                <div class="rightdivide" id="logo_subpage">
-                    <div style="width: 100%; padding: 20px;">
-                        <center>
-                            <img src="{{ asset('/img/logos/onebranch.png') }}" class="svgcolor" style="transform: rotate(90deg);" />
-                            <h2>{{ trans("documentation.digtrans_unit") }}</h2>
-                        </center>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin:auto; width:100%;">
-                <div id="sub_elementscont2">
-                    <a href="{{route('documentation.dig_books')}}">
-                        <div class="cont_redirects">
-                            <span class="padicons members_index_icons fa-stack fa-2x">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-book fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <h3 class="bold">{{ trans("documentation.dig_books") }}</h3>
-                        </div>
-                    </a>
-                    <a href="{{route('documentation.dig_audiovideo')}}">
-                        <div class="cont_redirects">
-                            <span class="padicons members_index_icons fa-stack fa-2x">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-headphones fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <h3 class="bold">{{ trans("documentation.dig_audiovideo") }}</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
             <div id="carouselindicators" class="carousel slide" data-bs-ride="true" data-interval="false">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselindicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -99,6 +42,49 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+        </div>
+        <div class="home_container notmain" id="whitebg">
+            <div id='departments_cont'>
+                <div class="leftdivide" id="dep_info_cnt">
+                    
+                    <p>
+                        FID cuenta con los medios técnicos y profesionales requeridos para la digitalización de fondos documentales y bibliográficos, aplicando para ello su experiencia en el manejo de escáneres y software especializados.
+                    </p>
+                </div>
+                <div class="rightdivide" id="logo_subpage">
+                    <div style="width: 100%; padding: 20px;">
+                        <center>
+                            <img src="{{ asset('/img/logos/onebranch.png') }}" class="svgcolor" style="transform: rotate(90deg);" />
+                            <h2>{{ trans("documentation.digtrans_unit") }}</h2>
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin:auto; width:100%;">
+                <div id="sub_elementscont2">
+                    <a href="{{route('documentation.dig_books')}}">
+                        <div class="cont_redirects">
+                            <span class="padicons members_index_icons fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-book fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h3 class="bold">{{ trans("documentation.dig_books") }}</h3>
+                        </div>
+                    </a>
+                    <a href="{{route('documentation.dig_audiovideo')}}">
+                        <div class="cont_redirects">
+                            <span class="padicons members_index_icons fa-stack fa-2x">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-headphones fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h3 class="bold">{{ trans("documentation.dig_audiovideo") }}</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            
             
         </div>
         

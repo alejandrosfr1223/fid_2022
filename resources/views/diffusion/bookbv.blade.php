@@ -5,7 +5,8 @@
     @php
         $array = json_decode($book);
         $disponible = json_decode($array->disponib);
-        if (!in_array("Disponible", $disponible)) {
+        $clasific = json_decode($array->clasific);
+        if (!in_array("Disponible", $disponible) || !in_array("EditorialBV", $clasific)) {
             header("Location: /fid/diffusion/editorialbv");
             die();
         }

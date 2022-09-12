@@ -24,7 +24,7 @@
             <div id='departments_cont'>
                 <div class="leftdivide" id="dep_info_cnt">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Bajo el sello de Editorial BV, proyecta y desarrolla tres colecciones de libros destinadas a divulgar obras sobre las disciplinas que nos competen: Genealogía, Historia y Derecho.
                     </p>
                 </div>
                 <div class="rightdivide" id="logo_subpage">

@@ -25,7 +25,7 @@
                 <div class="leftdivide" id="dep_info_cnt">
                     
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        FID cuenta con los medios técnicos y profesionales necesarios para la digitalización de fondos documentales y bibliográficos, y de materiales audiovisuales. Suma a esto sus conocimientos en la organización de archivos con las técnicas de catalogación más actuales.
                     </p>
                 </div>
                 <div class="rightdivide" id="logo_subpage">
