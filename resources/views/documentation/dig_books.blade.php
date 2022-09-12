@@ -47,7 +47,7 @@
                         if (in_array("Digitalizacion1", $array)) {
                     @endphp
                     <div class="bookrow downborder">
-                        <div class="books">
+                        <div class="books" style="margin: auto;">
                             <img style="width:90%; padding:20px; margin:auto;" src="{{ asset('/img/logos/logo-fid-llave.png') }}" />
                         </div>
                         <div class="booksinfo">
