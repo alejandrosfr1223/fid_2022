@@ -37,6 +37,33 @@
                     </div>
                 </div>
             </div>
+            <div id="cont-books">
+                <center>
+                    <h2>Digitalizaciones</h2>
+                </center>
+                @foreach ($books as $book)
+                    @php
+                        $array = json_decode($book['clasific']);
+                        if (in_array("Digitalizacion1", $array)) {
+                    @endphp
+                    <div class="bookrow downborder">
+                        <div class="books">
+                            <img style="width:90%; padding:20px; margin:auto;" src="{{ asset('/img/logos/logo-fid-llave.png') }}" />
+                        </div>
+                        <div class="booksinfo">
+                            <h1>{{$book["titulo"]}}</h1>
+                            <h3>{{$book["autor"]}}</h3>
+                            <p>{{$book["notas"]}}</p>
+                        </div> 
+                        <div class="booksmoreinfo">
+                            <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>Descubrir más</a><br>
+                        </div>                   
+                    </div>
+                    @php
+                        }
+                    @endphp
+                @endforeach
+            </div>
         </div>
     </div>
 
