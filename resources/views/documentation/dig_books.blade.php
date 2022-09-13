@@ -56,7 +56,30 @@
                             <p>{{$book["notas"]}}</p>
                         </div> 
                         <div class="booksmoreinfo">
+                            @php
+                                if (isset($disponible)) {
+                                    if(in_array('Disponible', $disponible)){
+                            @endphp
+                            
+                            <a class="loginbtns" id='libro_{{$book["id"]}}' href='/fid/documentation/dig_books/bookdig/{{$book["id"]}}'>Descubrir más</a><br>
+
+                            @php
+                                    } else {
+                            @endphp
+
                             <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>Descubrir más</a><br>
+
+                            @php            
+                                    }
+                                } else {
+                            @endphp
+                            
+                            <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>Descubrir más</a><br>
+
+                            @php
+                                }
+                            @endphp
+                            
                         </div>                   
                     </div>
                     @php
