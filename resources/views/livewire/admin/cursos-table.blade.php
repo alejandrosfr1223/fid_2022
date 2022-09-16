@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row m-2">
-                    <h2 class="card-title flex-1"><strong>Lista de libros</strong></h2>
+                    <h2 class="card-title flex-1"><strong>Lista de cursos</strong></h2>
                     <div class="card-tools flex-1">
                         <div class="input-group input-group-sm">
                             <input wire:model="search" type="text" class="form-control float-right" placeholder="Buscar">
@@ -31,55 +31,45 @@
                     </div>
                 </div>
             </div>
-            @can('admin.crud.books.create')
-                <a href="{{ route('admin.books.create') }}" class="btn btn-secondary m-4">
+            @can('admin.crud.cursos.create')
+                <a href="{{ route('admin.cursos.create') }}" class="btn btn-secondary m-4">
                     Añadir libro
                 </a>
             @endcan
 
             <div class="card-body table-responsive p-0">
-                @if ($books->count())
+                @if ($cursos->count())
                 <table class="table table-hover text-wrap">
                     <thead>
                         <tr>
-                            <th>Tapa</th> {{-- ID --}}
-                            <th>Titulo / Autor</th>
+                            <th>Titulo / Ponente</th> {{-- ID --}}
                             <th>Creado</th>
                             <th>Actualizado</th>
-                            @can('admin.crud.books.edit')
+                            @can('admin.crud.cursos.edit')
                             <th class="text-center">Editar</th>
                             @endcan
-                            @can('admin.crud.books.destroy')
+                            @can('admin.crud.cursos.destroy')
                             <th class="text-center">Eliminar</th>
                             @endcan
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($books as $book)
+                        @foreach ($cursos as $curso)
                         <tr>
-                            <td title="{{ $book->id }}">
-                                <img
-                                    src="{{ $book->url_img_caratula }}"
-                                    {{-- onerror="this.onerror=null; this.src='/img/caratula.jpg'" --}}
-                                    onerror="this.src='{{ asset('img/caratula.jpg') }}'"
-                                    alt="{{ 'Caratula de ' . $book->titulo }}"
-                                    class="img-size-32 mr-2"
-                                >
+                            <td title="{{ $curso->id }}">
+                                <p class="m-0">{{ $curso->titulo }}</p>
+                                <small><strong>{{ $curso->ponente }}</strong></small>
                             </td>
-                            <td>
-                                <p class="m-0">{{ $book->titulo }}</p>
-                                <small><strong>{{ $book->autor }}</strong></small>
-                            </td>
-                            <td>{{ $book->created_at }}</td>
-                            <td>{{ $book->updated_at }}</td>
-                            @can('admin.crud.books.edit')
+                            <td>{{ $curso->created_at }}</td>
+                            <td>{{ $curso->updated_at }}</td>
+                            @can('admin.crud.cursos.edit')
                             <td class="text-center">
-                                <a href="{{ route('admin.books.edit', $book) }}" title="Editar"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('admin.cursos.edit', $curso) }}" title="Editar"><i class="fas fa-edit"></i></a>
                             </td>
                             @endcan
-                            @can('admin.crud.books.destroy')
+                            @can('admin.crud.cursos.destroy')
                             <td class="text-center">
-                                <form action="{{ route('admin.books.destroy', $book) }}" method="POST">
+                                <form action="{{ route('admin.cursos.destroy', $curso) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button
@@ -96,7 +86,7 @@
                     </tbody>
                 </table>
                 <div class="m-4">
-                    {{ $books->links() }}
+                    {{ $cursos->links() }}
                 </div>
                 @else
                     <div class="m-4">

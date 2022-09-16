@@ -286,6 +286,12 @@ return [
             'icon' => 'fas fa-fw fa-book',
             'can'  => 'admin.crud.books.index',
         ],
+        [
+            'text' => 'Cursos',
+            'url'  => 'admin/cursos',
+            'icon' => 'fas fa-fw fa-school',
+            'can'  => 'admin.crud.cursos.index',
+        ],
 
         /* Administración de la cuenta FID */
         /* ['header' => 'account_settings'],

@@ -25,9 +25,8 @@
 
             <div id='departments_cont'>
                 <div class="leftdivide" id="dep_info_cnt">
-                    
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        FID dispone de un amplio fondo bibliográfico y documental gestionado mediante una base de datos, que sirve de sustento para la realización de trabajos de investigación en las áreas de genealogía, historia y derecho genealógico.
                     </p>
                 </div>
                 <div class="rightdivide" id="logo_subpage">

@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CursoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Traits\HasRoles;
@@ -15,6 +16,7 @@ Route::get('/', function () {
     }else{
         if(Auth::user()->hasRole('Operador')){
             return view('admin.crud.books.index');
+            return view('admin.crud.cursos.index');
         } else {
             return view('dashboard');
         }
@@ -54,6 +56,9 @@ Route::resource('permissions', PermissionController::class)->names('permissions'
 
 Route::resource('books', BookController::class)->names('books')
     ->middleware('can:admin.crud.books.index');
+
+Route::resource('cursos', CursoController::class)->names('cursos')
+    ->middleware('can:admin.crud.cursos.index');
 
 Route::get('test', function () {
     return view('admin.layouts.test');

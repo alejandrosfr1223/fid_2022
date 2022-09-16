@@ -23,9 +23,8 @@
         <div class="home_container notmain" id="whitebg">
             <div id='departments_cont'>
                 <div class="leftdivide" id="dep_info_cnt">
-                    
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Los fondos documentales y bilbiohemerográficos de FID permiten el desarrollo de proyectos de investigación en las áreas de la historia y la genealogía.
                     </p>
                 </div>
                 <div class="rightdivide" id="logo_subpage">
@@ -59,7 +58,7 @@
                     </div>
                     <div class="booksinfo">
                         <h1>{{ trans("home.jdelrincon") }}</h1>
-                        <p>{{ trans("home.jdelrincon_txt") }}</p>
+                        <p>Te invitamos a colaborar con esta investigación histórico-genealógica en torno al capitán Juan del Rincón, descubridor y poblador de las Sierras Nevadas del Nuevo Reino de Granada, cuyo objeto es demostrar, mediante documentación fidedigna, el origen sefardí de este tronco común de muchos apellidos hispanoamericanos.</p>
                     </div> 
                     <div class="booksmoreinfo">
                         <a class="loginbtns" id='goto_divinapastora' href="https://www.corporacioncabv.com/jdr">Descubrir más</a><br>
