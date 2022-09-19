@@ -39,11 +39,8 @@
             <div style="margin:auto; width:100%;">
                 <div id="sub_elementscont1">
                     <a href="{{route('diffusion.editorialbv')}}">
-                        <div class="cont_redirects">
-                            <span class="padicons members_index_icons fa-stack fa-2x">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-book fa-stack-1x fa-inverse"></i>
-                            </span>
+                        <div class="cont_redirects infoproducts">
+                            <img src="{{ asset('/img/bv/logo.png') }}" class="pageprod" />
                             <h3 class="bold">{{ trans("diffusion.ebv") }}</h3>
                         </div>
                     </a>

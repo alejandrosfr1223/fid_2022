@@ -86,14 +86,24 @@ class CursoController extends Controller
         return view('admin.crud.cursos.edit', compact('curso'));
     }
 
-    function showDigs(){
+    function showcongresos(){
         $cursos = Curso::all();
-        return view('documentation.dig_cursos', ["cursos"=>$cursos]);
+        return view('formation.congress', ["cursos"=>$cursos]);
     }
 
-    function showDigInfo($id){
+    function showcongreso($id){
         $curso = Curso::find($id);
-        return view('documentation.cursodig', ["curso"=>$curso]);
+        return view('formation.showcongress', ["curso"=>$curso]);
+    }
+
+    function showcursos(){
+        $cursos = Curso::all();
+        return view('formation.course', ["cursos"=>$cursos]);
+    }
+
+    function showcurso($id){
+        $curso = Curso::find($id);
+        return view('formation.showcourse', ["curso"=>$curso]);
     }
 
     /**

@@ -29,7 +29,7 @@
             <div class="half_prod_inv half_prod_inv_l">
                 <img src="{{ asset('/img/logos/vector-logo.svg') }}" class="backg-ovrl2">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    El Centro de Documentación FID, ofrece la elaboración de un Libro de Familia, basado en la información genealógica documental del interesado y todo lo  que se quiera agregar (anécdotas, tradiciones, logros, tragedias y aventuras). Es una manera original y hermosa de guardar la memoria familiar.
                 </p>
             </div>
             <div class="half_prod_inv half_prod_inv_r">

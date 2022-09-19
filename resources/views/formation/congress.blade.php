@@ -38,7 +38,55 @@
                 </div>
             </div>
 
+            <div id="cont-books">
+                <center>
+                    <h2>Congresos Disponibles</h2>
+                </center>
+                @foreach ($cursos as $curso)
+                    @php
+                        $array = json_decode($curso['clasific']);
+                        if (in_array("Congreso", $array)) {
+                    @endphp
+                    <div class="bookrow downborder">
+                        <div class="books" style="margin: auto;">
+                            <img style="width:90%; padding:20px; margin:auto;" src="{{ asset('/img/logos/logo-fid-llave.png') }}" />
+                        </div>
+                        <div class="booksinfo">
+                            <h1>{{$curso["titulo"]}}</h1>
+                            <h3>{{$curso["ponente"]}}</h3>
+                        </div> 
+                        <div class="booksmoreinfo">
+                            @php
+                                if (isset($disponible)) {
+                                    if(in_array('Disponible', $disponible)){
+                            @endphp
+                            
+                            <a class="loginbtns" id='libro_{{$curso["id"]}}' href='/fid/documentation/dig_books/bookdig/{{$curso["id"]}}'>Descubrir más</a><br>
 
+                            @php
+                                    } else {
+                            @endphp
+
+                            <a class="loginbtns viewbook" id='libro_{{$curso["id"]}}'>Descubrir más</a><br>
+
+                            @php            
+                                    }
+                                } else {
+                            @endphp
+                            
+                            <a class="loginbtns viewbook" id='libro_{{$curso["id"]}}'>Descubrir más</a><br>
+
+                            @php
+                                }
+                            @endphp
+                            
+                        </div>                   
+                    </div>
+                    @php
+                        }
+                    @endphp
+                @endforeach
+            </div>
         </div>
     </div>
 

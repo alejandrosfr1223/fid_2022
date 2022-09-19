@@ -29,7 +29,7 @@
             <div class="half_prod_inv half_prod_inv_l2">
                 <img src="{{ asset('/img/logos/vector-logo.svg') }}" class="backg-ovrl2">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Un árbol genealógico es la representación gráfica de las relaciones entre los miembros de una familia. Es una manera de visualizar la historia familiar. El equipo especializado de genealogistas e historiadores de Sefar Universal, basándose en los materiales almacenados en el Centro de Documentación FID, ofrece la maravillosa oportunidad de elaborar árboles genealógicos muy completos mostrando gráficamente la descendencia o ascendencia de una persona.
                 </p>
             </div>
             <div class="half_prod_inv half_prod_inv_r2">

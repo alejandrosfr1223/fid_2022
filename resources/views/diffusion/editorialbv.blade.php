@@ -30,7 +30,7 @@
                 <div class="rightdivide" id="logo_subpage">
                     <div style="width: 100%; padding: 20px;">
                         <center>
-                            <img src="{{ asset('/img/logos/onebranch.png') }}" class="svgcolor"/>
+                            <img src="{{ asset('/img/bv/logo.png') }}" class="svgcolor"/>
                             <h2>{{ trans("diffusion.ebv") }}</h2>
                         </center>
                     </div>
