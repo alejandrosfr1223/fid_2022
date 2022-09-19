@@ -98,7 +98,7 @@ class CursoController extends Controller
 
     function showcursos(){
         $cursos = Curso::all();
-        return view('formation.course', ["cursos"=>$cursos]);
+        return view('formation.courses', ["cursos"=>$cursos]);
     }
 
     function showcurso($id){
