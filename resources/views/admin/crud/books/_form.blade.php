@@ -273,15 +273,12 @@
             <center><label>Carrucel</label></center>
         </div>
     </div>
-    @php
-        $carrucel = json_decode($book->carrucel);
-        if (is_null($carrucel)){
-            $carrucel=[];
-        }
-    @endphp
     <style>
         .imgloaders{
             text-align:center;
+        }
+        .imgloaders input{
+            margin:auto;
         }
     </style>
     <script>
@@ -302,6 +299,8 @@
         }
 
         function d_img1(){
+            document.getElementById("dimg1").style.display = 'none';
+            document.getElementById("limg1").style.display = 'block';
             document.getElementById("img_1").value = "";
             Swal.fire({
                 icon: 'success',
@@ -312,6 +311,8 @@
         }
 
         function d_img2(){
+            document.getElementById("dimg2").style.display = 'none';
+            document.getElementById("limg2").style.display = 'block';
             document.getElementById("img_2").value = "";
             Swal.fire({
                 icon: 'success',
@@ -322,6 +323,8 @@
         }
 
         function d_img3(){
+            document.getElementById("dimg3").style.display = 'none';
+            document.getElementById("limg3").style.display = 'block';
             document.getElementById("img_3").value = "";
             Swal.fire({
                 icon: 'success',
@@ -332,6 +335,8 @@
         }
 
         function d_img4(){
+            document.getElementById("dimg4").style.display = 'none';
+            document.getElementById("limg4").style.display = 'block';
             document.getElementById("img_4").value = "";
             Swal.fire({
                 icon: 'success',
@@ -342,6 +347,8 @@
         }
 
         function img1(){
+            document.getElementById("dimg1").style.display = 'block';
+            document.getElementById("limg1").style.display = 'none';
             var filename = document.getElementById("img_1").value;
             if(filename!=""){
                 Swal.fire({
@@ -354,6 +361,8 @@
         }
 
         function img2(){
+            document.getElementById("dimg2").style.display = 'block';
+            document.getElementById("limg2").style.display = 'none';
             var filename = document.getElementById("img_2").value;
             if(filename!=""){
                 Swal.fire({
@@ -366,6 +375,8 @@
         }
 
         function img3(){
+            document.getElementById("dimg3").style.display = 'block';
+            document.getElementById("limg3").style.display = 'none';
             var filename = document.getElementById("img_3").value;
             if(filename!=""){
                 Swal.fire({
@@ -378,6 +389,8 @@
         }
 
         function img4(){
+            document.getElementById("dimg4").style.display = 'block';
+            document.getElementById("limg4").style.display = 'none';
             var filename = document.getElementById("img_4").value;
             if(filename!=""){
                 Swal.fire({
@@ -393,33 +406,97 @@
         <div class="col-sm-12 col-md-3 mb-0">
             <div class="form-group imgloaders">
                 <label>Imagen 1</label><br>
+                @php
+                    if ($book->img_1 == null){
+                @endphp
+
                 <input type="button" id="limg1" onclick="l_img1()" class="btn btn-primary" value="Cargar Imagen">
+                <input type="button" id="dimg1" onclick="d_img1()" class="btn btn-danger" value="Borrar Imagen" style="display:none;">
+
+                @php    
+                    } else {
+                @endphp
+
+                <input type="button" id="limg1" onclick="l_img1()" class="btn btn-primary" value="Cargar Imagen" style="display:none;">
                 <input type="button" id="dimg1" onclick="d_img1()" class="btn btn-danger" value="Borrar Imagen">
-                <input type="file" onchange="img1()" accept="image/x-png,image/gif,image/jpeg" id="img_1" name="img_1">
+
+                @php         
+                    }
+                @endphp
+                
+                <input type="file" onchange="img1()" value="{{ old('img_1', $book->img_1) }}" accept="image/x-png,image/gif,image/jpeg" id="img_1" name="img_1" style="display:none;">
             </div>
         </div>
         <div class="col-sm-12 col-md-3 mb-0">
             <div class="form-group imgloaders">
                 <label>Imagen 2</label><br>
+                @php
+                    if ($book->img_2 == null){
+                @endphp
+
                 <input type="button" id="limg2" onclick="l_img2()" class="btn btn-primary" value="Cargar Imagen">
+                <input type="button" id="dimg2" onclick="d_img2()" class="btn btn-danger" value="Borrar Imagen" style="display:none;">
+
+                @php    
+                    } else {
+                @endphp
+
+                <input type="button" id="limg2" onclick="l_img2()" class="btn btn-primary" value="Cargar Imagen" style="display:none;">
                 <input type="button" id="dimg2" onclick="d_img2()" class="btn btn-danger" value="Borrar Imagen">
-                <input type="file" onchange="img2()" accept="image/x-png,image/gif,image/jpeg" id="img_2" name="img_2">
+                
+                @php         
+                    }
+                @endphp
+                
+                <input type="file" onchange="img2()" value="{{ old('img_2', $book->img_2) }}" accept="image/x-png,image/gif,image/jpeg" id="img_2" name="img_2" style="display:none;">
             </div>
         </div>
         <div class="col-sm-12 col-md-3 mb-0">
             <div class="form-group imgloaders">
                 <label>Imagen 3</label><br>
+                @php
+                    if ($book->img_3 == null){
+                @endphp
+
                 <input type="button" id="limg3" onclick="l_img3()" class="btn btn-primary" value="Cargar Imagen">
+                <input type="button" id="dimg3" onclick="d_img3()" class="btn btn-danger" value="Borrar Imagen" style="display:none;">
+
+                @php    
+                    } else {
+                @endphp
+
+                <input type="button" id="limg3" onclick="l_img3()" class="btn btn-primary" value="Cargar Imagen" style="display:none;">
                 <input type="button" id="dimg3" onclick="d_img3()" class="btn btn-danger" value="Borrar Imagen">
-                <input type="file" onchange="img3()" accept="image/x-png,image/gif,image/jpeg" id="img_3" name="img_3">
+                
+                @php         
+                    }
+                @endphp
+                
+                <input type="file" onchange="img3()" value="{{ old('img_3', $book->img_3) }}" accept="image/x-png,image/gif,image/jpeg" id="img_3" name="img_3" style="display:none;">
             </div>
         </div>
         <div class="col-sm-12 col-md-3 mb-0">
             <div class="form-group imgloaders">
                 <label>Imagen 4</label><br>
+                @php
+                    if ($book->img_4 == null){
+                @endphp
+
                 <input type="button" id="limg4" onclick="l_img4()" class="btn btn-primary" value="Cargar Imagen">
+                <input type="button" id="dimg4" onclick="d_img4()" class="btn btn-danger" value="Borrar Imagen" style="display:none;">
+
+                @php    
+                    } else {
+                @endphp
+
+                <input type="button" id="limg4" onclick="l_img4()" class="btn btn-primary" value="Cargar Imagen" style="display:none;">
                 <input type="button" id="dimg4" onclick="d_img4()" class="btn btn-danger" value="Borrar Imagen">
-                <input type="file" onchange="img4()" accept="image/x-png,image/gif,image/jpeg" id="img_4" name="img_4">
+                
+                @php         
+                    }
+                @endphp
+                
+                <input type="file" onchange="img4()" value="{{ old('img_4', $book->img_4) }}" accept="image/x-png,image/gif,image/jpeg" id="img_4" name="img_4" style="display:none;">
             </div>
         </div>
     </div>
