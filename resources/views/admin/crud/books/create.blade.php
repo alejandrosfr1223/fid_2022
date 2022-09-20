@@ -12,7 +12,7 @@
         <div class="card-header m-4">
             <h3 class="card-title">Añadir libro</h3>
         </div>
-        <form action="{{ route('admin.books.store') }}" method="POST">
+        <form action="{{ route('admin.books.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
 
             @include('admin.crud.books._form')

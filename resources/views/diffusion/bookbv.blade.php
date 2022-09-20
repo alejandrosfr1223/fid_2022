@@ -30,6 +30,10 @@
             transition: 0.5s;
             position: relative;
         }
+        .botones-d{
+            width: 280px !important;
+            min-width: 280px !important;
+        }
         @media screen and (max-width: 990px) {
             .displaymobile{
                 display: block;
@@ -43,6 +47,10 @@
             }
             #bookdesc{
                 text-align: center;
+            }
+            .botones-d{
+                width: 100% !important;
+                min-width: 0px !important;
             }
         }
     </style>
@@ -84,20 +92,20 @@
                 </h3>
             </div>
         </div>
-        <div class="marginauto">
+        <div class="marginauto botones-d">
             @php
                 if ($book["precio"] == "0" || $book["precio"] == 0){
             @endphp
                 <center>
                     @if (Route::has('login'))
                         @auth
-                            <a class="loginbtns" style="padding:0 15px; margin:0; max-width: 80%;" id="discov_more2" href="#">Descargar Gratis</a>
+                            <a class="loginbtns" style="padding:0 15px; margin:0; max-width: 100%;" id="discov_more2" href="#">Descargar Gratis</a>
                         @else
-                            <a class="loginbtns" style="padding:0 15px; margin:0; max-width: 80%;" id="discov_more2" href="{{route('login')}}">Descargar Gratis</a>
+                            <a class="loginbtns" style="padding:0 15px; margin:0; max-width: 100%;" id="discov_more2" href="{{route('login')}}">Descargar Gratis</a>
                         @endauth
                     @endif
                     
-                    <a class="loginbtns" style="padding:0 15px; max-width: 80%;" id="discov_more2" href="#">Previsualizar</a>
+                    <a class="loginbtns" style="padding:0 15px; max-width: 100%;" id="discov_more2" href="#">Previsualizar</a>
                 </center>
             @php
                 } else {
@@ -106,13 +114,13 @@
                     <h3>Precio: <b>{{ $book["precio"] }}$</b></h3>
                     @if (Route::has('login'))
                         @auth
-                            <a class="loginbtns" style="padding:0 15px; margin:0; max-width: 80%;" id="discov_more2" href="#">Añadir al Carrito</a>
+                            <a class="loginbtns" style="padding:0 15px; margin:0; max-width: 100%;" id="discov_more2" href="#">Añadir al Carrito</a>
                         @else
-                            <a class="loginbtns" style="padding:0 15px; margin:0; max-width: 80%;" id="discov_more2" href="{{route('login')}}">Añadir al Carrito</a>
+                            <a class="loginbtns" style="padding:0 15px; margin:0; max-width: 100%;" id="discov_more2" href="{{route('login')}}">Añadir al Carrito</a>
                         @endauth
                     @endif
                     
-                    <a class="loginbtns" style="padding:0 15px; max-width: 80%;" id="discov_more2" href="#">Previsualizar</a>
+                    <a class="loginbtns" style="padding:0 15px; max-width: 100%;" id="discov_more2" href="#">Previsualizar</a>
                 </center>
             @php
                 }

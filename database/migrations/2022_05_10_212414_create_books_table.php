@@ -27,6 +27,10 @@ return new class extends Migration
             $table->string('clasific')->nullable();
             $table->string('precio')->nullable();
             $table->string('disponib')->nullable();
+            $table->text('img_1')->nullable();
+            $table->text('img_2')->nullable();
+            $table->text('img_3')->nullable();
+            $table->text('img_4')->nullable();
             $table->timestamps();
         });
     }

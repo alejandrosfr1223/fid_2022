@@ -45,6 +45,7 @@
                 @foreach ($cursos as $curso)
                     @php
                         $array = json_decode($curso['clasific']);
+                        $disponible = json_decode($curso['disponib']);
                         if (in_array("Congreso", $array)) {
                     @endphp
                     <div class="bookrow downborder">
@@ -61,20 +62,20 @@
                                     if(in_array('Disponible', $disponible)){
                             @endphp
                             
-                            <a class="loginbtns" id='libro_{{$curso["id"]}}' href='/fid/documentation/dig_books/bookdig/{{$curso["id"]}}'>Descubrir más</a><br>
+                            <a class="loginbtns" id='congreso_{{$curso["id"]}}' href='/fid/formation/congress/showcongress/{{$curso["id"]}}'>Descubrir más</a><br>
 
                             @php
                                     } else {
                             @endphp
 
-                            <a class="loginbtns viewbook" id='libro_{{$curso["id"]}}'>Descubrir más</a><br>
+                            <a class="loginbtns viewbook 1" id='congreso_{{$curso["id"]}}'>Descubrir más</a><br>
 
                             @php            
                                     }
                                 } else {
                             @endphp
                             
-                            <a class="loginbtns viewbook" id='libro_{{$curso["id"]}}'>Descubrir más</a><br>
+                            <a class="loginbtns viewbook 2" id='congreso_{{$curso["id"]}}'>Descubrir más</a><br>
 
                             @php
                                 }

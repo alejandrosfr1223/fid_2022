@@ -40,7 +40,11 @@ class BookController extends Controller
         // Validación
         $request->validate([
             'titulo' => 'required|max:254',
-            'enlace' => 'required'
+            'enlace' => 'required',
+            'img_1' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_2' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_3' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_4' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
             /*
             'autor',
             'editorial',
@@ -53,6 +57,42 @@ class BookController extends Controller
         ]);
 
         $input = $request->all();
+
+        $temp1 = null;
+        if($request->hasFile('img_1')){
+            $temp1 = $request->file('img_1')->store('carrucellibros', 'public');
+        }
+
+        $temp2 = null;
+        if($request->hasFile('img_2')){
+            $temp2 = $request->file('img_2')->store('carrucellibros', 'public');
+        }
+
+        $temp3 = null;
+        if($request->hasFile('img_3')){
+            $temp3 = $request->file('img_3')->store('carrucellibros', 'public');
+        }
+
+        $temp4 = null;
+        if($request->hasFile('img_4')){
+            $temp4 = $request->file('img_4')->store('carrucellibros', 'public');
+        }
+
+        if (!isset($input["img_1"])){
+            $input["img_1"] = null;
+        }
+
+        if (!isset($input["img_2"])){
+            $input["img_2"] = null;
+        }
+
+        if (!isset($input["img_3"])){
+            $input["img_3"] = null;
+        }
+
+        if (!isset($input["img_4"])){
+            $input["img_4"] = null;
+        }
 
         $input["clasific"] = json_encode($request->clasific);
         $input["disponib"] = json_encode($request->disponib);
@@ -135,7 +175,11 @@ class BookController extends Controller
         // Validación
         $request->validate([
             'titulo' => 'required|max:254',
-            'enlace' => 'required'
+            'enlace' => 'required',
+            'img_1' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_2' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_3' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_4' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
             /*
             'autor',
             'editorial',
@@ -147,8 +191,31 @@ class BookController extends Controller
             */
         ]);
 
-
         $input = $request->all();
+
+        $temp1 = null;
+        if($request->hasFile('img_1')){
+            $temp1 = $request->file('img_1')->store('carrucellibros', 'public');
+            $input["img_1"] = $temp1;
+        }
+
+        $temp2 = null;
+        if($request->hasFile('img_2')){
+            $temp2 = $request->file('img_2')->store('carrucellibros', 'public');
+            $input["img_2"] = $temp2;
+        }
+
+        $temp3 = null;
+        if($request->hasFile('img_3')){
+            $temp3 = $request->file('img_3')->store('carrucellibros', 'public');
+            $input["img_3"] = $temp3;
+        }
+
+        $temp4 = null;
+        if($request->hasFile('img_4')){
+            $temp4 = $request->file('img_4')->store('carrucellibros', 'public');
+            $input["img_4"] = $temp4;
+        }
 
         if (!isset($input["disponib"])){
             $input["disponib"] = [];
@@ -156,6 +223,22 @@ class BookController extends Controller
 
         if (!isset($input["clasific"])){
             $input["clasification"] = [];
+        }
+
+        if (!isset($input["img_1"])){
+            $input["img_1"] = null;
+        }
+
+        if (!isset($input["img_2"])){
+            $input["img_2"] = null;
+        }
+
+        if (!isset($input["img_3"])){
+            $input["img_3"] = null;
+        }
+
+        if (!isset($input["img_4"])){
+            $input["img_4"] = null;
         }
 
         // actualizando book

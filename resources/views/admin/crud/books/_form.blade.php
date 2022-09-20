@@ -210,6 +210,7 @@
             box-shadow: inset 0 0 0 transparent;
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
+
     </style>
     @php
         $clasification = json_decode($book->clasific);
@@ -264,6 +265,161 @@
                 <label>
                     <input type="checkbox" class="form-control2" name="disponib[]" value="Disponible" {{ in_array('Disponible', $disponible) ? 'checked' : '' }}> Disponible
                 </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <center><label>Carrucel</label></center>
+        </div>
+    </div>
+    @php
+        $carrucel = json_decode($book->carrucel);
+        if (is_null($carrucel)){
+            $carrucel=[];
+        }
+    @endphp
+    <style>
+        .imgloaders{
+            text-align:center;
+        }
+    </style>
+    <script>
+        function l_img1(){
+            document.getElementById("img_1").click();
+        }
+
+        function l_img2(){
+            document.getElementById("img_2").click();
+        }
+
+        function l_img3(){
+            document.getElementById("img_3").click();
+        }
+
+        function l_img4(){
+            document.getElementById("img_4").click();
+        }
+
+        function d_img1(){
+            document.getElementById("img_1").value = "";
+            Swal.fire({
+                icon: 'success',
+                title: 'Imagen eliminada correctamente',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+
+        function d_img2(){
+            document.getElementById("img_2").value = "";
+            Swal.fire({
+                icon: 'success',
+                title: 'Imagen eliminada correctamente',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+
+        function d_img3(){
+            document.getElementById("img_3").value = "";
+            Swal.fire({
+                icon: 'success',
+                title: 'Imagen eliminada correctamente',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+
+        function d_img4(){
+            document.getElementById("img_4").value = "";
+            Swal.fire({
+                icon: 'success',
+                title: 'Imagen eliminada correctamente',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+
+        function img1(){
+            var filename = document.getElementById("img_1").value;
+            if(filename!=""){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Imagen cargada correctamente',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        }
+
+        function img2(){
+            var filename = document.getElementById("img_2").value;
+            if(filename!=""){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Imagen cargada correctamente',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        }
+
+        function img3(){
+            var filename = document.getElementById("img_3").value;
+            if(filename!=""){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Imagen cargada correctamente',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        }
+
+        function img4(){
+            var filename = document.getElementById("img_4").value;
+            if(filename!=""){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Imagen cargada correctamente',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        }
+    </script>
+    <div class="row" id="img_s">
+        <div class="col-sm-12 col-md-3 mb-0">
+            <div class="form-group imgloaders">
+                <label>Imagen 1</label><br>
+                <input type="button" id="limg1" onclick="l_img1()" class="btn btn-primary" value="Cargar Imagen">
+                <input type="button" id="dimg1" onclick="d_img1()" class="btn btn-danger" value="Borrar Imagen">
+                <input type="file" onchange="img1()" accept="image/x-png,image/gif,image/jpeg" id="img_1" name="img_1">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 mb-0">
+            <div class="form-group imgloaders">
+                <label>Imagen 2</label><br>
+                <input type="button" id="limg2" onclick="l_img2()" class="btn btn-primary" value="Cargar Imagen">
+                <input type="button" id="dimg2" onclick="d_img2()" class="btn btn-danger" value="Borrar Imagen">
+                <input type="file" onchange="img2()" accept="image/x-png,image/gif,image/jpeg" id="img_2" name="img_2">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 mb-0">
+            <div class="form-group imgloaders">
+                <label>Imagen 3</label><br>
+                <input type="button" id="limg3" onclick="l_img3()" class="btn btn-primary" value="Cargar Imagen">
+                <input type="button" id="dimg3" onclick="d_img3()" class="btn btn-danger" value="Borrar Imagen">
+                <input type="file" onchange="img3()" accept="image/x-png,image/gif,image/jpeg" id="img_3" name="img_3">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 mb-0">
+            <div class="form-group imgloaders">
+                <label>Imagen 4</label><br>
+                <input type="button" id="limg4" onclick="l_img4()" class="btn btn-primary" value="Cargar Imagen">
+                <input type="button" id="dimg4" onclick="d_img4()" class="btn btn-danger" value="Borrar Imagen">
+                <input type="file" onchange="img4()" accept="image/x-png,image/gif,image/jpeg" id="img_4" name="img_4">
             </div>
         </div>
     </div>

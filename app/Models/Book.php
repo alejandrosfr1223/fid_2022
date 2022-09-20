@@ -22,5 +22,9 @@ class Book extends Model
         'clasific',
         'precio',
         'disponib',
+        'img_1',
+        'img_2',
+        'img_3',
+        'img_4'
     ];
 }

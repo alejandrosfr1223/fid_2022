@@ -12,7 +12,7 @@
         <div class="card-header m-4">
             <h3 class="card-title">Editar libro</h3>
         </div>
-        <form action="{{ route('admin.books.update', $book) }}" method="POST">
+        <form action="{{ route('admin.books.update', $book) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('put')
 
