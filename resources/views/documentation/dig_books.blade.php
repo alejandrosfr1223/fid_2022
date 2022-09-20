@@ -44,6 +44,7 @@
                 @foreach ($books as $book)
                     @php
                         $array = json_decode($book['clasific']);
+                        $disponible = json_decode($book['disponib']);
                         if (in_array("Digitalizacion1", $array)) {
                     @endphp
                     <div class="bookrow downborder">
@@ -67,14 +68,14 @@
                                     } else {
                             @endphp
 
-                            <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>Descubrir más</a><br>
+                            <a class="loginbtns viewbook 2" id='libro_{{$book["id"]}}'>Descubrir más</a><br>
 
                             @php            
                                     }
                                 } else {
                             @endphp
                             
-                            <a class="loginbtns viewbook" id='libro_{{$book["id"]}}'>Descubrir más</a><br>
+                            <a class="loginbtns viewbook 3" id='libro_{{$book["id"]}}'>Descubrir más</a><br>
 
                             @php
                                 }
