@@ -25,7 +25,7 @@
                 <div class="leftdivide" id="dep_info_cnt">
                     
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Diseño y oferta de cursos cortos y diplomados sincrónicos y asincrónicos, que contribuyan al conocimiento específico en las áreas de experticia del FID y avalados por las casas de estudio e institutos de investigación más importantes de América Latina y Europa.
                     </p>
                 </div>
                 <div class="rightdivide" id="logo_subpage">
