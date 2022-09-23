@@ -10,12 +10,12 @@
 
     <link rel="text/javascript" href="{{ asset('/js/bootstrap.min.js') }}" />
 
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ asset('/css/imgdeclare.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ asset('/css/stylesapp.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('/css/app.css') }}?1" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('/css/imgdeclare.css') }}?1" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('/css/stylesapp.css') }}?1" rel="stylesheet" type="text/css" >
 
-    <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/js.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/app.js') }}?1"></script>
+    <script type="text/javascript" src="{{ asset('/js/js.js') }}?1"></script>
     
 </head>
 <body>
