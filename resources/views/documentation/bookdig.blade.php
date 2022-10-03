@@ -160,25 +160,25 @@
             @php
                 if($book["img_1"]!=null){
             @endphp
-                    <img src='{{ asset("/storage/".$book["img_1"]) }}' id="img_1" class="img_show_page">
+                    <img src='{{ $book["img_1"] }}' id="img_1" class="img_show_page">
             @php
                 }
 
                 if($book["img_2"]!=null){
             @endphp
-                    <img src='{{ asset("/storage/".$book["img_2"]) }}' id="img_2" class="img_show_page">
+                    <img src='{{ $book["img_2"] }}' id="img_2" class="img_show_page">
             @php
                 }
                 
                 if($book["img_3"]!=null){
             @endphp
-                    <img src='{{ asset("/storage/".$book["img_3"]) }}' id="img_3" class="img_show_page">
+                    <img src='{{ $book["img_3"] }}' id="img_3" class="img_show_page">
             @php
                 }
                 
                 if($book["img_4"]!=null){
             @endphp
-                    <img src='{{ asset("/storage/".$book["img_4"]) }}' id="img_4" class="img_show_page">
+                    <img src='{{ $book["img_4"] }}' id="img_4" class="img_show_page">
             @php
                 }
             @endphp
