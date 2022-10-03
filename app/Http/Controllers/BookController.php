@@ -83,22 +83,6 @@ class BookController extends Controller
             $input["img_4"] = Storage::disk('s3')->url($temp4);
         }
 
-        if (!isset($input["img_1"])){
-            $input["img_1"] = null;
-        }
-
-        if (!isset($input["img_2"])){
-            $input["img_2"] = null;
-        }
-
-        if (!isset($input["img_3"])){
-            $input["img_3"] = null;
-        }
-
-        if (!isset($input["img_4"])){
-            $input["img_4"] = null;
-        }
-
         $input["clasific"] = json_encode($request->clasific);
         $input["disponib"] = json_encode($request->disponib);
 
@@ -229,26 +213,6 @@ class BookController extends Controller
         if (!isset($input["clasific"])){
             $input["clasification"] = [];
         }
-
-        if (!isset($input["img_1"])){
-            $input["img_1"] = null;
-        }
-
-        if (!isset($input["img_2"])){
-            $input["img_2"] = null;
-        }
-
-        if (!isset($input["img_3"])){
-            $input["img_3"] = null;
-        }
-
-        if (!isset($input["img_4"])){
-            $input["img_4"] = null;
-        }
-
-        print_r($input);
-
-        return false;
 
         // actualizando book
         $book->update($input);
