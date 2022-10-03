@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -244,6 +245,10 @@ class BookController extends Controller
         if (!isset($input["img_4"])){
             $input["img_4"] = null;
         }
+
+        print_r($input);
+
+        return false;
 
         // actualizando book
         $book->update($input);
