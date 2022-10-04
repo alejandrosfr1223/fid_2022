@@ -184,26 +184,22 @@ class BookController extends Controller
 
         $temp1 = null;
         if($request->hasFile('img_1')){
-            $temp1 = $request->file('img_1')->store('carrucellibros', 's3');
-            $input["img_1"] = Storage::disk('s3')->url($temp1, 'public');
+            $input["img_1"] = Storage::disk('s3')->put('carrucellibros/', $request->file('img_1'), 'public');
         }
 
         $temp2 = null;
         if($request->hasFile('img_2')){
-            $temp2 = $request->file('img_2')->store('carrucellibros', 's3');
-            $input["img_2"] = Storage::disk('s3')->url($temp2, 'public');
+            $input["img_2"] = Storage::disk('s3')->put('carrucellibros/', $request->file('img_2'), 'public');
         }
 
         $temp3 = null;
         if($request->hasFile('img_3')){
-            $temp3 = $request->file('img_3')->store('carrucellibros', 's3');
-            $input["img_3"] = Storage::disk('s3')->url($temp3, 'public');
+            $input["img_3"] = Storage::disk('s3')->put('carrucellibros/', $request->file('img_3'), 'public');
         }
 
         $temp4 = null;
         if($request->hasFile('img_4')){
-            $temp4 = $request->file('img_4')->store('carrucellibros', 's3');
-            $input["img_4"] = Storage::disk('s3')->url($temp4, 'public');
+            $input["img_4"] = Storage::disk('s3')->put('carrucellibros/', $request->file('img_4'), 'public');
         }
 
         if (!isset($input["disponib"])){
