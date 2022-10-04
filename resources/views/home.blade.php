@@ -99,6 +99,10 @@
                     </div>
                     <!-- Parte Responsiva -->
                 </div>
+                <div class="contributediv">
+                    <h2 style="color:#12313a;">¿Deseas aportar a nuestras investigaciones?</h2>
+                    <a class="loginbtns" id="discov_more2" href="{{route('contribute.home')}}" style="margin:auto;">Aportar Aquí</a>
+                </div>
             </div>
         </div>
     </div>

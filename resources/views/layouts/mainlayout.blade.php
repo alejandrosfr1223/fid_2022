@@ -83,28 +83,31 @@
             <li class="nav-item right-border">
               <a class="nav-link {{ request()->routeIs('documentation.*') ? 'active' : '' }}" href="{{route('documentation.home')}}">{{ trans("mainlayout.documentation") }}</a>
             </li>
+            <li class="nav-item right-border">
+              <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+            </li>
             @auth
                 @if (Auth::user()->roles->first() == [])
                     <li class="nav-item">
-                      <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+                      <a class="nav-link {{ request()->routeIs('contribute.*') ? 'active' : '' }}" href="{{route('contribute.home')}}">Aportar</a>
                     </li>
                 @else
                     @if (Auth::user()->roles->first()->name == "Administrador" || Auth::user()->roles->first()->name == "Operador")
                         <li class="nav-item right-border">
-                          <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+                          <a class="nav-link {{ request()->routeIs('contribute.*') ? 'active' : '' }}" href="{{route('contribute.home')}}">Aportar</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="/fid/admin">{{ trans("mainlayout.dashboard") }}</a>
                         </li>
                     @else
                         <li class="nav-item">
-                          <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+                          <a class="nav-link {{ request()->routeIs('contribute.*') ? 'active' : '' }}" href="{{route('contribute.home')}}">Aportar</a>
                         </li>
                     @endif
                 @endif
             @else
                 <li class="nav-item">
-                  <a class="nav-link {{ request()->routeIs('diffusion.*') ? 'active' : '' }}" href="{{route('diffusion.home')}}">{{ trans("mainlayout.diffussion") }}</a>
+                  <a class="nav-link {{ request()->routeIs('contribute.*') ? 'active' : '' }}" href="{{route('contribute.home')}}">Aportar</a>
                 </li>
             @endauth
             

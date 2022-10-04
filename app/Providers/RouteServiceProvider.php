@@ -65,6 +65,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->name('divinapastora.')
                 ->prefix('divinapastora')
                 ->group(base_path('routes/divinapastora.php'));
+
+            Route::middleware('web')
+                ->name('contribute.')
+                ->prefix('contribute')
+                ->group(base_path('routes/contribute.php'));
         });
     }
 
