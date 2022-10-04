@@ -186,25 +186,25 @@ class BookController extends Controller
 
         $temp1 = null;
         if($request->hasFile('img_1')){
-            $temp1 = Storage::disk('s3')->put('carrucellibros/', $request->file('img_1'), 'public');
+            $temp1 = Storage::disk('s3')->put('carrucellibros', $request->file('img_1'), 'public');
             $input["img_1"] = $preurl.$temp1;
         }
 
         $temp2 = null;
         if($request->hasFile('img_2')){
-            $temp2 = Storage::disk('s3')->put('carrucellibros/', $request->file('img_2'), 'public');
+            $temp2 = Storage::disk('s3')->put('carrucellibros', $request->file('img_2'), 'public');
             $input["img_2"] = $preurl.$temp2;
         }
 
         $temp3 = null;
         if($request->hasFile('img_3')){
-            $temp3 = Storage::disk('s3')->put('carrucellibros/', $request->file('img_3'), 'public');
+            $temp3 = Storage::disk('s3')->put('carrucellibros', $request->file('img_3'), 'public');
             $input["img_3"] = $preurl.$temp3;
         }
 
         $temp4 = null;
         if($request->hasFile('img_4')){
-            $temp4 = Storage::disk('s3')->put('carrucellibros/', $request->file('img_4'), 'public');
+            $temp4 = Storage::disk('s3')->put('carrucellibros', $request->file('img_4'), 'public');
             $input["img_4"] = $preurl.$temp4;
         }
 
