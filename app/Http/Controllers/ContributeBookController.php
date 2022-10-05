@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\ContributeBook;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
 
-class BookController extends Controller
+class ContributeBookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,17 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('admin.crud.books.index');
+        return view('admin.crud.bookscontribute.index');
+    }
+
+    public function rejected()
+    {
+        return view('admin.crud.bookscontribute.rejected');
+    }
+
+    public function accepted()
+    {
+        return view('admin.crud.bookscontribute.accepted');
     }
 
     /**
@@ -26,17 +36,17 @@ class BookController extends Controller
      */
     public function create()
     {
-        $book = new Book();
-        return view('admin.crud.books.create', compact('book'));
+        $contributeBook = new ContributeBook();
+        return view('admin.crud.bookscontribute.create', compact('book'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreContributeBookRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storestore(Request $request)
     {
         // Validación
         $request->validate([
@@ -59,30 +69,28 @@ class BookController extends Controller
 
         $input = $request->all();
 
-        $preurl = "https://appfid-bucket-s3.s3.amazonaws.com/";
-
         $temp1 = null;
         if($request->hasFile('img_1')){
-            $temp1 = Storage::disk('s3')->put('carrucellibros', $request->file('img_1'), 'public');
-            $input["img_1"] = $preurl.$temp1;
+            $temp1 = $request->file('img_1')->store('carrucellibros', 's3');
+            $input["img_1"] = Storage::disk('s3')->url($temp1);
         }
 
         $temp2 = null;
         if($request->hasFile('img_2')){
-            $temp2 = Storage::disk('s3')->put('carrucellibros', $request->file('img_2'), 'public');
-            $input["img_2"] = $preurl.$temp2;
+            $temp2 = $request->file('img_2')->store('carrucellibros', 's3');
+            $input["img_2"] = Storage::disk('s3')->url($temp2);
         }
 
         $temp3 = null;
         if($request->hasFile('img_3')){
-            $temp3 = Storage::disk('s3')->put('carrucellibros', $request->file('img_3'), 'public');
-            $input["img_3"] = $preurl.$temp3;
+            $temp3 = $request->file('img_3')->store('carrucellibros', 's3');
+            $input["img_3"] = Storage::disk('s3')->url($temp3);
         }
 
         $temp4 = null;
         if($request->hasFile('img_4')){
-            $temp4 = Storage::disk('s3')->put('carrucellibros', $request->file('img_4'), 'public');
-            $input["img_4"] = $preurl.$temp4;
+            $temp4 = $request->file('img_4')->store('carrucellibros', 's3');
+            $input["img_4"] = Storage::disk('s3')->url($temp4);
         }
 
         $input["clasific"] = json_encode($request->clasific);
@@ -97,72 +105,46 @@ class BookController extends Controller
         }
         
         // almacenando libro
-        $book = Book::create($input);
+        $contributeBook = ContributeBook::create($input);
 
         // Mensaje
         Alert::success('¡Éxito!', 'Se ha creado el libro: ' . $request->titulo);
 
         // Redireccionar a la vista index
-        return redirect()->route('admin.books.index');
+        return redirect()->route('admin.bookscontribute.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ContributeBook  $contributeBook
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show(ContributeBook $contributeBook)
     {
-        return view('admin.crud.books.edit', compact('book'));
-    }
-
-    function showBooks(){
-    	$books = Book::all();
-    	return view('diffusion.editorialbv', ["books"=>$books]);
-    }
-
-    function showDigs(){
-        $books = Book::all();
-        return view('documentation.dig_books', ["books"=>$books]);
-    }
-
-    function showBookInfo($id){
-        $book = Book::find($id);
-        return view('diffusion.bookbv', ["book"=>$book]);
-    }
-
-    function showDigInfo($id){
-        $book = Book::find($id);
-        return view('documentation.bookdig', ["book"=>$book]);
-    }
-
-    function showInvest(){
-    	$books= Book::all();
-    	return view('investigation.hist_unit', ["books"=>$books]);
+        return view('admin.crud.bookscontribute.edit', compact('book'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ContributeBook  $contributeBook
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(ContributeBook $contributeBook)
     {
-        return view('admin.crud.books.edit', compact('book'));
+        return view('admin.crud.bookscontribute.edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateContributeBookRequest  $request
+     * @param  \App\Models\ContributeBook  $contributeBook
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, ContributeBook $contributeBook)
     {
-
         // Validación
         $request->validate([
             'titulo' => 'required|max:254',
@@ -219,26 +201,52 @@ class BookController extends Controller
         }
 
         // actualizando book
-        $book->update($input);
+        $contributeBook->update($input);
 
         // Mensaje
         Alert::success('¡Éxito!', 'Se ha actualizado el libro: ' . $request->titulo);
 
         // Redireccionar a la vista index
-        return redirect()->route('admin.books.index');
+        return redirect()->route('admin.bookscontribute.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\ContributeBook  $contributeBook
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy(ContributeBook $contributeBook)
     {
-        $titulo = $book->titulo;
-        $book->delete();
+        $titulo = $contributeBook->titulo;
+        $contributeBook->delete();
         Alert::info('¡Advertencia!', 'Se ha eliminado el libro: ' . $titulo);
-        return redirect()->route('admin.books.index');
+        return redirect()->route('admin.bookscontribute.index');
+    }
+
+    public function storeContrib(Request $request, ContributeBook $contributeBook)
+    {
+        // Validación
+        $request->validate([
+            'titulo' => 'required|max:254',
+            'img_1' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_2' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_3' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'img_4' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            /*
+            'autor',
+            'editorial',
+            'edicion',
+            'paginas',
+            'isbn',
+            'url_img_caratula',
+            'notas'
+            */
+        ]);
+
+        $input = $request->all();
+
+        // Redireccionar a la vista index
+        print_r($input);
     }
 }

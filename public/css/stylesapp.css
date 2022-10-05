@@ -813,7 +813,20 @@ footer {
     text-align: center;
 }
 
+#contributeform {
+    width: 70%;
+    margin:auto;
+    padding: 20px 0px;
+}
+
+#contributeform label {
+    font-size: 18px;
+}
+
 @media screen and (max-width: 990px) {
+    #contributeform {
+        width: 95%;
+    }
     #wbg {
         width: 90%;
     }

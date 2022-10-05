@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ContributeBookController;
 use App\Http\Controllers\CursoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,15 @@ Route::resource('books', BookController::class)->names('books')
 
 Route::resource('cursos', CursoController::class)->names('cursos')
     ->middleware('can:admin.crud.cursos.index');
+
+Route::resource('books', ContributeBookController::class)->names('books')
+    ->middleware('can:admin.crud.bookscontribute.index');
+
+Route::resource('books', ContributeBookController::class)->names('books')
+    ->middleware('can:admin.crud.bookscontribute.rejected');
+
+Route::resource('books', ContributeBookController::class)->names('books')
+    ->middleware('can:admin.crud.bookscontribute.accepted');
 
 Route::get('test', function () {
     return view('admin.layouts.test');

@@ -312,6 +312,28 @@ return [
             'can'  => 'admin.crud.users.index',
         ],
         [
+            'text' => 'Material sin Revisar',
+            'url'  => 'admin/cursos',
+            'icon' => 'fas fa-fw fa-school',
+            'can'  => 'admin.crud.bookscontribute.index',
+        ],
+        [
+            'text' => 'Material Aceptado',
+            'url'  => 'admin/cursos',
+            'icon' => 'fas fa-fw fa-school',
+            'can'  => 'admin.crud.bookscontribute.accepted',
+        ],
+        [
+            'text' => 'Material Rechazado',
+            'url'  => 'admin/cursos',
+            'icon' => 'fas fa-fw fa-school',
+            'can'  => 'admin.crud.bookscontribute.rejected',
+        ],
+        [
+            'header' => 'HERRAMIENTAS ADMIN.',
+            'can'  => 'admin.crud.users.index',
+        ],
+        [
             'text' => 'Mtto. app.',
             'url'  => 'admin/maintenance',
             'icon' => 'fas fa-fw fa-briefcase-medical',

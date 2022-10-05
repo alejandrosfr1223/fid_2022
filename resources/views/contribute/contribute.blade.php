@@ -62,16 +62,16 @@
 	                        	</script>
 	                        	<div class="parent">
 	                        		<div id="win1" class="winscontribute">
-		                            	<a class="loginbtns" id="discov_more2" onclick="hidew1()" style="margin:auto;">Aportar</a>
+		                            	<a class="loginbtns" id="discov_more2" onclick="hidew1()" style="margin:auto;">Contribuir con el FID</a>
 									</div>
 									<div id="win2" class="winscontribute">
-		                            	<a class="loginbtns" id="discov_more2" href="#" style="margin:auto;">Aportar documentos</a><br><br>
+		                            	<a class="loginbtns" id="discov_more2" href="{{ route('contribute.contributeform') }}" style="margin:auto;">Aportar Materiales</a><br><br>
 		                            	<a class="loginbtns" id="discov_more2" href="#" style="margin:auto;">Donar al FID</a><br><br><br>
 			                            <a onclick="showw1()" id="closew2">X</a>
 									</div>
 	                        	</div>
 	                        @else
-	                            <a class="loginbtns" id="discov_more2" href="{{ route('login') }}" style="margin:auto;">Aportar</a>
+	                            <a class="loginbtns" id="discov_more2" href="{{ route('login') }}" style="margin:auto;">Contribuir con el FID</a>
 	                        @endauth
 	                    @endif
                     </div>
