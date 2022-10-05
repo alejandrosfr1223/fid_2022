@@ -5,7 +5,7 @@ use App\Http\Controllers\ContributeBookController;
 
 Route::get('/', function () {
     return view('contribute.contribute');
-})->name('contribute');
+})->name('home');
 
 Route::view('contributeform', 'contribute.contributeform');
 
