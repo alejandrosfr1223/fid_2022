@@ -46,7 +46,7 @@ class ContributeBookController extends Controller
      * @param  \App\Http\Requests\StoreContributeBookRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function storestore(Request $request)
+    public function store(Request $request)
     {
         // Validación
         $request->validate([
@@ -226,6 +226,8 @@ class ContributeBookController extends Controller
 
     public function storeContrib(Request $request, ContributeBook $contributeBook)
     {
+        $userID = auth()->user()->id;
+
         // Validación
         $request->validate([
             'titulo' => 'required|max:254',
@@ -233,6 +235,7 @@ class ContributeBookController extends Controller
             'img_2' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
             'img_3' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
             'img_4' => ['nullable', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'clasific' => 'required',
             /*
             'autor',
             'editorial',
@@ -246,7 +249,44 @@ class ContributeBookController extends Controller
 
         $input = $request->all();
 
-        // Redireccionar a la vista index
-        print_r($input);
+        $preurl = "https://appfid-bucket-s3.s3.amazonaws.com/";
+
+        $temp1 = null;
+        if($request->hasFile('img_1')){
+            $temp1 = Storage::disk('s3')->put('aportes/imgs', $request->file('img_1'), 'public');
+            $input["img_1"] = $preurl.$temp1;
+        }
+
+        $temp2 = null;
+        if($request->hasFile('img_2')){
+            $temp2 = Storage::disk('s3')->put('aportes/imgs', $request->file('img_2'), 'public');
+            $input["img_2"] = $preurl.$temp2;
+        }
+
+        $temp3 = null;
+        if($request->hasFile('img_3')){
+            $temp3 = Storage::disk('s3')->put('aportes/imgs', $request->file('img_3'), 'public');
+            $input["img_3"] = $preurl.$temp3;
+        }
+
+        $temp4 = null;
+        if($request->hasFile('img_4')){
+            $temp4 = Storage::disk('s3')->put('aportes/imgs', $request->file('img_4'), 'public');
+            $input["img_4"] = $preurl.$temp4;
+        }
+
+        $temp5 = null;
+        if($request->hasFile('l_file')){
+            $temp5 = Storage::disk('s3')->put('aportes/materiales', $request->file('l_file'), 'public');
+            $input["l_file"] = $preurl.$temp5;
+        }
+
+        $input["user_id"] = $userID;
+        $input["status"] = 0;
+        $input["clasific"] = json_encode($input["clasific"]);
+
+        $contributeBook = ContributeBook::create($input);
+
+        return redirect('contribute')->with("gracias", 'Se ha cargado el material ' . $request->titulo . '. Tu aporte será revisado por nuestro equipo.');
     }
 }

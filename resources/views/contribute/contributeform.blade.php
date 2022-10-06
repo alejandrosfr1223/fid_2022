@@ -4,7 +4,6 @@
 
 <form action="" method="POST">
 	@csrf
-
 	<div style="width: 100%; margin:auto;">
 		<div class="home_container">
             <div class="submain_container">
@@ -146,7 +145,7 @@
 	            </div>
 	            @error('notas')
 	                <div class="col-span-12 sm:col-span-12">
-	                    <small style="color:red">*{{ $message }}*</small>
+	                    <small style="color:red">Escriba una descripción</small>
 	                </div>
 	            @enderror
 	        </div>
@@ -211,6 +210,11 @@
 	            </div>
 	        </div>
 	    </div>
+	    @error('clasific')
+            <div class="col-span-12 sm:col-span-12">
+                <small style="color:red">Debe clasificar el material</small>
+            </div>
+        @enderror
 	    <br><br>
 	    <div class="row">
 	        <div class="col-sm-12 mb-3">

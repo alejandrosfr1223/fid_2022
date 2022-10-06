@@ -2,6 +2,18 @@
 
 @section('content')
 
+	@if(session("gracias"))
+		<script type="text/javascript">
+			Swal.fire({
+	            icon: 'success',
+	            title: '¡Muchas Gracias!',
+	            html: '{{ session("gracias") }}',
+	            showConfirmButton: false,
+	            timer: 4500
+	        });
+		</script>
+	@endif
+
 	<div>
         <div class="home_container">
             <div class="submain_container">
