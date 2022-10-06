@@ -436,7 +436,7 @@
 	            <input type="button" id="lfile" onclick="load_file()" class="btn btn-primary" value="Cargar Archivo">
 	            <input type="button" id="dfile" onclick="delete_file()" class="btn btn-danger" value="Borrar Archivo" style="display:none;">
 	            
-	            <input type="file" onchange="loaded_file()" accept="image/x-png,image/gif,image/jpeg,pdf,xlsx,docx,pptx" id="l_file" name="l_file" style="display:none;">
+	            <input type="file" onchange="loaded_file()" accept="image/*,video/*,audio/*,.pdf,.xlsx,.docx,.pptx" id="l_file" name="l_file" style="display:none;">
 	        </div>
 	    </div>
 	    <br><br>
