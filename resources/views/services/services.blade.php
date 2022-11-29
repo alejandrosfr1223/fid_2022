@@ -61,17 +61,6 @@
         </div>
     </div>
 
-    <style>
-        .typesubbox {
-            width: 300px;
-            height: 500px;
-            background-color: #cca766 !important;
-            padding: 10px;
-            margin: 0px 15px;
-            border-radius: 10px;
-        }
-    </style>
-
     <div class="home_container">
         <div style="position: relative;">
             <div class="yellowbg">
@@ -90,10 +79,10 @@
                 </div>
                 <div id='departments_cont' style="justify-content:center">
                     <div class="filasproducts row row-cols-1 row-cols-sm-3">
-                        <a href="" class="col">
+                        <a href="{{ route('purchase.buysubscription', ['id' => 0]) }}" class="col subscription">
                             <div class="typesubbox">
                                 <h2 style="padding-top:20px; color:#12313a">Nivel 1</h2>
-                                <img class="first_img" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
+                                <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
                                 <p style="color:#12313a">
                                     <b>Características</b><br>
                                     - <br>
@@ -103,12 +92,13 @@
                                     - <br>
                                     - <br>
                                 </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
                             </div>
                         </a>
-                        <a href="" class="col">
+                        <a href="{{ route('purchase.buysubscription', ['id' => 1]) }}" class="col subscription">
                             <div class="typesubbox">
                                 <h2 style="padding-top:20px; color:#12313a">Nivel 2</h2>
-                                <img class="first_img" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
+                                <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
                                 <p style="color:#12313a">
                                     <b>Características</b><br>
                                     - <br>
@@ -118,12 +108,13 @@
                                     - <br>
                                     - <br>
                                 </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
                             </div>
                         </a>
-                        <a href="" class="col">
+                        <a href="{{ route('purchase.buysubscription', ['id' => 2]) }}" class="col subscription">
                             <div class="typesubbox">
                                 <h2 style="padding-top:20px; color:#12313a">Nivel 3</h2>
-                                <img class="first_img" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
+                                <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
                                 <p style="color:#12313a">
                                     <b>Características</b><br>
                                     - <br>
@@ -133,6 +124,7 @@
                                     - <br>
                                     - <br>
                                 </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
                             </div>
                         </a>
                     </div>
@@ -146,17 +138,53 @@
                     <img class="first_img changecolorpngsyellow" src="{{ asset('/img/home/Divinapastora.png') }}">
                 </center>
                 <div id='departments_cont' style="justify-content:center">
-                    <div class="filasproducts row row-cols-1 row-cols-sm-2">
-                        <a href="{{route('investigation.libro_familia')}}">
-                            <div class="col infoproducts">
-                                <img class="pageprod" src="{{ asset('/img/investigacion/LIBRO DE FAMILIA.png') }}">
-                                <h2 style="color:#cca766;">Libros de Familia</h2>
+                    <div class="filasproducts row row-cols-1 row-cols-sm-3">
+                        <a href="{{ route('purchase.buysubscription', ['id' => 3]) }}" class="col subscription">
+                            <div class="typesubbox">
+                                <h2 style="padding-top:20px; color:#12313a">Nivel 1</h2>
+                                <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
+                                <p style="color:#12313a">
+                                    <b>Características</b><br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
                             </div>
                         </a>
-                        <a href="{{route('investigation.arbol_genealogico')}}">
-                            <div class="col infoproducts">
-                                <img class="pageprod" src="{{ asset('/img/investigacion/ARBOL GENEALOGICO2.png') }}">
-                                <h2 style="color:#cca766;">Árboles Genealógicos</h2>
+                        <a href="{{ route('purchase.buysubscription', ['id' => 4]) }}" class="col subscription">
+                            <div class="typesubbox">
+                                <h2 style="padding-top:20px; color:#12313a">Nivel 2</h2>
+                                <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
+                                <p style="color:#12313a">
+                                    <b>Características</b><br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
+                            </div>
+                        </a>
+                        <a href="{{ route('purchase.buysubscription', ['id' => 5]) }}" class="col subscription">
+                            <div class="typesubbox">
+                                <h2 style="padding-top:20px; color:#12313a">Nivel 3</h2>
+                                <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
+                                <p style="color:#12313a">
+                                    <b>Características</b><br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
                             </div>
                         </a>
                     </div>
@@ -174,17 +202,53 @@
                     </center>
                 </div>
                 <div id='departments_cont' style="justify-content:center">
-                    <div class="filasproducts row row-cols-1 row-cols-sm-2">
-                        <a href="{{route('investigation.libro_familia')}}">
-                            <div class="col infoproducts">
-                                <img class="pageprod" src="{{ asset('/img/investigacion/LIBRO DE FAMILIA.png') }}">
-                                <h2 style="color:#12313a;">Libros de Familia</h2>
+                    <div class="filasproducts row row-cols-1 row-cols-sm-3">
+                        <a href="{{ route('purchase.buysubscription', ['id' => 6]) }}" class="col subscription">
+                            <div class="typesubbox">
+                                <h2 style="padding-top:20px; color:#12313a">Nivel 1</h2>
+                                <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
+                                <p style="color:#12313a">
+                                    <b>Características</b><br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
                             </div>
                         </a>
-                        <a href="{{route('investigation.arbol_genealogico')}}">
-                            <div class="col infoproducts">
-                                <img class="pageprod" src="{{ asset('/img/investigacion/ARBOL GENEALOGICO2.png') }}">
-                                <h2 style="color:#12313a;">Árboles Genealógicos</h2>
+                        <a href="{{ route('purchase.buysubscription', ['id' => 7]) }}" class="col subscription">
+                            <div class="typesubbox">
+                                <h2 style="padding-top:20px; color:#12313a">Nivel 2</h2>
+                                <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
+                                <p style="color:#12313a">
+                                    <b>Características</b><br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
+                            </div>
+                        </a>
+                        <a href="{{ route('purchase.buysubscription', ['id' => 8]) }}" class="col subscription">
+                            <div class="typesubbox">
+                                <h2 style="padding-top:20px; color:#12313a">Nivel 3</h2>
+                                <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
+                                <p style="color:#12313a">
+                                    <b>Características</b><br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                    - <br>
+                                </p>
+                                <button class="loginbtns" id="discov_more">Suscribirme</button>
                             </div>
                         </a>
                     </div>

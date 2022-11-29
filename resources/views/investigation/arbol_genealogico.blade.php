@@ -39,7 +39,7 @@
             </div>
         </div>
         <center>
-            <a class="loginbtns" id="discov_more2">Adquirir Servicio</a>
+            <a class="loginbtns" href="{{ route('purchase.buyservice', ['id' => 0]) }}" id="discov_more2">Adquirir Servicio</a>
         </center>
     </div>
 

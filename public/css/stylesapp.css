@@ -25,6 +25,30 @@ body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
+.subscription {
+    scale: 0.9;
+    transition: 0.5s;
+    filter: brightness(95%);
+}
+
+.typesubbox {
+    width: 300px;
+    height: auto;
+    background-color: #cca766 !important;
+    padding: 10px;
+    margin: 0px 15px;
+    border-radius: 10px;
+}
+
+.subscription:hover{
+    scale: 1;
+    filter: brightness(105%);
+}
+
+.recolorimg{
+filter: invert(13%) sepia(1%) saturate(2852%) hue-rotate(160deg) brightness(20%) contrast(89%);
+}
+
 .recolor{
     color: #12313a;
 }
