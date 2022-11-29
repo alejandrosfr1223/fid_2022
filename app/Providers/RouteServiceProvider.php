@@ -70,6 +70,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->name('contribute.')
                 ->prefix('contribute')
                 ->group(base_path('routes/contribute.php'));
+
+            Route::middleware('web')
+                ->name('services.')
+                ->prefix('services')
+                ->group(base_path('routes/services.php'));
         });
     }
 
