@@ -32,6 +32,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 1,
 			"id_proyectsub" => 0,
 	        "price" => 10,
+            "nameproject" => "FID",
+            "idtableaffected" => "level_fidsub",
+            "priceidstripe" => "price_1MAD8UIevP8MvOlWFH5GpEi3",
         ]);
 
         Product::create([
@@ -39,6 +42,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 2,
 			"id_proyectsub" => 0,
 	        "price" => 30,
+            "nameproject" => "FID",
+            "idtableaffected" => "level_fidsub",
+            "priceidstripe" => "price_1MAD8UIevP8MvOlWFH5GpEi3",
         ]);
 
         Product::create([
@@ -46,6 +52,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 3,
 			"id_proyectsub" => 0,
 	        "price" => 50,
+            "nameproject" => "FID",
+            "idtableaffected" => "level_fidsub",
+            "priceidstripe" => "price_1MAD8UIevP8MvOlWFH5GpEi3",
         ]);
 
         Product::create([
@@ -53,6 +62,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 1,
 			"id_proyectsub" => 1,
 	        "price" => 10,
+            "nameproject" => "Proyecto Divina Pastora de las Almas",
+            "idtableaffected" => "level_dpasub",
+            "priceidstripe" => "price_1MAGA1IevP8MvOlWohMPhwdm",
         ]);
 
         Product::create([
@@ -60,6 +72,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 2,
 			"id_proyectsub" => 1,
 	        "price" => 30,
+            "nameproject" => "Proyecto Divina Pastora de las Almas",
+            "idtableaffected" => "level_dpasub",
+            "priceidstripe" => "price_1MAGA1IevP8MvOlWhWIWj6HP",
         ]);
 
         Product::create([
@@ -67,6 +82,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 3,
 			"id_proyectsub" => 1,
 	        "price" => 50,
+            "nameproject" => "Proyecto Divina Pastora de las Almas",
+            "idtableaffected" => "level_dpasub",
+            "priceidstripe" => "price_1MAGA2IevP8MvOlWqZSNXmdi",
         ]);
 
         Product::create([
@@ -74,6 +92,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 1,
 			"id_proyectsub" => 2,
 	        "price" => 10,
+            "nameproject" => "Proyecto Juan del Rincón",
+            "idtableaffected" => "level_jdrsub",
+            "priceidstripe" => "price_1MAGZhIevP8MvOlWRx93Dv4U",
         ]);
 
         Product::create([
@@ -81,6 +102,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 2,
 			"id_proyectsub" => 2,
 	        "price" => 30,
+            "nameproject" => "Proyecto Juan del Rincón",
+            "idtableaffected" => "level_jdrsub",
+            "priceidstripe" => "price_1MAGZhIevP8MvOlWVQIwqOCx",
         ]);
 
         Product::create([
@@ -88,6 +112,9 @@ class ProductsSeeder extends Seeder
             "levelsub" => 3,
 			"id_proyectsub" => 2,
 	        "price" => 50,
+            "nameproject" => "Proyecto Juan del Rincón",
+            "idtableaffected" => "level_jdrsub",
+            "priceidstripe" => "price_1MAGZhIevP8MvOlWJMrP9Wzh",
         ]);
     }
 }

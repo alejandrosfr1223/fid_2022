@@ -84,28 +84,16 @@ class PurchaseController extends Controller
 
         $data = json_decode(json_encode(DB::table('products')->where('id', $infoproyect['idproducto'])->get()),true);
 
-        if ($data[0]["id_proyectsub"] == 0){
-            $name = "FID";
-            $tablename = "level_fidsub";
-            if ($data[0]["levelsub"] == 1){
-                $pid = "price_1MAD8UIevP8MvOlWFH5GpEi3";
-            }
-            if ($data[0]["levelsub"] == 2){
-                $pid = "price_1MAD8UIevP8MvOlWKA1JbeCf";
-            }
-            if ($data[0]["levelsub"] == 3){
-                $pid = "price_1MAD8UIevP8MvOlWsZFJ4wg1";
-            }
-        }
+        $name = $data[0]["nameproject"];
+        $tablename = $data[0]["idtableaffected"];
+        $pid = $data[0]["priceidstripe"];
 
-        if ($data[0]["id_proyectsub"] == 1){
-            $name = "Proyecto Divina Pastora de las Almas";
-            $tablename = "level_dpasub";
-        }
+        $dataci = json_decode(json_encode(DB::table('products')->where('idtableaffected', $data[0]["idtableaffected"])->get()),true);
 
-        if ($data[0]["id_proyectsub"] == 2){
-            $name = "Proyecto Juan del Rincon";
-            $tablename = "level_jdrsub";
+        $checkif = array();
+
+        foreach ($dataci as $i){
+            $checkif[] = $i["priceidstripe"];
         }
 
         try {
@@ -114,6 +102,38 @@ class PurchaseController extends Controller
             
             if (is_null($user->stripe_id)) {
                 $stripeCustomer = $user->createAsStripeCustomer();
+            } else {
+                $stripe = new \Stripe\StripeClient((env('STRIPE_SECRET')));
+            
+                $subsuser = $stripe->subscriptions->all(['customer' => $user->stripe_id]);
+
+                $a = 0;
+
+                foreach ($subsuser["data"] as $i) {
+                    if (in_array($i["plan"]["id"], $checkif) && in_array($pid, $checkif)) {
+                        
+                        $subscription = $stripe->subscriptions->retrieve($i["id"]);
+                        $stripe->subscriptions->update( $subscription->id, [
+                            'cancel_at_period_end' => false,
+                            'proration_behavior' => 'create_prorations',
+                            'items' => [
+                                [
+                                    'id' => $subscription->items->data[0]->id,
+                                    'price' => $pid,
+                                ],
+                            ],
+                        ]);
+
+                        $a = $a + 1;
+
+                        break;
+                    }
+                }
+
+                if ($a > 0){
+                    $affected = DB::table('users')->where('id', auth()->user()->id)->update([$tablename => $data[0]["levelsub"]]);
+                    return redirect()->route('services.home')->with("payment", 'Su suscripción ha sido actualizada correctamente.');
+                }
             }
 
             \Stripe\Customer::createSource(

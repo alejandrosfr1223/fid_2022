@@ -14,8 +14,11 @@ class Product extends Model
         "levelsub",
         "id_service",
         "id_proyectsub",
+        "nameproject",
+        "idtableaffected",
         "price",
-        "description"
+        "description",
+        "priceidstripe"
     ];
     
 }

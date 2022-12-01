@@ -19,7 +19,10 @@ return new class extends Migration
             $table->integer("levelsub")->nullable();
             $table->integer("id_service")->nullable();
             $table->integer("id_proyectsub")->nullable();
+            $table->string("nameproject")->nullable();
+            $table->string("idtableaffected")->nullable();
             $table->integer("price");
+            $table->string("priceidstripe")->nullable();
             $table->string("description")->nullable();
             $table->timestamps();
         });
