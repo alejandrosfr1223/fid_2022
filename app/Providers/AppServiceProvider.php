@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Cashier\User;
 use Illuminate\Support\ServiceProvider;
 /* use Illuminate\Pagination\Paginator; */
 

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use Config;
+use Illuminate\Support\Facades\DB;
+use Stripe\Stripe;
+use Stripe\Charge;
 
 class PurchaseController extends Controller
 {
@@ -21,46 +26,51 @@ class PurchaseController extends Controller
     }
 
     function buysubscription($id){
-        $suscripcion = [];
-        if ($id === "0"){
-            $suscripcion["nombre"] = "Nivel 1";
-            $suscripcion["proyecto"] = "FID";
-            $suscripcion["precio"] = 50;
-        } else if ($id === "1"){
-            $suscripcion["nombre"] = "Nivel 2";
-            $suscripcion["proyecto"] = "FID";
-            $suscripcion["precio"] = 50;
-        } else if ($id === "2"){
-            $suscripcion["nombre"] = "Nivel 3";
-            $suscripcion["proyecto"] = "FID";
-            $suscripcion["precio"] = 50;
-        } else if ($id === "3"){
-            $suscripcion["nombre"] = "Nivel 1";
-            $suscripcion["proyecto"] = "DPA";
-            $suscripcion["precio"] = 50;
-        } else if ($id === "4"){
-            $suscripcion["nombre"] = "Nivel 2";
-            $suscripcion["proyecto"] = "DPA";
-            $suscripcion["precio"] = 50;
-        } else if ($id === "5"){
-            $suscripcion["nombre"] = "Nivel 3";
-            $suscripcion["proyecto"] = "DPA";
-            $suscripcion["precio"] = 50;
-        } else if ($id === "6"){
-            $suscripcion["nombre"] = "Nivel 1";
-            $suscripcion["proyecto"] = "JDR";
-            $suscripcion["precio"] = 50;
-        } else if ($id === "7"){
-            $suscripcion["nombre"] = "Nivel 2";
-            $suscripcion["proyecto"] = "JDR";
-            $suscripcion["precio"] = 50;
-        } else if ($id === "8"){
-            $suscripcion["nombre"] = "Nivel 3";
-            $suscripcion["proyecto"] = "JDR";
-            $suscripcion["precio"] = 50;
-        } else {
-            return view('services.services');
-        }
+        $suscripcion = [];    
+
+        $data = Product::find($id);    
+
+        $suscripcion = json_decode(json_encode($data),true);
+
         return view('purchase.subscriptions', ["suscripcion"=>$suscripcion]);
+    }
+
+    function stripePost(Request $request){
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $infoproyect = json_decode(json_encode($request->all()),true);
+
+        $data = json_decode(json_encode(DB::table('products')->where('id', $infoproyect['idproducto'])->get()),true);
+
+        if ($data[0]["id_proyectsub"] == 0){
+            $name = "FID";
+            $tablename = "level_fidsub";
+        }
+
+        if ($data[0]["id_proyectsub"] == 1){
+            $name = "Proyecto Divina Pastora de las Almas";
+            $tablename = "level_dpasub";
+        }
+
+        if ($data[0]["id_proyectsub"] == 2){
+            $name = "Proyecto Juan del Rincon";
+            $tablename = "level_jdrsub";
+        }
+
+        $charged = Charge::create ([
+                "amount" => $data[0]["price"]*100,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Suscripcion: " . $name . ". Nivel " . $data[0]["levelsub"] . "."
+        ]);
+
+        if ($charged->status == "succeeded"){
+            $affected = DB::table('users')->where('id', auth()->user()->id)->update([$tablename => $data[0]["levelsub"]]);
+        }
+      
+        //Session::flash('success', 'Payment successful!');
+              
+        //return back();
     }
 }

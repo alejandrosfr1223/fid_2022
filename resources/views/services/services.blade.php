@@ -65,7 +65,7 @@
         <div style="position: relative;">
             <div class="yellowbg">
                 <center>
-                    <h2 style="padding:30px 0px; color:#12313a;">Suscripciones</h2>
+                    <h2 style="padding:30px 0px; margin: 0 ; color:#12313a;">Suscripciones</h2>
                 </center>
             </div>
             <div style="position: relative;">
@@ -79,54 +79,81 @@
                 </div>
                 <div id='departments_cont' style="justify-content:center">
                     <div class="filasproducts row row-cols-1 row-cols-sm-3">
-                        <a href="{{ route('purchase.buysubscription', ['id' => 0]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 1</h2>
-                                <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
-                        <a href="{{ route('purchase.buysubscription', ['id' => 1]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 2</h2>
-                                <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
-                        <a href="{{ route('purchase.buysubscription', ['id' => 2]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 3</h2>
-                                <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
+
+                        @foreach ($productos as $i)
+
+                            @if ( $i['id_proyectsub']==0 && $i['service']==0 )
+
+                                @auth
+
+                                    @if (auth()->user()->level_fidsub != $i['levelsub'])
+
+                                    <a href="{{ route('purchase.buysubscription', ['id' => $i['id']]) }}" class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Suscribirme</button>
+                                        </div>
+                                    </a>
+
+                                    @else
+
+                                    <a class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Ya estas suscrito</button>
+                                        </div>
+                                    </a>
+
+                                    @endif
+
+                                @else
+
+                                    <a href="{{route('login')}}" class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img recolorimg" src="{{ asset('/img/logos/logo-fid-llave.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Suscribirme</button>
+                                        </div>
+                                    </a>
+
+                                @endif
+
+                            @endif
+
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -139,54 +166,79 @@
                 </center>
                 <div id='departments_cont' style="justify-content:center">
                     <div class="filasproducts row row-cols-1 row-cols-sm-3">
-                        <a href="{{ route('purchase.buysubscription', ['id' => 3]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 1</h2>
-                                <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
-                        <a href="{{ route('purchase.buysubscription', ['id' => 4]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 2</h2>
-                                <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
-                        <a href="{{ route('purchase.buysubscription', ['id' => 5]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 3</h2>
-                                <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
+                        @foreach ($productos as $i)
+
+                            @if ( $i['id_proyectsub']==1 && $i['service']==0 )
+
+                                @auth
+
+                                    @if (auth()->user()->level_fidsub != $i['levelsub'])
+
+                                    <a href="{{ route('purchase.buysubscription', ['id' => $i['id']]) }}" class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Suscribirme</button>
+                                        </div>
+                                    </a>
+
+                                    @else
+
+                                    <a class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Ya estas suscrito</button>
+                                        </div>
+                                    </a>
+
+                                    @endif
+
+                                @else
+
+                                    <a href="{{route('login')}}" class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img changecolorpngs" src="{{ asset('/img/home/Divinapastora.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Suscribirme</button>
+                                        </div>
+                                    </a>
+
+                                @endif
+
+                            @endif
+
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -203,54 +255,79 @@
                 </div>
                 <div id='departments_cont' style="justify-content:center">
                     <div class="filasproducts row row-cols-1 row-cols-sm-3">
-                        <a href="{{ route('purchase.buysubscription', ['id' => 6]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 1</h2>
-                                <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
-                        <a href="{{ route('purchase.buysubscription', ['id' => 7]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 2</h2>
-                                <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
-                        <a href="{{ route('purchase.buysubscription', ['id' => 8]) }}" class="col subscription">
-                            <div class="typesubbox">
-                                <h2 style="padding-top:20px; color:#12313a">Nivel 3</h2>
-                                <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
-                                <p style="color:#12313a">
-                                    <b>Características</b><br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                    - <br>
-                                </p>
-                                <button class="loginbtns" id="discov_more">Suscribirme</button>
-                            </div>
-                        </a>
+                        @foreach ($productos as $i)
+
+                            @if ( $i['id_proyectsub']==2 && $i['service']==0 )
+
+                                @auth
+
+                                    @if (auth()->user()->level_fidsub != $i['levelsub'])
+
+                                    <a href="{{ route('purchase.buysubscription', ['id' => $i['id']]) }}" class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Suscribirme</button>
+                                        </div>
+                                    </a>
+
+                                    @else
+
+                                    <a class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Ya estas suscrito</button>
+                                        </div>
+                                    </a>
+
+                                    @endif
+
+                                @else
+
+                                    <a href="{{route('login')}}" class="col subscription">
+                                        <div class="typesubbox">
+                                            <h2 style="padding-top:20px; color:#12313a">Nivel {{ $i['levelsub'] }}</h2>
+                                            <img class="first_img changecolorpngs" src="{{ asset('/img/juandelrincon/jdr.png') }}">
+                                            <p style="color:#12313a">
+                                                <b>Características</b><br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                                - <br>
+                                            </p>
+                                            <h2 style="padding-top:20px; color:#12313a">Precio: ${{ $i['price'] }}</h2>
+                                            <button class="loginbtns" id="discov_more">Suscribirme</button>
+                                        </div>
+                                    </a>
+
+                                @endif
+
+                            @endif
+
+                        @endforeach
                     </div>
                 </div>
             </div>

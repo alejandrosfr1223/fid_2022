@@ -46,17 +46,24 @@ class UserController extends Controller
         // Validación
         $request->validate([
             'name' => 'required|max:254',
+            'lastname' => 'required|max:254',
             'password' => 'min:5',
-            'email' => 'required|unique:users,email'
+            'email' => 'required|unique:users,email',
+            'country_iso2' => 'required',
+            'phonenumber' => 'required'
         ]);
 
         // Creando usuario
         $user = User::create([
             'name' => $request->name,
+            'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             // Comentar esta asignación cuando se decida activar la verificación de usuario
-            'email_verified_at' => date('Y-m-d H:i:s')
+            'email_verified_at' => date('Y-m-d H:i:s'),
+            'country_iso2' => $request->country_iso2,
+            'phonenumber' => $request->phonenumber,
+
         ]);
 
         // Asignando roles seleccionados
@@ -114,15 +121,21 @@ class UserController extends Controller
         // Validación
         if($request->password){
             $request->validate([
-                'name' => 'required|max:254',
+                'name' => $request->name,
+                'lastname' => $request->lastname,
                 'password' => 'min:5',
-                'email' => 'email|required|unique:users,email,'.$user->id
+                'email' => 'email|required|unique:users,email,'.$user->id,
+                'country_iso2' => 'required,'.$user->country_iso2,
+                'phonenumber' => 'required,'.$user->phonenumber
             ]);
             $user->password = bcrypt($request->password);
         } else {
             $request->validate([
                 'name' => 'required|max:254',
-                'email' => 'email|required|unique:users,email,'.$user->id
+                'lastname' => $request->lastname,
+                'email' => 'email|required|unique:users,email,'.$user->id,
+                'country_iso2' => 'required,'.$user->country_iso2,
+                'phonenumber' => 'required,'.$user->phonenumber
             ]);
         }
 

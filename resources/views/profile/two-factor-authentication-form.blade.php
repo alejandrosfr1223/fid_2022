@@ -1,28 +1,28 @@
 <x-jet-action-section>
     <x-slot name="title">
-        {{ __('Two Factor Authentication') }}
+        Segundo Paso de Autenticación
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Add additional security to your account using two factor authentication.') }}
+        Añade más seguridad a tu cuenta
     </x-slot>
 
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
                 @if ($showingConfirmation)
-                    {{ __('Finish enabling two factor authentication.') }}
+                    Ya vas a habilitar el segundo paso de autenticación.
                 @else
-                    {{ __('You have enabled two factor authentication.') }}
+                    Has habilitado el segundo paso de autenticación.
                 @endif
             @else
-                {{ __('You have not enabled two factor authentication.') }}
+                No has habilitado el segundo paso de autenticación.
             @endif
         </h3>
 
         <div class="mt-3 max-w-xl text-sm text-gray-600">
             <p>
-                {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
+                Cuando se habilita el segundo paso de autenticación, se te mostrará una ventana pidiendo un código aleatorio que deberás obtener obtener de una app como Google Authenticator.
             </p>
         </div>
 
@@ -31,9 +31,9 @@
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
                         @if ($showingConfirmation)
-                            {{ __('To finish enabling two factor authentication, scan the following QR code using your phone\'s authenticator application or enter the setup key and provide the generated OTP code.') }}
+                            Para terminar de habilitar el segundo paso de autenticación, escanea el siguiente código con una app como Google Authenticator y coloca el código que te devuelve la app.
                         @else
-                            {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application or enter the setup key.') }}
+                            El segundo paso de autenticación ha sido habilitado, escanea el código QR de tu app de autenticación (ej. Google Authenticator) o introduce el código de configuración.
                         @endif
                     </p>
                 </div>
@@ -44,7 +44,7 @@
 
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
-                        {{ __('Setup Key') }}: {{ decrypt($this->user->two_factor_secret) }}
+                        Código de Configuración: {{ decrypt($this->user->two_factor_secret) }}
                     </p>
                 </div>
 
@@ -64,7 +64,7 @@
             @if ($showingRecoveryCodes)
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
-                        {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
+                        Guarde estos códigos de recuperación en un administrador de contraseñas seguro. Se pueden usar para recuperar el acceso a su cuenta si se pierde su dispositivo de autenticación de dos factores.
                     </p>
                 </div>
 
@@ -80,26 +80,26 @@
             @if (! $this->enabled)
                 <x-jet-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-jet-button type="button" wire:loading.attr="disabled">
-                        {{ __('Enable') }}
+                        Habilitar
                     </x-jet-button>
                 </x-jet-confirms-password>
             @else
                 @if ($showingRecoveryCodes)
                     <x-jet-confirms-password wire:then="regenerateRecoveryCodes">
                         <x-jet-secondary-button class="mr-3">
-                            {{ __('Regenerate Recovery Codes') }}
+                            Regenerar códigos de seguridad
                         </x-jet-secondary-button>
                     </x-jet-confirms-password>
                 @elseif ($showingConfirmation)
                     <x-jet-confirms-password wire:then="confirmTwoFactorAuthentication">
                         <x-jet-button type="button" class="mr-3" wire:loading.attr="disabled">
-                            {{ __('Confirm') }}
+                            Confirmar
                         </x-jet-button>
                     </x-jet-confirms-password>
                 @else
                     <x-jet-confirms-password wire:then="showRecoveryCodes">
                         <x-jet-secondary-button class="mr-3">
-                            {{ __('Show Recovery Codes') }}
+                            Mostrar códigos de recuperación
                         </x-jet-secondary-button>
                     </x-jet-confirms-password>
                 @endif
@@ -107,13 +107,13 @@
                 @if ($showingConfirmation)
                     <x-jet-confirms-password wire:then="disableTwoFactorAuthentication">
                         <x-jet-secondary-button wire:loading.attr="disabled">
-                            {{ __('Cancel') }}
+                            Cancelar
                         </x-jet-secondary-button>
                     </x-jet-confirms-password>
                 @else
                     <x-jet-confirms-password wire:then="disableTwoFactorAuthentication">
                         <x-jet-danger-button wire:loading.attr="disabled">
-                            {{ __('Disable') }}
+                            Deshabilitar
                         </x-jet-danger-button>
                     </x-jet-confirms-password>
                 @endif

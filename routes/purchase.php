@@ -5,4 +5,7 @@
 
     Route::get('/services/{id}', [PurchaseController::class,"buyservice"])->name("buyservice");
 
-    Route::get('/subscription/{id}', [PurchaseController::class,"buysubscription"])->name("buysubscription");
+    Route::controller(PurchaseController::class)->group(function(){
+        Route::get('/subscription/{id}', 'buysubscription')->name("buysubscription");
+        Route::post('/subscription/{id}', 'stripePost');
+    });
