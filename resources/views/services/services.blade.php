@@ -2,6 +2,25 @@
 
 @section('content')
 
+    @if(session("payment"))
+		<script type="text/javascript">
+			Swal.fire({
+                showCloseButton: true,
+	            icon: 'success',
+	            title: '¡Muchas Gracias!',
+	            html: '{{ session("payment") }}',
+                showDenyButton: true,
+	            confirmButtonText: 'Aceptar',
+                denyButtonText: 'Ver mi Factura',
+	        }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                /*if (!result.isConfirmed) {
+                    window.open('{{ session("paymenturl") }}', '_blank').focus();
+                }*/
+            });
+		</script>
+	@endif
+
     <div class="home_container">
         <div class="submain_container">
             <table style="height: 15rem; width: 100%; text-align: center;">
@@ -82,7 +101,11 @@
 
                         @foreach ($productos as $i)
 
-                            @if ( $i['id_proyectsub']==0 && $i['service']==0 )
+                            @php
+                            
+                            if ( $i['id_proyectsub']==0 && $i['service']==0 ){
+
+                            @endphp
 
                                 @auth
 
@@ -150,7 +173,11 @@
 
                                 @endif
 
-                            @endif
+                            @php
+                            
+                            }
+
+                            @endphp
 
                         @endforeach
 
@@ -168,11 +195,15 @@
                     <div class="filasproducts row row-cols-1 row-cols-sm-3">
                         @foreach ($productos as $i)
 
-                            @if ( $i['id_proyectsub']==1 && $i['service']==0 )
+                            @php
+                            
+                            if ( $i['id_proyectsub']==1 && $i['service']==0 ){
+
+                            @endphp
 
                                 @auth
 
-                                    @if (auth()->user()->level_fidsub != $i['levelsub'])
+                                    @if (auth()->user()->level_dpasub != $i['levelsub'])
 
                                     <a href="{{ route('purchase.buysubscription', ['id' => $i['id']]) }}" class="col subscription">
                                         <div class="typesubbox">
@@ -236,7 +267,11 @@
 
                                 @endif
 
-                            @endif
+                            @php
+                            
+                            }
+
+                            @endphp
 
                         @endforeach
                     </div>
@@ -257,11 +292,15 @@
                     <div class="filasproducts row row-cols-1 row-cols-sm-3">
                         @foreach ($productos as $i)
 
-                            @if ( $i['id_proyectsub']==2 && $i['service']==0 )
+                            @php
+                            
+                            if ( $i['id_proyectsub']==2 && $i['service']==0 ){
+
+                            @endphp
 
                                 @auth
 
-                                    @if (auth()->user()->level_fidsub != $i['levelsub'])
+                                    @if (auth()->user()->level_jdrsub != $i['levelsub'])
 
                                     <a href="{{ route('purchase.buysubscription', ['id' => $i['id']]) }}" class="col subscription">
                                         <div class="typesubbox">
@@ -325,7 +364,11 @@
 
                                 @endif
 
-                            @endif
+                            @php
+                            
+                            }
+
+                            @endphp
 
                         @endforeach
                     </div>
