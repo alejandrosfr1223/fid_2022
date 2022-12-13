@@ -7,6 +7,8 @@ use App\Models\Product;
 use Config;
 use Illuminate\Support\Facades\DB;
 use Stripe;
+use HubSpot;
+use HubSpot\Client\Crm\Deals\Model\AssociationSpec;
 
 class PurchaseController extends Controller
 {
@@ -14,10 +16,16 @@ class PurchaseController extends Controller
         $servicio = [];
         if ($id === "0"){
             $servicio["nombre"] = "Arbol Genealógico";
-            $servicio["precio"] = 50;
+            $servicio["id"] = $id;
+            $servicio["price"] = 50;
         } else if ($id === "1"){
             $servicio["nombre"] = "Libro de Familia";
-            $servicio["precio"] = 50;
+            $servicio["id"] = $id;
+            $servicio["price"] = 50;
+        } else if ($id === "2"){
+            $servicio["nombre"] = "Investigación a la Carta";
+            $servicio["id"] = $id;
+            $servicio["price"] = 50;
         } else {
             return view('services.services');
         }
@@ -35,6 +43,24 @@ class PurchaseController extends Controller
     }
 
     function stripePostProductos(Request $request){
+        $hubspot = HubSpot\Factory::createWithAccessToken(env('HUBSPOT_KEY'));
+
+        $hssearch = json_decode(json_encode($request->all()),true);
+
+        $filter = new HubSpot\Client\Crm\Contacts\Model\Filter();
+        $filter
+            ->setOperator('EQ')
+            ->setPropertyName('email')
+            ->setValue($hssearch["email"]);
+
+        $filterGroup = new HubSpot\Client\Crm\Contacts\Model\FilterGroup();
+        $filterGroup->setFilters([$filter]);
+
+        $searchRequest = new HubSpot\Client\Crm\Contacts\Model\PublicObjectSearchRequest();
+        $searchRequest->setFilterGroups([$filterGroup]);
+
+        // Get specific properties
+        $searchRequest->setProperties(['email']);
 
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
@@ -42,35 +68,81 @@ class PurchaseController extends Controller
 
         $data = json_decode(json_encode(DB::table('products')->where('id', $infoproyect['idproducto'])->get()),true);
 
-        if ($data[0]["id_proyectsub"] == 0){
-            $name = "FID";
-            $tablename = "level_fidsub";
+        $id = $infoproyect['idproducto'];
+
+        if ($id === "0"){
+            $servicio["nombre"] = "Arbol Genealógico";
+            $servicio["id"] = $id;
+            $servicio["price"] = 50;
+        } else if ($id === "1"){
+            $servicio["nombre"] = "Libro de Familia";
+            $servicio["id"] = $id;
+            $servicio["price"] = 50;
+        } else if ($id === "2"){
+            $servicio["nombre"] = "Investigación a la Carta";
+            $servicio["id"] = $id;
+            $servicio["price"] = 50;
         }
 
-        if ($data[0]["id_proyectsub"] == 1){
-            $name = "Proyecto Divina Pastora de las Almas";
-            $tablename = "level_dpasub";
-        }
+        $customer = Stripe\Customer::create(array(
+            "email" => $hssearch["email"],
+            "name" => $hssearch["name"]. " " .$hssearch["lastname"],
+            "source" => $request->stripeToken
+         ));
 
-        if ($data[0]["id_proyectsub"] == 2){
-            $name = "Proyecto Juan del Rincon";
-            $tablename = "level_jdrsub";
-        }
-
-        $charged = Charge::create ([
-                "amount" => $data[0]["price"]*100,
+        $charged = Stripe\Charge::create ([
+                "amount" => $servicio["price"]*100,
                 "currency" => "usd",
-                "source" => $request->stripeToken,
-                "description" => "Suscripcion: " . $name . ". Nivel " . $data[0]["levelsub"] . "."
+                "customer" => $customer->id,
+                "description" => "Pago inicial: " . $servicio["nombre"] . "."
         ]);
 
         if ($charged->status == "succeeded"){
-            $affected = DB::table('users')->where('id', auth()->user()->id)->update([$tablename => $data[0]["levelsub"]]);
-            return redirect()->route('services.home')->with("payment", 'Su pago ha sido procesado correctamente.')->with("paymenturl", $charged["receipt_url"]);
+            
+            $contactsPage = json_decode(json_encode($hubspot->crm()->contacts()->searchApi()->doSearch($searchRequest)),true);
+
+            if ($contactsPage["total"]==0) {
+                $contactInput = new \HubSpot\Client\Crm\Contacts\Model\SimplePublicObjectInput();
+                $contactInput->setProperties([
+                    'email' => $hssearch["email"],
+                    'firstname' => $hssearch["name"],
+                    'lastname' => $hssearch["lastname"],
+                    'phone' => $hssearch["cellphone"],
+                    'country' => $hssearch["country"],
+                ]);
+
+                $contact = json_decode(json_encode($hubspot->crm()->contacts()->basicApi()->create($contactInput)),true);;
+
+                $hsuserid = $contact["id"];
+            } else {
+                $hsuserid = $contactsPage["results"][0]["id"];
+            }
+
+            $contactsPage = json_decode(json_encode($hubspot->crm()->contacts()->searchApi()->doSearch($searchRequest)),true);
+
+            $dealInput = new \HubSpot\Client\Crm\Deals\Model\SimplePublicObjectInput();
+
+            $dealInput->setProperties([
+                'dealname' => $servicio["nombre"],
+                'pipeline' => "default",
+                'dealstage' => "47329299"
+            ]);
+            
+            $apiResponse = json_decode(json_encode($hubspot->crm()->deals()->basicApi()->create($dealInput)),true);
+
+            $iddeal = $apiResponse["id"];
+
+            $associationSpec1 = new AssociationSpec([
+                'association_category' => 'HUBSPOT_DEFINED',
+                'association_type_id' => 3
+            ]);
+
+            $asocdeal = $hubspot->crm()->deals()->associationsApi()->create($iddeal, 'contacts', $hsuserid, [$associationSpec1]);
+
+            return redirect()->route('services.home')->with("payment", 'Su pago ha sido procesado correctamente. En los próximos días nos comunicaremos con usted.')->with("paymenturl", $charged["receipt_url"]);
+        } else {
+            return redirect()->route('services.home')->with("error", 'Ha ocurrido un error al procesar su pago.');
         }
-      
-        //Session::flash('success', 'Payment successful!');
-              
     }
 
     function stripePost(Request $request){

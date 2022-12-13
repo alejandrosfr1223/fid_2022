@@ -103,6 +103,12 @@
                         <h2>Árboles Genealógicos</h2>
                     </div>
                 </a>
+                <a href="{{route('investigation.invalacarta')}}">
+                    <div class="col infoproducts">
+                        <img class="pageprod" src="{{ asset('/img/lupa.png') }}">
+                        <h2>Investigación a la carta</h2>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

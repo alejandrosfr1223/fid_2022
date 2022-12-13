@@ -24,3 +24,7 @@
     Route::get('hist_unit/arbol_genealogico', function () {
         return view('investigation.arbol_genealogico');
     })->name("arbol_genealogico");
+
+    Route::get('hist_unit/invalacarta', function () {
+        return view('investigation.invalacarta');
+    })->name("invalacarta");

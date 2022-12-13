@@ -52,31 +52,31 @@
             </div>
         </div>
     </div>
-    <div class="home_container bluebg">
+    <div class="home_container bluebg" style="padding: 20px 0;">
         <img src="{{ asset('/img/home/logo-overlay2.png') }}" class="backg-ovrl3 bigscreen ol2-l">
         <img src="{{ asset('/img/logos/vector-logo.svg') }}" class="backg-ovrl3 smallscreen">
-        <div style="position: relative;">
-            <div>
-                <center>
-                    <h2 style="padding-top:30px; color:#cca766;">Servicios</h2>
-                </center>
-            </div>
-            <div id='departments_cont' style="justify-content:center">
-                <div class="filasproducts row row-cols-1 row-cols-sm-2">
-                    <a href="{{route('investigation.libro_familia')}}">
-                        <div class="col infoproducts">
-                            <img class="pageprod" src="{{ asset('/img/investigacion/LIBRO DE FAMILIA.png') }}">
-                            <h2 style="color:#cca766;">Libros de Familia</h2>
-                        </div>
-                    </a>
-                    <a href="{{route('investigation.arbol_genealogico')}}">
-                        <div class="col infoproducts">
-                            <img class="pageprod" src="{{ asset('/img/investigacion/ARBOL GENEALOGICO2.png') }}">
-                            <h2 style="color:#cca766;">Árboles Genealógicos</h2>
-                        </div>
-                    </a>
+        <center>
+            <h2 style="color:#cca766;">Servicios Disponibles</h2>
+        </center>
+        <div class="filasproducts row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            <a href="{{route('investigation.libro_familia')}}">
+                <div class="col infoproducts">
+                    <img class="pageprod" src="{{ asset('/img/investigacion/LIBRO DE FAMILIA.png') }}">
+                    <h2 style="color:#cca766;">Libros de Familia</h2>
                 </div>
-            </div>
+            </a>
+            <a href="{{route('investigation.arbol_genealogico')}}">
+                <div class="col infoproducts">
+                    <img class="pageprod" src="{{ asset('/img/investigacion/ARBOL GENEALOGICO2.png') }}">
+                    <h2 style="color:#cca766;">Árboles Genealógicos</h2>
+                </div>
+            </a>
+            <a href="{{route('investigation.invalacarta')}}">
+                <div class="col infoproducts">
+                    <img class="pageprod" src="{{ asset('/img/lupa.png') }}">
+                    <h2 style="color:#cca766;">Investigación a la carta</h2>
+                </div>
+            </a>
         </div>
     </div>
 

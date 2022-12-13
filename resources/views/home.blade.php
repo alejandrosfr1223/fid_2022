@@ -99,10 +99,19 @@
                     </div>
                     <!-- Parte Responsiva -->
                 </div>
-                <div class="contributediv">
-                    <div style="padding:15px 0px; width: 100%;">
-                        <h2 style="color:#12313a;">¿Deseas aportar a nuestras investigaciones?</h2>
-                        <a class="loginbtns" id="discov_more2" href="{{route('contribute.home')}}" style="margin:auto;">Aportar Aquí</a>
+                <div class="home_container" style="padding: 0px 4rem 30px 4rem;">
+                    <center>
+                        <h2 style="color:#cca766;">Conoce Nuestros Servicios</h2>
+                    </center>
+                    <div class="filasproducts row row-cols-1 row-cols-sm-2 row-cols-md-2">
+                        <div class="col infoproducts">
+                            <h2 style="color:#12313a;">¿Deseas aportar a nuestras investigaciones?</h2>
+                            <a class="loginbtns" id="discov_more2" href="{{route('contribute.home')}}" style="margin:auto;">Aportar Aquí</a>
+                        </div>
+                        <div class="col infoproducts">
+                            <h2 style="color:#12313a;">Conoce nuestros servicios y suscripciones</h2>
+                            <a class="loginbtns" id="discov_more2" href="{{route('services.home')}}" style="margin:auto;">Entra Aquí</a>
+                        </div>
                     </div>
                 </div>
             </div>
